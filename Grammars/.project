@@ -30,27 +30,27 @@
 		<link>
 			<name>c#</name>
 			<type>2</type>
-			<location>/Users/ericvergnaud/Development/Presto/C#/Core/generated</location>
+			<location>/Users/ericvergnaud/Development/Presto/presto-csharp/CSharp-Core/generated</location>
 		</link>
 		<link>
 			<name>java</name>
 			<type>2</type>
-			<location>/Users/ericvergnaud/Development/Presto/Java/Core/src/generated/java</location>
+			<location>/Users/ericvergnaud/Development/Presto/presto-java/Java-Core/src/generated/java</location>
 		</link>
 		<link>
 			<name>js</name>
 			<type>2</type>
-			<location>/Users/ericvergnaud/Development/Presto/Javascript/Core/src/generated</location>
+			<location>/Users/ericvergnaud/Development/Presto/presto-javascript/JavaScript-Core/src/generated</location>
 		</link>
 		<link>
 			<name>py2</name>
 			<type>2</type>
-			<location>/Users/ericvergnaud/Development/Presto/Python2/Core/src/generated</location>
+			<location>/Users/ericvergnaud/Development/Presto/presto-python2/Python2-Core/src/generated</location>
 		</link>
 		<link>
 			<name>py3</name>
 			<type>2</type>
-			<location>/Users/ericvergnaud/Development/Presto/Python3/Core/src/generated</location>
+			<location>/Users/ericvergnaud/Development/Presto/presto-python3/Python3-Core/src/generated</location>
 		</link>
 	</linkedResources>
 </projectDescription>

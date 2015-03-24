@@ -10,8 +10,8 @@ import CommonParser;
 enum_category_declaration:
   DEFINE name=type_identifier AS COLON ENUMERATED 
   	(CATEGORY | derived=type_identifier)
-  	(attrs=attribute_list COMMA)?
-    WITH symbols_token COLON
+  	((attrs=attribute_list COMMA AND) | WITH)
+    symbols_token COLON
     indent symbols=category_symbol_list dedent
   ;
 
@@ -142,6 +142,17 @@ native_method_declaration:
     indent stmts=native_statement_list dedent
   ;  
 
+test_method_declaration:
+  DEFINE name=TEXT_LITERAL AS COLON TEST METHOD DOING COLON 
+    indent stmts=statement_list dedent
+  lfp AND EXPECTING COLON
+    ((indent exps=assertion_list dedent) | error=symbol_identifier)
+  ;  
+  
+assertion:
+	exp=expression
+	;
+	  
 full_argument_list:
   items=argument_list
    (AND item=argument)?

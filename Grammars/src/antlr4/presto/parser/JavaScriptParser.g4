@@ -70,6 +70,7 @@ javascript_identifier:
   | PERIOD
   | READ
   | WRITE
+  | TEST
   ;
  
   

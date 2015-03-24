@@ -122,6 +122,17 @@ native_method_declaration:
     LCURL stmts=native_statement_list RCURL
   ;
 
+test_method_declaration:
+  TEST METHOD name=TEXT_LITERAL LPAR RPAR
+    LCURL stmts=statement_list RCURL
+  	EXPECTING
+    ((LCURL exps=assertion_list RCURL) | (error=symbol_identifier SEMI))
+  ;  
+  
+assertion:
+	exp=expression SEMI
+	;
+
 typed_argument:
   typ = category_or_any_type 
   	(LPAR attrs=attribute_list RPAR )? 

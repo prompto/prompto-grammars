@@ -110,6 +110,17 @@ native_method_declaration:
     indent stmts=native_statement_list dedent
   ;  
 
+test_method_declaration:
+  DEF TEST name=TEXT_LITERAL LPAR RPAR COLON
+    indent stmts=statement_list dedent
+  	lfp EXPECTING COLON
+    ((indent exps=assertion_list dedent) | (error=symbol_identifier))
+  ;  
+  
+assertion:
+	exp=expression
+	;
+
 typed_argument:
   name=variable_identifier COLON 
   	typ = category_or_any_type 

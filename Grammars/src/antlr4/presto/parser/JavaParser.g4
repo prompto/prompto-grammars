@@ -74,6 +74,9 @@ java_identifier:
   | TIME
   | DATETIME
   | PERIOD
+  | READ
+  | WRITE
+  | TEST
   ;
  
   

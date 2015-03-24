@@ -220,7 +220,7 @@ javascript_category_mapping:
   ;
   
 javascript_module:  
-  FROM module_token COLON SLASH? identifier (SLASH identifier)* (DOT identifier)?
+  FROM module_token COLON SLASH? javascript_identifier (SLASH javascript_identifier)* (DOT javascript_identifier)?
   ;
    
 variable_identifier_list:
@@ -233,6 +233,7 @@ method_declaration:
   decl=abstract_method_declaration		# AbstractMethod
   | decl=concrete_method_declaration	# ConcreteMethod
   | decl=native_method_declaration		# NativeMethod
+  | decl=test_method_declaration		# TestMethod
   ; 
   
 native_statement_list:
@@ -262,6 +263,12 @@ statement_list:
   | items=statement_list 
   	lfp item=statement		# StatementListItem
   ;
+  
+assertion_list:
+  item=assertion			# AssertionList
+  | items=assertion_list 
+  	lfp item=assertion		# AssertionListItem
+  ;  
 
 switch_case_statement_list:
   item=switch_case_statement		# SwitchCaseStatementList
@@ -414,6 +421,7 @@ attribute_declaration:;
 abstract_method_declaration:;
 concrete_method_declaration:;
 native_method_declaration:;
+test_method_declaration:;
 concrete_category_declaration:;
 singleton_category_declaration:;
 native_category_declaration:;
@@ -428,6 +436,7 @@ typed_argument:;
 native_symbol:;
 category_symbol:;
 expression:;
+assertion:;
 statement:;
 switch_case_statement:;
 catch_statement:;
