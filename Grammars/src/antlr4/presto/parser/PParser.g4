@@ -304,11 +304,11 @@ instance_expression:
 
 method_expression:
   exp=document_expression			# DocumentExpression
-  | exp=constructor_expression		# ConstructorExpression
   | exp=fetch_expression			# FetchExpression
   | exp=read_expression				# ReadExpression
   | exp=sorted_expression			# SortedExpression
   | exp=method_call					# MethodCallExpression
+  | exp=constructor_expression		# ConstructorExpression
   ;
 	
 instance_selector:
