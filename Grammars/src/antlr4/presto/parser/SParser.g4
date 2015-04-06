@@ -1,7 +1,7 @@
-parser grammar PParser;
+parser grammar SParser;
 
 options {
-  tokenVocab = PLexer;
+  tokenVocab = SLexer;
   superClass = AbstractParser; 
 }
 
@@ -312,9 +312,9 @@ method_expression:
   ;
 	
 instance_selector:
-  {$parser.wasNot(PParser.WS)}? DOT name=variable_identifier 				# MemberSelector
-  | {$parser.wasNot(PParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
-  |	{$parser.wasNot(PParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
+  {$parser.wasNot(SParser.WS)}? DOT name=variable_identifier 				# MemberSelector
+  | {$parser.wasNot(SParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
+  |	{$parser.wasNot(SParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
   ; 
  
 document_expression:
@@ -357,8 +357,8 @@ assign_instance_statement:
   ;  
 
 child_instance:
-  {$parser.wasNot(PParser.WS)}? DOT name=variable_identifier		# MemberInstance
-  | {$parser.wasNot(PParser.WS)}? LBRAK exp=expression RBRAK 		# ItemInstance
+  {$parser.wasNot(SParser.WS)}? DOT name=variable_identifier		# MemberInstance
+  | {$parser.wasNot(SParser.WS)}? LBRAK exp=expression RBRAK 		# ItemInstance
   ;
     
 assign_tuple_statement: 
