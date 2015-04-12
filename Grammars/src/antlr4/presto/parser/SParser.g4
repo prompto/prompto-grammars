@@ -38,23 +38,18 @@ concrete_category_declaration:
   	  | attrs=attribute_list  
   	  | derived=derived_list COMMA attrs=attribute_list ) 
   RPAR COLON
-	  	indent ( methods=category_method_declaration_list | PASS ) dedent
+	  	indent ( methods=member_method_declaration_list | PASS ) dedent
   ;
 
 singleton_category_declaration:
   SINGLETON name=type_identifier LPAR attrs=attribute_list RPAR COLON
-	  	indent ( methods=category_method_declaration_list | PASS ) dedent
+	  	indent ( methods=member_method_declaration_list | PASS ) dedent
   ;
 
 derived_list:
   items=type_identifier_list
   ;
 
-member_method_declaration: 
-  DEF name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=typedef)? COLON 
-    indent stmts=statement_list dedent
-  ;
-  
 operator_method_declaration: 
   DEF OPERATOR op=operator LPAR arg=operator_argument RPAR (RARROW typ=typedef)? COLON 
     indent stmts=statement_list dedent
@@ -106,7 +101,7 @@ concrete_method_declaration:
   ;  
 
 native_method_declaration:
-  DEF NATIVE name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=typedef)? COLON 
+  DEF NATIVE name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=category_or_any_type)? COLON 
     indent stmts=native_statement_list dedent
   ;  
 

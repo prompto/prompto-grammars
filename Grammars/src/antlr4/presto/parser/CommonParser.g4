@@ -182,17 +182,18 @@ any_type:
   | typ=any_type LCURL RCURL	# AnyDictType
   ;
 
-category_method_declaration_list:
-  item=category_method_declaration			# CategoryMethodList		
-  | items=category_method_declaration_list 
-  	lfp item=category_method_declaration	# CategoryMethodListItem
+member_method_declaration_list:
+  item=member_method_declaration			# CategoryMethodList		
+  | items=member_method_declaration_list 
+  	lfp item=member_method_declaration		# CategoryMethodListItem
   ;
   
-category_method_declaration:
-  decl=setter_method_declaration			# SetterMethod
-  | decl=getter_method_declaration			# GetterMethod
-  | decl=member_method_declaration			# MemberMethod
-  | decl=operator_method_declaration		# OperatorMethod
+member_method_declaration:
+  decl=setter_method_declaration			# SetterMemberMethod
+  | decl=getter_method_declaration			# GetterMemberMethod
+  | decl=concrete_method_declaration		# ConcreteMemberMethod
+  | decl=abstract_method_declaration		# AbstractMemberMethod
+  | decl=operator_method_declaration		# OperatorMemberMethod
   ;
 
 native_category_mapping:
@@ -430,7 +431,6 @@ enum_category_declaration:;
 enum_native_declaration:;
 setter_method_declaration:;
 getter_method_declaration:;
-member_method_declaration:;
 operator_method_declaration:;
 typed_argument:;
 native_symbol:;

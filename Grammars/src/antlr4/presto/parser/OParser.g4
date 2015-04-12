@@ -55,13 +55,7 @@ derived_list  :
 
 category_method_list:
   SEMI														# EmptyCategoryMethodList
-  | LCURL ( items=category_method_declaration_list )? RCURL	# CurlyCategoryMethodList
-  ;
-
-member_method_declaration:   
-  (typ=typedef)? METHOD name=method_identifier 
-    LPAR (args=argument_list)? RPAR
-    LCURL (stmts=statement_list)? RCURL
+  | LCURL ( items=member_method_declaration_list )? RCURL	# CurlyCategoryMethodList
   ;
 
 operator_method_declaration: 
@@ -117,7 +111,7 @@ concrete_method_declaration:
   ;  
 
 native_method_declaration:
-  (typ=typedef)? NATIVE METHOD name=method_identifier 
+  (typ=category_or_any_type)? NATIVE METHOD name=method_identifier 
     LPAR (args=argument_list)? RPAR
     LCURL stmts=native_statement_list RCURL
   ;

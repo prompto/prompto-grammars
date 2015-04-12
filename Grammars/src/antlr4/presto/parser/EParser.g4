@@ -42,9 +42,9 @@ concrete_category_declaration:
   	( CATEGORY | derived=derived_list )
   	( ( attrs=attribute_list  
 	  	( COMMA AND METHODS COLON 
-	  		indent methods=category_method_declaration_list dedent )? )
+	  		indent methods=member_method_declaration_list dedent )? )
 	  | ( WITH METHODS COLON 
-	  		indent methods=category_method_declaration_list dedent )
+	  		indent methods=member_method_declaration_list dedent )
 	 ) ?
   ;
 
@@ -53,9 +53,9 @@ singleton_category_declaration:
   	SINGLETON
   	( ( attrs=attribute_list  
 	  	( COMMA AND METHODS COLON 
-	  		indent methods=category_method_declaration_list dedent )? )
+	  		indent methods=member_method_declaration_list dedent )? )
 	  | ( WITH METHODS COLON 
-	  		indent methods=category_method_declaration_list dedent )
+	  		indent methods=member_method_declaration_list dedent )
 	 ) ?
   ;
   
@@ -65,14 +65,6 @@ derived_list:
   	AND item=type_identifier		# DerivedListItem
   ;
 
-member_method_declaration: 
-  DEFINE name=method_identifier AS COLON METHOD   
-    (RECEIVING COLON args=full_argument_list)? 
-    (RETURNING COLON typ=typedef)?
-    DOING COLON
-    indent stmts=statement_list dedent
-  ;
-  
 operator_method_declaration: 
   DEFINE op=operator AS COLON OPERATOR   
     RECEIVING COLON arg=operator_argument
@@ -93,13 +85,13 @@ getter_method_declaration:
   
 native_category_declaration:
   DEFINE name=type_identifier AS COLON NATIVE CATEGORY 
-    attrs=attribute_list COMMA AND MAPPINGS COLON 
+   ((attrs=attribute_list COMMA AND MAPPINGS) | WITH MAPPINGS) COLON 
     indent mappings=native_category_mappings dedent
   ;
 
 native_resource_declaration:
   DEFINE name=type_identifier AS COLON NATIVE RESOURCE 
-    (attrs=attribute_list COMMA AND)? MAPPINGS COLON 
+    ((attrs=attribute_list COMMA AND MAPPINGS) | WITH MAPPINGS) COLON 
     indent mappings=native_category_mappings dedent
   ;
 
@@ -137,7 +129,7 @@ concrete_method_declaration:
 native_method_declaration:
   DEFINE name=method_identifier AS COLON NATIVE METHOD 
     (RECEIVING COLON args=full_argument_list)? 
-    (RETURNING COLON typ=typedef)?
+    (RETURNING COLON typ=category_or_any_type)?
     DOING COLON 
     indent stmts=native_statement_list dedent
   ;  
