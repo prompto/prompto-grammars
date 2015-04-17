@@ -350,10 +350,10 @@ document_expression:
   ;
 
 constructor_expression:
-  typ=category_type FROM firstArg=expression	
+  MUTABLE? typ=category_type FROM firstArg=expression	
  	( (COMMA)? args=with_argument_assignment_list 
   		(AND arg=argument_assignment)? )?				# ConstructorFrom
-  | typ=category_type 
+  | MUTABLE? typ=category_type 
   	( args=with_argument_assignment_list
   		(AND arg=argument_assignment)? )?				# ConstructorNoFrom
   ;

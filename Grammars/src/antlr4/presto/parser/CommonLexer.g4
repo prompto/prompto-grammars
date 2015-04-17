@@ -99,6 +99,7 @@ MATCHING: 'matching';
 METHOD: 'method';
 METHODS: 'methods';
 MODULO: 'modulo';
+MUTABLE: 'mutable';
 NATIVE: 'native';
 NONE: 'None';
 NOT: 'not';

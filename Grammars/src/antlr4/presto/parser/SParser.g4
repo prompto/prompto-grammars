@@ -317,7 +317,7 @@ document_expression:
   ;
 
 constructor_expression:
-  typ=category_type LPAR ( args=argument_assignment_list )? RPAR
+  MUTABLE? typ=category_type LPAR ( args=argument_assignment_list )? RPAR
   ;
 
 argument_assignment_list:
