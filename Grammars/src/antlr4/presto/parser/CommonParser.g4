@@ -152,8 +152,8 @@ argument_list:
  ;
 
 argument:
-  arg=code_argument			# CodeArgument	
-  | arg=operator_argument	# OperatorArgument
+  arg=code_argument					# CodeArgument	
+  | MUTABLE? arg=operator_argument	# OperatorArgument
   ;
   
 operator_argument:
