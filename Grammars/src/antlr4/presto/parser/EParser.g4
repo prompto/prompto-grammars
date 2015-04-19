@@ -85,25 +85,25 @@ getter_method_declaration:
   
 native_category_declaration:
   DEFINE name=type_identifier AS COLON NATIVE CATEGORY 
-   ((attrs=attribute_list COMMA AND MAPPINGS) | WITH MAPPINGS) COLON 
-    indent mappings=native_category_mappings dedent
+   ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
+    indent bindings=native_category_bindings dedent
   ;
 
 native_resource_declaration:
   DEFINE name=type_identifier AS COLON NATIVE RESOURCE 
-    ((attrs=attribute_list COMMA AND MAPPINGS) | WITH MAPPINGS) COLON 
-    indent mappings=native_category_mappings dedent
+    ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
+    indent bindings=native_category_bindings dedent
   ;
 
-native_category_mappings:
-  DEFINE CATEGORY MAPPINGS AS COLON
-  indent items=native_category_mapping_list dedent
+native_category_bindings:
+  DEFINE CATEGORY BINDINGS AS COLON
+  indent items=native_category_binding_list dedent
   ; 
 
-native_category_mapping_list:
-  item=native_category_mapping			# NativeCategoryMappingList
-  | items=native_category_mapping_list 
-  	lfp item=native_category_mapping	# NativeCategoryMappingListItem
+native_category_binding_list:
+  item=native_category_binding			# NativeCategoryBindingList
+  | items=native_category_binding_list 
+  	lfp item=native_category_binding	# NativeCategoryBindingListItem
   ;
 
 attribute_list:

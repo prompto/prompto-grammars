@@ -196,15 +196,15 @@ member_method_declaration:
   | decl=operator_method_declaration		# OperatorMemberMethod
   ;
 
-native_category_mapping:
-  JAVA mapping=java_class_identifier_expression		# JavaCategoryMapping
-  | CSHARP mapping=csharp_identifier_expression		# CSharpCategoryMapping
-  | PYTHON2 mapping=python_category_mapping			# Python2CategoryMapping
-  | PYTHON3 mapping=python_category_mapping			# Python3CategoryMapping
-  | JAVASCRIPT mapping=javascript_category_mapping	# JavaScriptCategoryMapping
+native_category_binding:
+  JAVA binding=java_class_identifier_expression		# JavaCategoryBinding
+  | CSHARP binding=csharp_identifier_expression		# CSharpCategoryBinding
+  | PYTHON2 binding=python_category_binding			# Python2CategoryBinding
+  | PYTHON3 binding=python_category_binding			# Python3CategoryBinding
+  | JAVASCRIPT binding=javascript_category_binding	# JavaScriptCategoryBinding
   ;  
 
-python_category_mapping:
+python_category_binding:
   id_=identifier module=python_module?
   ;
   
@@ -216,7 +216,7 @@ module_token:
 i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"module")}? 
 ; 
 
-javascript_category_mapping:  
+javascript_category_binding:  
   id_=identifier module=javascript_module?
   ;
   

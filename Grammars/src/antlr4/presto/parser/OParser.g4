@@ -74,22 +74,22 @@ getter_method_declaration:
 
 native_resource_declaration:
   NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_list RPAR )? 
-    LCURL mappings=native_category_mappings RCURL
+    LCURL bindings=native_category_bindings RCURL
   ;
 
 native_category_declaration:
   NATIVE CATEGORY name=type_identifier ( LPAR attrs=attribute_list RPAR )?
-    LCURL mappings=native_category_mappings RCURL
+    LCURL bindings=native_category_bindings RCURL
   ;
 
-native_category_mappings:
-  CATEGORY MAPPINGS LCURL items=native_category_mapping_list RCURL
+native_category_bindings:
+  CATEGORY BINDINGS LCURL items=native_category_binding_list RCURL
   ; 
 
-native_category_mapping_list:
-  item=native_category_mapping SEMI		# NativeCategoryMappingList
-  | items=native_category_mapping_list 
-  	item=native_category_mapping SEMI	# NativeCategoryMappingListItem
+native_category_binding_list:
+  item=native_category_binding SEMI		# NativeCategoryBindingList
+  | items=native_category_binding_list 
+  	item=native_category_binding SEMI	# NativeCategoryBindingListItem
   ;
 
 attribute_list: 
