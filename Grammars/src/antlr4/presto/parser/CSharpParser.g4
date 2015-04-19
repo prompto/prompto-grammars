@@ -41,7 +41,8 @@ csharp_parenthesis_expression:
   ;  
   
 csharp_identifier_expression:
-  name=csharp_identifier 			# CSharpIdentifier
+  DOLLAR_IDENTIFIER 				# CSharpPrestoIdentifier
+  | name=csharp_identifier 			# CSharpIdentifier
   | parent=csharp_identifier_expression
   	DOT name=csharp_identifier		# CSharpChildIdentifier
   ;  

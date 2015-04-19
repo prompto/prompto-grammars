@@ -49,7 +49,7 @@ java_identifier_expression:
 java_class_identifier_expression:
   klass=java_identifier_expression  # JavaClassIdentifier
   | parent=java_class_identifier_expression
-  	DOLLAR name=TYPE_IDENTIFIER 	# JavaChildClassIdentifier
+  	name=DOLLAR_IDENTIFIER 			# JavaChildClassIdentifier
   ;  
     
 java_literal_expression:
@@ -64,6 +64,8 @@ java_literal_expression:
 java_identifier:
   VARIABLE_IDENTIFIER
   | SYMBOL_IDENTIFIER
+  | NATIVE_IDENTIFIER
+  | DOLLAR_IDENTIFIER
   | TYPE_IDENTIFIER
   | BOOLEAN
   | CHARACTER

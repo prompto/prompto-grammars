@@ -20,7 +20,6 @@ LCURL: '{';
 RCURL: '}';
 QMARK: '?';
 XMARK: '!';
-DOLLAR: '$'; 
 AMP: '&';
 AMP2: '&&';
 PIPE: '|';
@@ -159,6 +158,14 @@ TYPE_IDENTIFIER :
 
 VARIABLE_IDENTIFIER :
     'a'..'z' IdentifierSuffix
+  ;
+  
+NATIVE_IDENTIFIER :
+    Letter IdentifierSuffix
+  ;
+  
+DOLLAR_IDENTIFIER :  
+  '$' IdentifierSuffix
   ;
   
 fragment

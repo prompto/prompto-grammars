@@ -58,6 +58,7 @@ javascript_literal_expression:
 javascript_identifier:
   VARIABLE_IDENTIFIER
   | SYMBOL_IDENTIFIER
+  | DOLLAR_IDENTIFIER
   | TYPE_IDENTIFIER
   | BOOLEAN
   | CHARACTER
