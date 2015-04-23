@@ -67,16 +67,22 @@ getter_method_declaration:
   
 native_category_declaration:
   NATIVE ( CLASS | CATEGORY ) name=type_identifier LPAR attrs=attribute_list? RPAR COLON  
-    indent bindings=native_category_bindings dedent
+    indent 
+    bindings=native_category_bindings 
+    (lfp methods=native_member_method_declaration_list)?
+    dedent
   ;
 
 native_resource_declaration:
   NATIVE RESOURCE name=type_identifier LPAR attrs=attribute_list? RPAR COLON  
-    indent bindings=native_category_bindings dedent
+    indent 
+    bindings=native_category_bindings 
+    (lfp methods=native_member_method_declaration_list)?
+    dedent
   ;
 
 native_category_bindings:
-  BINDINGS COLON
+  DEF ( CLASS | CATEGORY ) BINDINGS COLON
   indent items=native_category_binding_list dedent
   ; 
 

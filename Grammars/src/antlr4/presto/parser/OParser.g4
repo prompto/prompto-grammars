@@ -74,12 +74,14 @@ getter_method_declaration:
 
 native_resource_declaration:
   NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_list RPAR )? 
-    LCURL bindings=native_category_bindings RCURL
+    LCURL bindings=native_category_bindings 
+    (methods=native_member_method_declaration_list)? RCURL
   ;
 
 native_category_declaration:
   NATIVE CATEGORY name=type_identifier ( LPAR attrs=attribute_list RPAR )?
-    LCURL bindings=native_category_bindings RCURL
+    LCURL bindings=native_category_bindings 
+    (methods=native_member_method_declaration_list)? RCURL
   ;
 
 native_category_bindings:
@@ -263,8 +265,10 @@ expression:
   | left=expression LTE right=expression					# LessThanOrEqualExpression
   | left=expression GT right=expression						# GreaterThanExpression
   | left=expression GTE right=expression					# GreaterThanOrEqualExpression
-  | left=expression IS NOT right=is_expression				# IsNotExpression
-  | left=expression IS right=is_expression					# IsExpression
+  | left=expression IS NOT right=an_expression				# IsNotAnExpression
+  | left=expression IS right=an_expression					# IsAnExpression
+  | left=expression IS NOT right=expression					# IsNotExpression
+  | left=expression IS right=expression						# IsExpression
   | left=expression EQ2 right=expression					# EqualsExpression
   | left=expression XEQ right=expression					# NotEqualsExpression
   | left=expression TEQ right=expression					# RoughlyEqualsExpression
@@ -284,6 +288,10 @@ expression:
   | CODE LPAR exp=expression RPAR							# CodeExpression
   | EXECUTE LPAR name=variable_identifier RPAR				# ExecuteExpression
   | exp=closure_expression									# ClosureExpression
+  ;
+
+an_expression:
+  {$parser.willBeAOrAn()}? VARIABLE_IDENTIFIER typ=category_or_any_type
   ;
 
 closure_expression:

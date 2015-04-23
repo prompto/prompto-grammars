@@ -189,11 +189,22 @@ member_method_declaration_list:
   ;
   
 member_method_declaration:
-  decl=setter_method_declaration			# SetterMemberMethod
-  | decl=getter_method_declaration			# GetterMemberMethod
-  | decl=concrete_method_declaration		# ConcreteMemberMethod
-  | decl=abstract_method_declaration		# AbstractMemberMethod
-  | decl=operator_method_declaration		# OperatorMemberMethod
+  setter_method_declaration			
+  | getter_method_declaration			
+  | concrete_method_declaration		
+  | abstract_method_declaration		
+  | operator_method_declaration	
+  ;
+
+native_member_method_declaration_list:
+  item=native_member_method_declaration				# NativeCategoryMethodList		
+  | items=native_member_method_declaration_list 
+  	lfp item=native_member_method_declaration		# NativeCategoryMethodListItem
+  ;
+
+native_member_method_declaration:
+  member_method_declaration			
+  | native_method_declaration			
   ;
 
 native_category_binding:

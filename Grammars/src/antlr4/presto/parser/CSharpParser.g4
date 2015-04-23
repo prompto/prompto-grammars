@@ -71,5 +71,7 @@ csharp_identifier:
   | READ
   | WRITE
   | TEST
+  | SELF
+  | THIS
   ;
 

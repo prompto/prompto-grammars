@@ -12,13 +12,18 @@ java_expression:
   ;
 
 java_primary_expression: 
-  exp=java_parenthesis_expression	# JavaParenthesisExpression
-  | exp=java_identifier_expression	# JavaIdentifierExpression
-  | exp=java_literal_expression		# JavaLiteralExpression
+  java_this_expression
+  | java_parenthesis_expression	
+  | java_identifier_expression	
+  | java_literal_expression		
   ;
-  
+
+java_this_expression:
+  this_expression
+  ;
+    
 java_selector_expression:		
-  DOT exp=java_method_expression		# JavaMethodExpression
+  DOT exp=java_method_expression	# JavaMethodExpression
   | exp=java_item_expression		# JavaItemExpression
   ;
   
@@ -81,4 +86,4 @@ java_identifier:
   | TEST
   ;
  
-  
+this_expression:; 

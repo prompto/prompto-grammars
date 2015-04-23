@@ -87,12 +87,18 @@ native_category_declaration:
   DEFINE name=type_identifier AS COLON NATIVE CATEGORY 
    ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
     indent bindings=native_category_bindings dedent
+    (lfp AND METHODS COLON 
+    	indent methods=native_member_method_declaration_list dedent
+    )?
   ;
 
 native_resource_declaration:
   DEFINE name=type_identifier AS COLON NATIVE RESOURCE 
     ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
     indent bindings=native_category_bindings dedent
+    (lfp AND METHODS COLON 
+    	indent methods=native_member_method_declaration_list dedent
+    )?
   ;
 
 native_category_bindings:

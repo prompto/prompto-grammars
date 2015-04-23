@@ -15,6 +15,7 @@ javascript_primary_expression:
   exp=javascript_parenthesis_expression		# JavascriptParenthesisExpression
   | exp=javascript_identifier_expression	# JavascriptIdentifierExpression
   | exp=javascript_literal_expression		# JavascriptLiteralExpression
+  | exp=javascript_method_expression		# JavascriptGlobalMethodExpression
   ;
   
 javascript_selector_expression:		
@@ -72,6 +73,8 @@ javascript_identifier:
   | READ
   | WRITE
   | TEST
+  | SELF
+  | THIS
   ;
  
   
