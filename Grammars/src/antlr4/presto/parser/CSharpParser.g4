@@ -12,9 +12,14 @@ csharp_expression:
   ;
 
 csharp_primary_expression: 
-  exp=csharp_parenthesis_expression		# CSharpParenthesisExpression
-  | exp=csharp_identifier_expression	# CSharpIdentifierExpression
-  | exp=csharp_literal_expression		# CSharpLiteralExpression
+  csharp_this_expression
+  | csharp_parenthesis_expression
+  | csharp_identifier_expression
+  | csharp_literal_expression
+  ;
+  
+csharp_this_expression:
+  this_expression
   ;
   
 csharp_selector_expression:
@@ -71,7 +76,7 @@ csharp_identifier:
   | READ
   | WRITE
   | TEST
-  | SELF
-  | THIS
   ;
+
+this_expression:; 
 

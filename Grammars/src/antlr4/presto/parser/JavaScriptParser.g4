@@ -12,15 +12,22 @@ javascript_expression:
   ;
 
 javascript_primary_expression: 
-  exp=javascript_parenthesis_expression		# JavascriptParenthesisExpression
-  | exp=javascript_identifier_expression	# JavascriptIdentifierExpression
-  | exp=javascript_literal_expression		# JavascriptLiteralExpression
-  | exp=javascript_method_expression		# JavascriptGlobalMethodExpression
+  javascript_this_expression
+  | javascript_parenthesis_expression		
+  | javascript_identifier_expression	
+  | javascript_literal_expression		
+  | javascript_method_expression		
+  | javascript_item_expression		
   ;
-  
+
+javascript_this_expression:
+  this_expression
+  ;
+    
 javascript_selector_expression:		
-  DOT exp=javascript_method_expression		# JavascriptMethodExpression
-  | exp=javascript_item_expression			# JavascriptItemExpression
+  DOT method=javascript_method_expression	# JavaScriptMethodExpression		
+  | DOT name=javascript_identifier			# JavaScriptMemberExpression
+  | exp=javascript_item_expression			# JavaScriptItemExpression
   ;
   
 javascript_method_expression:
@@ -42,9 +49,7 @@ javascript_parenthesis_expression:
   ;  
   
 javascript_identifier_expression:
-  name=javascript_identifier 				# JavascriptIdentifier
-  | parent=javascript_identifier_expression 
-  	DOT name=javascript_identifier			# JavascriptChildIdentifier
+  name=javascript_identifier 
   ;  
       
 javascript_literal_expression:
@@ -73,8 +78,7 @@ javascript_identifier:
   | READ
   | WRITE
   | TEST
-  | SELF
-  | THIS
   ;
  
+this_expression:; 
   
