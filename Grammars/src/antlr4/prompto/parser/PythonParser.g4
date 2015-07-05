@@ -52,7 +52,7 @@ python_parenthesis_expression:
   ;  
   
 python_identifier_expression:
-  DOLLAR_IDENTIFIER				# PythonPrestoIdentifier
+  DOLLAR_IDENTIFIER				# PythonPromptoIdentifier
   | name=python_identifier 		# PythonIdentifier
   | parent=python_identifier_expression
   	DOT name=python_identifier	# PythonChildIdentifier
