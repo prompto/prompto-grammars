@@ -143,8 +143,8 @@ native_method_declaration:
 test_method_declaration:
   DEFINE name=TEXT_LITERAL AS TEST METHOD DOING COLON 
     indent stmts=statement_list dedent
-  lfp AND EXPECTING COLON
-    ((indent exps=assertion_list dedent) | error=symbol_identifier)
+  lfp AND EXPECTING 
+    ((COLON indent exps=assertion_list dedent) | error=symbol_identifier)
   ;  
   
 assertion:
