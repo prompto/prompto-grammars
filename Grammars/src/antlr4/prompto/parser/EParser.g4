@@ -8,7 +8,7 @@ options {
 import CommonParser;
 
 enum_category_declaration:
-  DEFINE name=type_identifier AS COLON ENUMERATED 
+  DEFINE name=type_identifier AS ENUMERATED 
   	(CATEGORY | derived=type_identifier)
   	((attrs=attribute_list COMMA AND) | WITH)
     symbols_token COLON
@@ -16,7 +16,7 @@ enum_category_declaration:
   ;
 
 enum_native_declaration:
-  DEFINE name=type_identifier AS COLON ENUMERATED 
+  DEFINE name=type_identifier AS ENUMERATED 
   	typ=native_type 
   	WITH symbols_token COLON 
   	indent symbols=native_symbol_list dedent
@@ -33,12 +33,12 @@ category_symbol:
   ;
   
 attribute_declaration:
-   DEFINE name=variable_identifier AS COLON 
+   DEFINE name=variable_identifier AS 
    	typ=typedef ATTRIBUTE (match=attribute_constraint)?
   ;
 
 concrete_category_declaration:
-  DEFINE name=type_identifier AS COLON 
+  DEFINE name=type_identifier AS 
   	( CATEGORY | derived=derived_list )
   	( ( attrs=attribute_list  
 	  	( COMMA AND METHODS COLON 
@@ -49,7 +49,7 @@ concrete_category_declaration:
   ;
 
 singleton_category_declaration:
-  DEFINE name=type_identifier AS COLON 
+  DEFINE name=type_identifier AS 
   	SINGLETON
   	( ( attrs=attribute_list  
 	  	( COMMA AND METHODS COLON 
@@ -66,9 +66,9 @@ derived_list:
   ;
 
 operator_method_declaration: 
-  DEFINE op=operator AS COLON OPERATOR   
-    RECEIVING COLON arg=operator_argument
-    (RETURNING COLON typ=typedef)?
+  DEFINE op=operator AS OPERATOR   
+    RECEIVING arg=operator_argument
+    (RETURNING typ=typedef)?
     DOING COLON
     indent stmts=statement_list dedent
   ;
@@ -84,7 +84,7 @@ getter_method_declaration:
   ;
   
 native_category_declaration:
-  DEFINE name=type_identifier AS COLON NATIVE CATEGORY 
+  DEFINE name=type_identifier AS NATIVE CATEGORY 
    ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
     indent bindings=native_category_bindings dedent
     (lfp AND METHODS COLON 
@@ -93,7 +93,7 @@ native_category_declaration:
   ;
 
 native_resource_declaration:
-  DEFINE name=type_identifier AS COLON NATIVE RESOURCE 
+  DEFINE name=type_identifier AS NATIVE RESOURCE 
     ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
     indent bindings=native_category_bindings dedent
     (lfp AND METHODS COLON 
@@ -113,35 +113,35 @@ native_category_binding_list:
   ;
 
 attribute_list:
-  WITH ATTRIBUTE COLON item=variable_identifier 	# AttributeList
-  | WITH ATTRIBUTES COLON items=variable_identifier_list
+  WITH ATTRIBUTE item=variable_identifier 	# AttributeList
+  | WITH ATTRIBUTES items=variable_identifier_list
    	(AND item=variable_identifier)? 				# AttributeListItem
   ;
 
 abstract_method_declaration:
-  DEFINE name=method_identifier AS COLON ABSTRACT METHOD 
-    (RECEIVING COLON args=full_argument_list)? 
-    (RETURNING COLON typ=typedef)?
+  DEFINE name=method_identifier AS ABSTRACT METHOD 
+    (RECEIVING args=full_argument_list)? 
+    (RETURNING typ=typedef)?
   ;  
 
 concrete_method_declaration:
-  DEFINE name=method_identifier AS COLON METHOD
-    (RECEIVING COLON args=full_argument_list)? 
-    (RETURNING COLON typ=typedef)?
+  DEFINE name=method_identifier AS METHOD
+    (RECEIVING args=full_argument_list)? 
+    (RETURNING typ=typedef)?
     DOING COLON 
     indent stmts=statement_list dedent
   ;  
 
 native_method_declaration:
-  DEFINE name=method_identifier AS COLON NATIVE METHOD 
-    (RECEIVING COLON args=full_argument_list)? 
-    (RETURNING COLON typ=category_or_any_type)?
+  DEFINE name=method_identifier AS NATIVE METHOD 
+    (RECEIVING args=full_argument_list)? 
+    (RETURNING typ=category_or_any_type)?
     DOING COLON 
     indent stmts=native_statement_list dedent
   ;  
 
 test_method_declaration:
-  DEFINE name=TEXT_LITERAL AS COLON TEST METHOD DOING COLON 
+  DEFINE name=TEXT_LITERAL AS TEST METHOD DOING COLON 
     indent stmts=statement_list dedent
   lfp AND EXPECTING COLON
     ((indent exps=assertion_list dedent) | error=symbol_identifier)
