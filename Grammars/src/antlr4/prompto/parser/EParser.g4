@@ -34,11 +34,11 @@ category_symbol:
   
 attribute_declaration:
    DEFINE name=variable_identifier AS 
-   	typ=typedef ATTRIBUTE (match=attribute_constraint)?
+   	STORABLE? typ=typedef ATTRIBUTE (match=attribute_constraint)?
   ;
 
 concrete_category_declaration:
-  DEFINE name=type_identifier AS 
+  DEFINE name=type_identifier AS STORABLE? 
   	( CATEGORY | derived=derived_list )
   	( ( attrs=attribute_list  
 	  	( COMMA AND METHODS COLON 
@@ -84,7 +84,7 @@ getter_method_declaration:
   ;
   
 native_category_declaration:
-  DEFINE name=type_identifier AS NATIVE CATEGORY 
+  DEFINE name=type_identifier AS STORABLE? NATIVE CATEGORY 
    ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
     indent bindings=native_category_bindings dedent
     (lfp AND METHODS COLON 
@@ -167,6 +167,7 @@ statement:
   stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=method_call_statement				# MethodCallStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
+  | stmt=store_statement					# StoreStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -179,6 +180,12 @@ statement:
   | stmt=with_resource_statement			# WithResourceStatement
   | stmt=with_singleton_statement			# WithSingletonStatement
   | decl=concrete_method_declaration		# ClosureStatement
+  ;
+
+store_statement:
+  STORE exp=expression						# StoreOne
+  | store_statement  
+  	LBRAK exps=expression_list RBRAK		# StoreMany		
   ;
   
 method_call_statement:  
@@ -377,7 +384,15 @@ ambiguous_expression:
   ;
   
 fetch_expression:
-  FETCH ANY name=variable_identifier FROM source=expression WHERE xfilter=expression
+  FETCH ANY name=variable_identifier 
+  			FROM source=expression 
+  			WHERE xfilter=expression							# FetchList
+  | FETCH ONE typ=category_type 
+  			WHERE xfilter=expression							# FetchOne
+  | FETCH ( ALL |
+  			ROWS start=expression TO end=expression )
+  			typ=category_type 
+  			( WHERE xfilter=expression )?						# FetchAll
   ;  
 
 sorted_expression:

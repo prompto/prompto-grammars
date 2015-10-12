@@ -29,13 +29,13 @@ native_symbol:
   ;
   
 attribute_declaration:
-   ATTRIBUTE name=variable_identifier COLON typ=typedef
+   STORABLE? ATTRIBUTE name=variable_identifier COLON typ=typedef
    	( match=attribute_constraint )? SEMI
   ;
 
 
 concrete_category_declaration:
-  CATEGORY name=type_identifier
+  STORABLE? CATEGORY name=type_identifier
   	( LPAR attrs=attribute_list RPAR  )? 
   	( EXTENDS derived=derived_list )? 
   	methods=category_method_list
@@ -79,7 +79,7 @@ native_resource_declaration:
   ;
 
 native_category_declaration:
-  NATIVE CATEGORY name=type_identifier ( LPAR attrs=attribute_list RPAR )?
+  STORABLE? NATIVE CATEGORY name=type_identifier ( LPAR attrs=attribute_list RPAR )?
     LCURL bindings=native_category_bindings 
     (methods=native_member_method_declaration_list)? RCURL
   ;
@@ -145,6 +145,7 @@ statement:
   stmt=method_call SEMI						# MethodCallStatement
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
+  | stmt=store_statement					# StoreStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -159,6 +160,11 @@ statement:
   | decl=concrete_method_declaration		# ClosureStatement
   ;
 
+store_statement:
+  STORE LPAR exp=expression	RPAR			# StoreOne
+  | store_statement  
+  	LPAR exps=expression_list RPAR			# StoreMany		
+  ;
 
 with_resource_statement:
   WITH LPAR stmt=assign_variable_statement RPAR stmts=statement_or_list
@@ -328,9 +334,17 @@ write_statement:
   ;
 
 fetch_expression:
-  FETCH LPAR name=variable_identifier RPAR FROM source=expression WHERE xfilter=expression
-  ;  
-
+  FETCH LPAR name=variable_identifier RPAR 
+  		FROM source=expression 
+  		WHERE xfilter=expression							# FetchList
+  | FETCH ONE LPAR typ=category_type RPAR 
+  		WHERE xfilter=expression							# FetchOne
+  | FETCH  ( ALL 
+  			| ROWS start=expression TO end=expression )
+  			LPAR typ=category_type RPAR 
+  			( WHERE xfilter=expression )?					# FetchAll
+  ;
+  
 sorted_expression:
   SORTED LPAR source=instance_expression 
   	( COMMA key_token EQ key=instance_expression )? RPAR

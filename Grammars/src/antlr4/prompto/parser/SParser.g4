@@ -28,12 +28,12 @@ category_symbol:
   ;
   
 attribute_declaration:
-   ATTR name=variable_identifier LPAR  typ=typedef RPAR COLON
+   STORABLE? ATTR name=variable_identifier LPAR  typ=typedef RPAR COLON
    	indent (match=attribute_constraint | PASS) dedent
   ;
 
 concrete_category_declaration:
-  ( CLASS | CATEGORY ) name=type_identifier LPAR 
+  STORABLE? ( CLASS | CATEGORY ) name=type_identifier LPAR 
   	( derived=derived_list 
   	  | attrs=attribute_list  
   	  | derived=derived_list COMMA attrs=attribute_list ) 
@@ -66,7 +66,7 @@ getter_method_declaration:
   ;
   
 native_category_declaration:
-  NATIVE ( CLASS | CATEGORY ) name=type_identifier LPAR attrs=attribute_list? RPAR COLON  
+  STORABLE? NATIVE ( CLASS | CATEGORY ) name=type_identifier LPAR attrs=attribute_list? RPAR COLON  
     indent 
     bindings=native_category_bindings 
     (lfp methods=native_member_method_declaration_list)?
@@ -133,6 +133,7 @@ statement:
   stmt=method_call							# MethodCallStatement
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
+  | stmt=store_statement					# StoreStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -146,7 +147,13 @@ statement:
   | stmt=with_singleton_statement			# WithSingletonStatement
   | decl=concrete_method_declaration		# ClosureStatement
   ;
-  
+
+store_statement:
+  STORE LPAR exp=expression	RPAR			# StoreOne
+  | store_statement  
+  	LPAR exps=expression_list RPAR			# StoreMany		
+  ;
+
 method_call:  
   method=method_selector LPAR (args=argument_assignment_list)? RPAR
   ;
@@ -346,7 +353,15 @@ write_statement:
   ;
   
 fetch_expression:
-  FETCH name=variable_identifier FROM source=expression WHERE xfilter=expression
+  FETCH name=variable_identifier 
+  			FROM source=expression 
+  			WHERE xfilter=expression						# FetchList
+  | FETCH ONE LPAR typ=category_type RPAR 
+  			WHERE xfilter=expression						# FetchOne
+  | FETCH  ( ALL 
+  			| ROWS start=expression TO end=expression )
+  			LPAR typ=category_type RPAR 
+  			( WHERE xfilter=expression )?					# FetchAll
   ;  
 
 sorted_expression:
