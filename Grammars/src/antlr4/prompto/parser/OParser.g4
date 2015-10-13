@@ -161,9 +161,7 @@ statement:
   ;
 
 store_statement:
-  STORE LPAR exp=expression	RPAR			# StoreOne
-  | store_statement  
-  	LPAR exps=expression_list RPAR			# StoreMany		
+  STORE LPAR exps=expression_list RPAR SEMI
   ;
 
 with_resource_statement:
@@ -338,11 +336,11 @@ fetch_expression:
   		FROM source=expression 
   		WHERE xfilter=expression							# FetchList
   | FETCH ONE LPAR typ=category_type RPAR 
-  		WHERE xfilter=expression							# FetchOne
+  		WHERE LPAR xfilter=expression RPAR					# FetchOne
   | FETCH  ( ALL 
   			| ROWS start=expression TO end=expression )
   			LPAR typ=category_type RPAR 
-  			( WHERE xfilter=expression )?					# FetchAll
+  			( WHERE LPAR xfilter=expression RPAR )?			# FetchAll
   ;
   
 sorted_expression:

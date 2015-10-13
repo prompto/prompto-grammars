@@ -149,9 +149,7 @@ statement:
   ;
 
 store_statement:
-  STORE LPAR exp=expression	RPAR			# StoreOne
-  | store_statement  
-  	LPAR exps=expression_list RPAR			# StoreMany		
+  STORE LPAR exps=expression_list RPAR	
   ;
 
 method_call:  
@@ -356,7 +354,7 @@ fetch_expression:
   FETCH name=variable_identifier 
   			FROM source=expression 
   			WHERE xfilter=expression						# FetchList
-  | FETCH ONE LPAR typ=category_type RPAR 
+  | FETCH ONE typ=category_type 
   			WHERE xfilter=expression						# FetchOne
   | FETCH  ( ALL 
   			| ROWS start=expression TO end=expression )

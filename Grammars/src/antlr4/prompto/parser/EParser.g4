@@ -183,9 +183,7 @@ statement:
   ;
 
 store_statement:
-  STORE exp=expression						# StoreOne
-  | store_statement  
-  	LBRAK exps=expression_list RBRAK		# StoreMany		
+  STORE exps=expression_list	
   ;
   
 method_call_statement:  
