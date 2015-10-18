@@ -247,6 +247,10 @@ method_declaration:
   | decl=native_method_declaration		# NativeMethod
   | decl=test_method_declaration		# TestMethod
   ; 
+
+comment_statement:
+  COMMENT
+  ;
   
 native_statement_list:
   item=native_statement				# NativeStatementList

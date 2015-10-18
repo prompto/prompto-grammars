@@ -313,9 +313,3 @@ Seconds :
     Integer ('.' ('0')* Integer)? 'S'
     ;
 
-COMMENT :   
-    (('/*' .*? '*/')
-    | ('//' ~('\n'|'\r')*  ('\r\n' | '\r' | '\n') )
-    | ('//' ~('\n'|'\r')*) )  -> channel(COMMENT)
-    ;   
-    

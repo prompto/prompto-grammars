@@ -26,3 +26,8 @@ WS:
 	' ' -> channel(HIDDEN)   
 	;    
 
+COMMENT :   
+    '#' ~('\n'|'\r')*
+    ;   
+    
+

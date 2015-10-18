@@ -146,6 +146,7 @@ statement:
   | stmt=with_resource_statement			# WithResourceStatement
   | stmt=with_singleton_statement			# WithSingletonStatement
   | decl=concrete_method_declaration		# ClosureStatement
+  | decl=comment_statement					# CommentStatement
   ;
 
 store_statement:
