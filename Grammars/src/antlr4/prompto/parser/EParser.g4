@@ -358,7 +358,7 @@ instance_selector:
   ; 
  
 document_expression:
-  document_type
+  DOCUMENT
   ;
 
 constructor_expression:

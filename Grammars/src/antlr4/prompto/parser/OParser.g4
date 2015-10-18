@@ -321,7 +321,7 @@ method_expression:
   ;
 
 document_expression:
-  document_type LPAR RPAR
+  DOCUMENT LPAR RPAR
   ;
 
 read_expression:

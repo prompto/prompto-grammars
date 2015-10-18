@@ -91,6 +91,7 @@ native_type:
   | t1=TEXT				# TextType
   | t1=INTEGER			# IntegerType
   | t1=DECIMAL			# DecimalType
+  | t1=DOCUMENT			# DocumentType
   | t1=DATE				# DateType
   | t1=DATETIME			# DateTimeType
   | t1=TIME				# TimeType
@@ -106,10 +107,6 @@ code_type:
   t1=CODE
   ; 
   
-document_type:
-  t1=DOCUMENT
-  ;  
-
 category_declaration:
   decl=concrete_category_declaration	# ConcreteCategoryDeclaration
   | decl=native_category_declaration	# NativeCategoryDeclaration

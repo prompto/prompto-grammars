@@ -325,7 +325,7 @@ instance_selector:
   ; 
  
 document_expression:
-  document_type
+  DOCUMENT LPAR RPAR
   ;
 
 constructor_expression:
