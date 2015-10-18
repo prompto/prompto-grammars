@@ -130,6 +130,7 @@ THIS: 'this';
 THROW: 'throw';
 TO: 'to';
 TRY: 'try';
+VERIFYING: 'verifying';
 WITH: 'with';
 WHEN: 'when';
 WHERE: 'where';

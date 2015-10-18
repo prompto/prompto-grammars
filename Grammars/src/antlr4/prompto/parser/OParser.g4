@@ -121,7 +121,7 @@ native_method_declaration:
 test_method_declaration:
   TEST METHOD name=TEXT_LITERAL LPAR RPAR
     LCURL stmts=statement_list RCURL
-  	EXPECTING
+  	VERIFYING
     ((LCURL exps=assertion_list RCURL) | (error=symbol_identifier SEMI))
   ;  
   

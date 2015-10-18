@@ -114,7 +114,7 @@ native_method_declaration:
 test_method_declaration:
   DEF TEST name=TEXT_LITERAL LPAR RPAR COLON
     indent stmts=statement_list dedent
-  	lfp EXPECTING COLON
+  	lfp VERIFYING COLON
     ((indent exps=assertion_list dedent) | (error=symbol_identifier))
   ;  
   
