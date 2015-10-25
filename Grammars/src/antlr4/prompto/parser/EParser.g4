@@ -388,10 +388,10 @@ fetch_expression:
   			WHERE xfilter=expression							# FetchList
   | FETCH ONE typ=category_type 
   			WHERE xfilter=expression							# FetchOne
-  | FETCH ( ALL |
-  			ROWS start=expression TO end=expression )
-  			typ=category_type 
-  			( WHERE xfilter=expression )?						# FetchAll
+  | FETCH ( ( ALL typ=category_type ) 
+  			| ( typ=category_type xstart=expression TO xstop=expression ) )
+  			( WHERE xfilter=expression )?
+  			( ORDER BY xorder=order_by_list )?					# FetchAll
   ;  
 
 sorted_expression:

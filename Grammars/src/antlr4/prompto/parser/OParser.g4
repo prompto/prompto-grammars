@@ -338,10 +338,11 @@ fetch_expression:
   		WHERE xfilter=expression							# FetchList
   | FETCH ONE LPAR typ=category_type RPAR 
   		WHERE LPAR xfilter=expression RPAR					# FetchOne
-  | FETCH  ( ALL 
-  			| ROWS start=expression TO end=expression )
-  			LPAR typ=category_type RPAR 
-  			( WHERE LPAR xfilter=expression RPAR )?			# FetchAll
+  | FETCH  (( ALL LPAR typ=category_type RPAR )
+  			| ( LPAR typ=category_type RPAR 
+  			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
+  			( WHERE LPAR xfilter=expression RPAR )?			
+  			( ORDER BY LPAR xorder=order_by_list RPAR )?				# FetchAll
   ;
   
 sorted_expression:

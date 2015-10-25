@@ -358,9 +358,10 @@ fetch_expression:
   | FETCH ONE typ=category_type 
   			WHERE xfilter=expression						# FetchOne
   | FETCH  ( ALL 
-  			| ROWS start=expression TO end=expression )
+  			| ROWS xstart=expression TO xstop=expression )
   			LPAR typ=category_type RPAR 
-  			( WHERE xfilter=expression )?					# FetchAll
+  			( WHERE xfilter=expression )?					
+  			( ORDER BY xorder=order_by_list )?				# FetchAll
   ;  
 
 sorted_expression:

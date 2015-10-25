@@ -396,7 +396,15 @@ is_expression:
   {$parser.willBeAOrAn()}? VARIABLE_IDENTIFIER typ=category_or_any_type		# IsATypeExpression
   | exp=expression															# IsOtherExpression		
   ;
-  
+
+order_by_list:
+	order_by ( COMMA order_by )*
+	;
+	
+order_by:
+	variable_identifier (DOT variable_identifier)* ( ASC | DESC)?
+	;
+		  
 operator:
   PLUS			# OperatorPlus
   | MINUS		# OperatorMinus
