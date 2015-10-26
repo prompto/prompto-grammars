@@ -12,12 +12,13 @@ declarations:
   	lfp item=declaration		# DeclarationListItem
   ;
 
-declaration : 
-  decl=attribute_declaration	# AttributeDeclaration
-  | decl=category_declaration	# CategoryDeclaration
-  | decl=resource_declaration	# ResourceDeclaration
-  | decl=enum_declaration		# EnumDeclaration
-  | decl=method_declaration		# MethodDeclaration
+declaration: 
+  (comment_statement lfp)*
+  (attribute_declaration
+  | category_declaration
+  | resource_declaration
+  | enum_declaration
+  | method_declaration )
   ;
 
 resource_declaration:
