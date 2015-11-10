@@ -355,11 +355,11 @@ fetch_expression:
   FETCH name=variable_identifier 
   			FROM source=expression 
   			WHERE xfilter=expression						# FetchList
-  | FETCH ONE typ=category_type 
+  | FETCH ONE typ=category_type? 
   			WHERE xfilter=expression						# FetchOne
   | FETCH  ( ALL 
   			| ROWS xstart=expression TO xstop=expression )
-  			LPAR typ=category_type RPAR 
+  			LPAR typ=category_type? RPAR 
   			( WHERE xfilter=expression )?					
   			( ORDER BY xorder=order_by_list )?				# FetchAll
   ;  

@@ -386,10 +386,10 @@ fetch_expression:
   FETCH ANY name=variable_identifier 
   			FROM source=expression 
   			WHERE xfilter=expression							# FetchList
-  | FETCH ONE typ=category_type 
+  | FETCH ONE typ=category_type? 
   			WHERE xfilter=expression							# FetchOne
-  | FETCH ( ( ALL typ=category_type ) 
-  			| ( typ=category_type xstart=expression TO xstop=expression ) )
+  | FETCH ( ( ALL typ=category_type? ) 
+  			| ( typ=category_type? xstart=expression TO xstop=expression ) )
   			( WHERE xfilter=expression )?
   			( ORDER BY xorder=order_by_list )?					# FetchAll
   ;  
