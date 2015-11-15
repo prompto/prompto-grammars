@@ -87,17 +87,19 @@ primary_type:
   ;
   
 native_type:
-  t1=BOOLEAN			# BooleanType
-  | t1=CHARACTER		# CharacterType
-  | t1=TEXT				# TextType
-  | t1=INTEGER			# IntegerType
-  | t1=DECIMAL			# DecimalType
-  | t1=DOCUMENT			# DocumentType
-  | t1=DATE				# DateType
-  | t1=DATETIME			# DateTimeType
-  | t1=TIME				# TimeType
-  | t1=PERIOD			# PeriodType
-  | t1=CODE				# CodeType
+  BOOLEAN			# BooleanType
+  | CHARACTER		# CharacterType
+  | TEXT			# TextType
+  | IMAGE			# ImageType
+  | INTEGER			# IntegerType
+  | DECIMAL			# DecimalType
+  | DOCUMENT		# DocumentType
+  | DATE			# DateType
+  | DATETIME		# DateTimeType
+  | TIME			# TimeType
+  | PERIOD			# PeriodType
+  | CODE			# CodeType
+  | BLOB			# BlobType
   ;
   
 category_type:

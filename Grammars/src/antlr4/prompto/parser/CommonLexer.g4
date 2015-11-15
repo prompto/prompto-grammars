@@ -55,6 +55,8 @@ PERIOD: 'Period';
 METHOD_T: 'Method';
 CODE: 'Code';
 DOCUMENT: 'Document';
+BLOB: 'Blob';
+IMAGE: 'Image';
 
 ABSTRACT: 'abstract';
 ALL: 'all';
