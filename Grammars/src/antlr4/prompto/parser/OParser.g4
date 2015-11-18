@@ -230,7 +230,7 @@ catch_statement:
   | CATCH IN LPAR exp=symbol_list RPAR	
     LCURL ( stmts=statement_list )? RCURL # CatchCollectionStatement
   ;
-    
+
 return_statement:
   RETURN exp=expression? SEMI
   ;
@@ -293,6 +293,8 @@ expression:
   | CODE LPAR exp=expression RPAR							# CodeExpression
   | EXECUTE LPAR name=variable_identifier RPAR				# ExecuteExpression
   | exp=closure_expression									# ClosureExpression
+  | exp=expression FOR EACH LPAR name=variable_identifier 
+  			IN source=expression RPAR						# IteratorExpression
   ;
 
 an_expression:

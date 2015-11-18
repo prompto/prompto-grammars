@@ -324,6 +324,8 @@ expression:
   | exp=sorted_expression									# SortedExpression
   | exp=ambiguous_expression								# AmbiguousExpression
   | exp=invocation_expression								# InvocationExpression
+  | exp=expression FOR EACH name=variable_identifier 
+  		IN source=expression								# IteratorExpression
   ;
 
 unresolved_expression: 
