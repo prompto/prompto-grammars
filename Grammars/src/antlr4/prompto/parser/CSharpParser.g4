@@ -13,6 +13,7 @@ csharp_expression:
 
 csharp_primary_expression: 
   csharp_this_expression
+  | csharp_new_expression
   | csharp_parenthesis_expression
   | csharp_identifier_expression
   | csharp_literal_expression
@@ -22,6 +23,10 @@ csharp_this_expression:
   this_expression
   ;
   
+csharp_new_expression:
+  new_token csharp_method_expression
+  ;
+
 csharp_selector_expression:
   DOT exp=csharp_method_expression		# CSharpMethodExpression
   | exp=csharp_item_expression			# CSharpItemExpression
@@ -79,4 +84,4 @@ csharp_identifier:
   ;
 
 this_expression:; 
-
+new_token:;

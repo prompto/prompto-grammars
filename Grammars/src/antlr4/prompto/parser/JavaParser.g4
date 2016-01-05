@@ -13,6 +13,7 @@ java_expression:
 
 java_primary_expression: 
   java_this_expression
+  | java_new_expression
   | java_parenthesis_expression	
   | java_identifier_expression	
   | java_literal_expression		
@@ -22,6 +23,10 @@ java_this_expression:
   this_expression
   ;
     
+java_new_expression:
+  new_token java_method_expression
+  ;
+
 java_selector_expression:		
   DOT exp=java_method_expression	# JavaMethodExpression
   | exp=java_item_expression		# JavaItemExpression
@@ -87,3 +92,4 @@ java_identifier:
   ;
  
 this_expression:; 
+new_token:;

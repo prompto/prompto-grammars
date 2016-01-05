@@ -418,6 +418,10 @@ operator:
   ;
  
 // special names  
+new_token:
+  i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"new")}? 
+  ; 
+
 key_token:
   i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"key")}? 
   ; 

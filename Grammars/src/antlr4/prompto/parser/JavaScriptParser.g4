@@ -13,6 +13,7 @@ javascript_expression:
 
 javascript_primary_expression: 
   javascript_this_expression
+  | javascript_new_expression
   | javascript_parenthesis_expression		
   | javascript_identifier_expression	
   | javascript_literal_expression		
@@ -24,6 +25,10 @@ javascript_this_expression:
   this_expression
   ;
     
+javascript_new_expression:
+  new_token javascript_method_expression
+  ;
+
 javascript_selector_expression:		
   DOT method=javascript_method_expression	# JavaScriptMethodExpression		
   | DOT name=javascript_identifier			# JavaScriptMemberExpression
@@ -81,4 +86,5 @@ javascript_identifier:
   ;
  
 this_expression:; 
+new_token:; 
   
