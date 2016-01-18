@@ -100,6 +100,7 @@ native_type:
   | PERIOD			# PeriodType
   | CODE			# CodeType
   | BLOB			# BlobType
+  | UUID			# UUIDType
   ;
   
 category_type:

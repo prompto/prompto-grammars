@@ -57,6 +57,7 @@ CODE: 'Code';
 DOCUMENT: 'Document';
 BLOB: 'Blob';
 IMAGE: 'Image';
+UUID: 'UUID';
 
 ABSTRACT: 'abstract';
 ALL: 'all';
