@@ -107,6 +107,10 @@ category_type:
   t1=TYPE_IDENTIFIER
   ;
 
+mutable_category_type:
+  MUTABLE? category_type
+  ;
+  	
 code_type:
   t1=CODE
   ; 

@@ -331,7 +331,7 @@ document_expression:
   ;
 
 constructor_expression:
-  MUTABLE? typ=category_type LPAR ( args=argument_assignment_list )? RPAR
+  typ=mutable_category_type LPAR ( args=argument_assignment_list )? RPAR
   ;
 
 argument_assignment_list:
@@ -357,11 +357,11 @@ fetch_expression:
   FETCH name=variable_identifier 
   			FROM source=expression 
   			WHERE xfilter=expression						# FetchList
-  | FETCH ONE typ=category_type? 
+  | FETCH ONE typ=mutable_category_type? 
   			WHERE xfilter=expression						# FetchOne
   | FETCH  ( ALL 
   			| ROWS xstart=expression TO xstop=expression )
-  			LPAR typ=category_type? RPAR 
+  			LPAR typ=mutable_category_type? RPAR 
   			( WHERE xfilter=expression )?					
   			( ORDER BY xorder=order_by_list )?				# FetchAll
   ;  

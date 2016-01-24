@@ -364,10 +364,10 @@ document_expression:
   ;
 
 constructor_expression:
-  MUTABLE? typ=category_type FROM firstArg=expression	
+  typ=mutable_category_type FROM firstArg=expression	
  	( (COMMA)? args=with_argument_assignment_list 
   		(AND arg=argument_assignment)? )?				# ConstructorFrom
-  | MUTABLE? typ=category_type 
+  | typ=mutable_category_type 
   	( args=with_argument_assignment_list
   		(AND arg=argument_assignment)? )?				# ConstructorNoFrom
   ;
@@ -388,10 +388,10 @@ fetch_expression:
   FETCH ANY name=variable_identifier 
   			FROM source=expression 
   			WHERE xfilter=expression							# FetchList
-  | FETCH ONE typ=category_type? 
+  | FETCH ONE (typ=mutable_category_type?) 
   			WHERE xfilter=expression							# FetchOne
-  | FETCH ( ( ALL typ=category_type? ) 
-  			| ( typ=category_type? xstart=expression TO xstop=expression ) )
+  | FETCH ( ( ALL typ=mutable_category_type? ) 
+  			| ( typ=mutable_category_type? xstart=expression TO xstop=expression ) )
   			( WHERE xfilter=expression )?
   			( ORDER BY xorder=order_by_list )?					# FetchAll
   ;  

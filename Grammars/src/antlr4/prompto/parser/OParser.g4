@@ -338,10 +338,10 @@ fetch_expression:
   FETCH LPAR name=variable_identifier RPAR 
   		FROM source=expression 
   		WHERE xfilter=expression							# FetchList
-  | FETCH ONE LPAR typ=category_type? RPAR 
+  | FETCH ONE LPAR typ=mutable_category_type? RPAR 
   		WHERE LPAR xfilter=expression RPAR					# FetchOne
-  | FETCH  (( ALL LPAR typ=category_type? RPAR )
-  			| ( LPAR typ=category_type? RPAR 
+  | FETCH  (( ALL LPAR typ=mutable_category_type? RPAR )
+  			| ( LPAR typ=mutable_category_type? RPAR 
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
   			( WHERE LPAR xfilter=expression RPAR )?			
   			( ORDER BY LPAR xorder=order_by_list RPAR )?				# FetchAll
@@ -359,7 +359,7 @@ selector_expression:
   ; 
   
 constructor_expression:
-  MUTABLE? typ=category_type LPAR ( args=argument_assignment_list )? RPAR
+  typ=mutable_category_type LPAR ( args=argument_assignment_list )? RPAR
   ;
 
 argument_assignment_list:
