@@ -98,6 +98,7 @@ FROM: 'from';
 GETTER: 'getter';
 IF: 'if';
 IN: 'in';
+INDEX: 'index';
 INVOKE: 'invoke';
 IS: 'is';
 MATCHING: 'matching';
