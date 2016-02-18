@@ -150,9 +150,9 @@ statement:
   ;
 
 store_statement:
-  DELETE LPAR del=expression_list RPAR	
-  | STORE LPAR add=expression_list RPAR	
-  | DELETE LPAR del=expression_list RPAR AND STORE LPAR add=expression_list RPAR	
+  DELETE LPAR to_del=expression_list RPAR	
+  | STORE LPAR to_add=expression_list RPAR	
+  | DELETE LPAR to_del=expression_list RPAR AND STORE LPAR to_add=expression_list RPAR	
   ;
 
 method_call:  
