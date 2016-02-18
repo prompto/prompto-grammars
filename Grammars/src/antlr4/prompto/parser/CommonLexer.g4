@@ -80,6 +80,7 @@ CONTAINS: 'contains';
 DEF: 'def';
 DEFAULT: 'default';
 DEFINE: 'define';
+DELETE: 'delete';
 DESC: 'desc' | 'descending';
 DO: 'do';
 DOING: 'doing';

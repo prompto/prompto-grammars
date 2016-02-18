@@ -185,7 +185,9 @@ statement:
   ;
 
 store_statement:
-  STORE exps=expression_list	
+  DELETE del=expression_list								
+  | STORE add=expression_list
+  | DELETE del=expression_list AND STORE add=expression_list	
   ;
   
 method_call_statement:  

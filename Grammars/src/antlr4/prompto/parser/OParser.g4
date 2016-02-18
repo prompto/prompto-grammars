@@ -162,7 +162,9 @@ statement:
   ;
 
 store_statement:
-  STORE LPAR exps=expression_list RPAR SEMI
+  DELETE LPAR del=expression_list RPAR SEMI
+  | STORE LPAR add=expression_list RPAR SEMI
+  | DELETE LPAR del=expression_list RPAR AND STORE LPAR add=expression_list RPAR SEMI
   ;
 
 with_resource_statement:
