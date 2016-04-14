@@ -67,10 +67,18 @@ operator_method_declaration:
 setter_method_declaration:
   SETTER name=variable_identifier LCURL (stmts=statement_list)? RCURL
   ;
+  
+native_setter_declaration:
+  NATIVE? SETTER name=variable_identifier LCURL (stmts=native_statement_list)? RCURL
+  ;  
    
 getter_method_declaration:
   GETTER name=variable_identifier LCURL (stmts=statement_list)? RCURL
   ;
+
+native_getter_declaration:
+  NATIVE? GETTER name=variable_identifier LCURL (stmts=native_statement_list)? RCURL
+  ;  
 
 native_resource_declaration:
   NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_list RPAR )? 
@@ -113,7 +121,7 @@ concrete_method_declaration:
   ;  
 
 native_method_declaration:
-  (typ=category_or_any_type)? NATIVE METHOD name=method_identifier 
+  (typ=category_or_any_type)? NATIVE? METHOD name=method_identifier 
     LPAR (args=argument_list)? RPAR
     LCURL stmts=native_statement_list RCURL
   ;

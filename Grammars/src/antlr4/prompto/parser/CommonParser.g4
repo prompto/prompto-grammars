@@ -208,7 +208,8 @@ native_member_method_declaration_list:
   ;
 
 native_member_method_declaration:
-  member_method_declaration			
+  native_getter_declaration			
+  | native_setter_declaration			
   | native_method_declaration			
   ;
 
@@ -463,6 +464,8 @@ enum_category_declaration:;
 enum_native_declaration:;
 setter_method_declaration:;
 getter_method_declaration:;
+native_setter_declaration:;
+native_getter_declaration:;
 operator_method_declaration:;
 typed_argument:;
 native_symbol:;

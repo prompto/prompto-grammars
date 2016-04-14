@@ -60,9 +60,19 @@ setter_method_declaration:
   	indent stmts=statement_list dedent
   ;
    
+native_setter_declaration:
+  DEF name=variable_identifier NATIVE? SETTER LPAR RPAR COLON
+  	indent stmts=native_statement_list dedent
+  ;
+  
 getter_method_declaration:
   DEF name=variable_identifier GETTER LPAR RPAR COLON
   	indent stmts=statement_list dedent
+  ;
+  
+native_getter_declaration:
+  DEF name=variable_identifier NATIVE? GETTER LPAR RPAR COLON
+  	indent stmts=native_statement_list dedent
   ;
   
 native_category_declaration:
@@ -107,7 +117,7 @@ concrete_method_declaration:
   ;  
 
 native_method_declaration:
-  DEF NATIVE name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=category_or_any_type)? COLON 
+  DEF NATIVE? name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=category_or_any_type)? COLON 
     indent stmts=native_statement_list dedent
   ;  
 

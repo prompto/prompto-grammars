@@ -75,15 +75,25 @@ operator_method_declaration:
   ;
   
 setter_method_declaration:
-  DEFINE name=variable_identifier SETTER DOING COLON 
+  DEFINE name=variable_identifier AS SETTER DOING COLON 
   	indent stmts=statement_list dedent
   ;
    
+native_setter_declaration:
+  DEFINE name=variable_identifier AS NATIVE? SETTER DOING COLON 
+  	indent stmts=native_statement_list dedent
+  ;
+
 getter_method_declaration:
-  DEFINE name=variable_identifier GETTER DOING COLON
+  DEFINE name=variable_identifier AS GETTER DOING COLON
   	indent stmts=statement_list dedent
   ;
   
+native_getter_declaration:
+  DEFINE name=variable_identifier AS NATIVE? GETTER DOING COLON
+  	indent stmts=native_statement_list dedent
+  ;
+    
 native_category_declaration:
   DEFINE name=type_identifier AS STORABLE? NATIVE CATEGORY 
    ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
@@ -134,7 +144,7 @@ concrete_method_declaration:
   ;  
 
 native_method_declaration:
-  DEFINE name=method_identifier AS NATIVE METHOD 
+  DEFINE name=method_identifier AS NATIVE? METHOD 
     (RECEIVING args=full_argument_list)? 
     (RETURNING typ=category_or_any_type)?
     DOING COLON 
