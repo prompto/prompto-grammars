@@ -324,7 +324,8 @@ instance_expression:
   ;
   
 method_expression:
-  exp=document_expression			# DocumentExpression
+  exp=blob_expression				# BlobExpression
+  | exp=document_expression			# DocumentExpression
   | exp=fetch_expression			# FetchExpression
   | exp=read_expression				# ReadExpression
   | exp=sorted_expression			# SortedExpression
@@ -332,8 +333,12 @@ method_expression:
   | exp=constructor_expression		# ConstructorExpression
   ;
 
+blob_expression:
+  BLOB LPAR expression RPAR
+  ;
+
 document_expression:
-  DOCUMENT LPAR RPAR
+  DOCUMENT LPAR expression? RPAR
   ;
 
 read_expression:

@@ -330,6 +330,7 @@ expression:
   | CODE COLON exp=expression								# CodeExpression
   | EXECUTE COLON name=variable_identifier					# ExecuteExpression
   | METHOD_T COLON name=method_identifier					# ClosureExpression
+  | exp=blob_expression										# BlobExpression
   | exp=document_expression									# DocumentExpression
   | exp=constructor_expression								# ConstructorExpression
   | exp=fetch_expression									# FetchExpression
@@ -373,7 +374,11 @@ instance_selector:
   ; 
  
 document_expression:
-  DOCUMENT
+  DOCUMENT (FROM expression)?
+  ;
+
+blob_expression:
+  BLOB FROM expression
   ;
 
 constructor_expression:
