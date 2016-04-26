@@ -33,7 +33,7 @@ category_symbol:
   ;
   
 attribute_declaration:
-   DEFINE name=variable_identifier AS 
+   DEFINE name=attribute_identifier AS 
    	STORABLE? typ=typedef ATTRIBUTE (match=attribute_constraint)?
    	( WITH indices=variable_identifier_list (AND index=variable_identifier)? INDEX )?
   ;
@@ -124,9 +124,9 @@ native_category_binding_list:
   ;
 
 attribute_list:
-  WITH ATTRIBUTE item=variable_identifier 	# AttributeList
-  | WITH ATTRIBUTES items=variable_identifier_list
-   	(AND item=variable_identifier)? 				# AttributeListItem
+  WITH ATTRIBUTE item=attribute_identifier 	# AttributeList
+  | WITH ATTRIBUTES items=attribute_identifier_list
+   	(AND item=attribute_identifier)? 				# AttributeListItem
   ;
 
 abstract_method_declaration:

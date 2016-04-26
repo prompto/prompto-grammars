@@ -9,7 +9,7 @@ import CommonParser;
 
 enum_category_declaration:
   ENUMERATED CATEGORY name=type_identifier 
-  	(LPAR attrs=attribute_list RPAR )? 
+  	(LPAR attrs=attribute_identifier_list RPAR )? 
   	(EXTENDS derived=type_identifier)? 
 	LCURL symbols=category_symbol_list RCURL
   ;
@@ -29,21 +29,21 @@ native_symbol:
   ;
   
 attribute_declaration:
-   STORABLE? ATTRIBUTE name=variable_identifier COLON typ=typedef
+   STORABLE? ATTRIBUTE name=attribute_identifier COLON typ=typedef
    	( match=attribute_constraint )? SEMI
   ;
 
 
 concrete_category_declaration:
   STORABLE? CATEGORY name=type_identifier
-  	( LPAR attrs=attribute_list RPAR  )? 
+  	( LPAR attrs=attribute_identifier_list RPAR  )? 
   	( EXTENDS derived=derived_list )? 
   	methods=category_method_list
   ;
   
 singleton_category_declaration:
   SINGLETON name=type_identifier
-  	( LPAR attrs=attribute_list RPAR  )? 
+  	( LPAR attrs=attribute_identifier_list RPAR  )? 
   	methods=category_method_list
   ;
 
@@ -81,13 +81,13 @@ native_getter_declaration:
   ;  
 
 native_resource_declaration:
-  NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_list RPAR )? 
+  NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_identifier_list RPAR )? 
     LCURL bindings=native_category_bindings 
     (methods=native_member_method_declaration_list)? RCURL
   ;
 
 native_category_declaration:
-  STORABLE? NATIVE CATEGORY name=type_identifier ( LPAR attrs=attribute_list RPAR )?
+  STORABLE? NATIVE CATEGORY name=type_identifier ( LPAR attrs=attribute_identifier_list RPAR )?
     LCURL bindings=native_category_bindings 
     (methods=native_member_method_declaration_list)? RCURL
   ;
@@ -102,12 +102,6 @@ native_category_binding_list:
   	item=native_category_binding SEMI	# NativeCategoryBindingListItem
   ;
 
-attribute_list: 
-  item=variable_identifier			# AttributeList
-  | items=attribute_list 
-  	COMMA item=variable_identifier 	# AttributeListItem
-  ;
-    
 abstract_method_declaration:
   ABSTRACT (typ=typedef)? METHOD name=method_identifier 
     LPAR (args=argument_list)? RPAR SEMI
@@ -139,7 +133,7 @@ assertion:
 
 typed_argument:
   typ = category_or_any_type 
-  	(LPAR attrs=attribute_list RPAR )? 
+  	(LPAR attrs=attribute_identifier_list RPAR )? 
   	name=variable_identifier					
   	( EQ value=literal_expression)?
   ;

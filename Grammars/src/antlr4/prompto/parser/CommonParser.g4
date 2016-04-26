@@ -142,6 +142,10 @@ variable_identifier:
   VARIABLE_IDENTIFIER
   ;
   
+attribute_identifier:
+  VARIABLE_IDENTIFIER | STORABLE
+  ;
+  
 type_identifier:
   TYPE_IDENTIFIER
   ; 
@@ -242,11 +246,13 @@ javascript_module:
   ;
    
 variable_identifier_list:
-  item=variable_identifier 				# VariableList
-  | items=variable_identifier_list
-  	COMMA item=variable_identifier 		# VariableListItem
+  variable_identifier (COMMA variable_identifier)*
   ;
 
+attribute_identifier_list:
+  attribute_identifier (COMMA attribute_identifier)*
+  ;
+  
 method_declaration:
   decl=abstract_method_declaration		# AbstractMethod
   | decl=concrete_method_declaration	# ConcreteMethod

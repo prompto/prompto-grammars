@@ -9,8 +9,8 @@ import CommonParser;
 
 enum_category_declaration:
   ENUM name=type_identifier LPAR 
-  	( derived=type_identifier (COMMA attrs=attribute_list)?
-  	  | attrs=attribute_list ) RPAR COLON
+  	( derived=type_identifier (COMMA attrs=attribute_identifier_list)?
+  	  | attrs=attribute_identifier_list ) RPAR COLON
     indent symbols=category_symbol_list dedent
   ;
 
@@ -28,21 +28,21 @@ category_symbol:
   ;
   
 attribute_declaration:
-   STORABLE? ATTR name=variable_identifier LPAR  typ=typedef RPAR COLON
+   STORABLE? ATTR name=attribute_identifier LPAR  typ=typedef RPAR COLON
    	indent (match=attribute_constraint | PASS) dedent
   ;
 
 concrete_category_declaration:
   STORABLE? ( CLASS | CATEGORY ) name=type_identifier LPAR 
   	( derived=derived_list 
-  	  | attrs=attribute_list  
-  	  | derived=derived_list COMMA attrs=attribute_list ) 
+  	  | attrs=attribute_identifier_list  
+  	  | derived=derived_list COMMA attrs=attribute_identifier_list ) 
   RPAR COLON
 	  	indent ( methods=member_method_declaration_list | PASS ) dedent
   ;
 
 singleton_category_declaration:
-  SINGLETON name=type_identifier LPAR attrs=attribute_list RPAR COLON
+  SINGLETON name=type_identifier LPAR attrs=attribute_identifier_list RPAR COLON
 	  	indent ( methods=member_method_declaration_list | PASS ) dedent
   ;
 
@@ -76,7 +76,7 @@ native_getter_declaration:
   ;
   
 native_category_declaration:
-  STORABLE? NATIVE ( CLASS | CATEGORY ) name=type_identifier LPAR attrs=attribute_list? RPAR COLON  
+  STORABLE? NATIVE ( CLASS | CATEGORY ) name=type_identifier LPAR attrs=attribute_identifier_list? RPAR COLON  
     indent 
     bindings=native_category_bindings 
     (lfp methods=native_member_method_declaration_list)?
@@ -84,7 +84,7 @@ native_category_declaration:
   ;
 
 native_resource_declaration:
-  NATIVE RESOURCE name=type_identifier LPAR attrs=attribute_list? RPAR COLON  
+  NATIVE RESOURCE name=type_identifier LPAR attrs=attribute_identifier_list? RPAR COLON  
     indent 
     bindings=native_category_bindings 
     (lfp methods=native_member_method_declaration_list)?
@@ -100,10 +100,6 @@ native_category_binding_list:
   item=native_category_binding			# NativeCategoryBindingList
   | items=native_category_binding_list 
   	lfp item=native_category_binding	# NativeCategoryBindingListItem
-  ;
-
-attribute_list:
-  items=variable_identifier_list
   ;
 
 abstract_method_declaration:
@@ -135,7 +131,7 @@ assertion:
 typed_argument:
   name=variable_identifier COLON 
   	typ = category_or_any_type 
-  	( LPAR attrs=attribute_list RPAR )? 
+  	( LPAR attrs=attribute_identifier_list RPAR )? 
   	( EQ value=literal_expression )?
   ;
     
