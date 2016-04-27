@@ -75,10 +75,12 @@ range_literal:
   ;
 
 typedef: 
-  p=primary_type			# PrimaryType
-  | s=typedef LTGT 			# SetType
-  | l=typedef LBRAK RBRAK 	# ListType
-  | d=typedef LCURL RCURL 	# DictType
+  p=primary_type				# PrimaryType
+  | s=typedef LTGT 				# SetType
+  | l=typedef LBRAK RBRAK 		# ListType
+  | d=typedef LCURL RCURL 		# DictType
+  | CURSOR LT c=typedef GT 		# CursorType
+  | ITERATOR LT i=typedef GT 	# IteratorType
   ;
    
 primary_type:

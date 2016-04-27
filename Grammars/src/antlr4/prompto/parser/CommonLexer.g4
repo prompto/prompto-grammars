@@ -58,6 +58,8 @@ DOCUMENT: 'Document';
 BLOB: 'Blob';
 IMAGE: 'Image';
 UUID: 'UUID';
+ITERATOR: 'Iterator';
+CURSOR: 'Cursor';
 
 ABSTRACT: 'abstract';
 ALL: 'all';
