@@ -3,13 +3,11 @@ parser grammar CommonParser;
 import JavaScriptParser, PythonParser, JavaParser, CSharpParser;
 
 declaration_list:
-  (items=declarations)? lfs EOF		# FullDeclarationList
+  (declarations)? lfs EOF		# FullDeclarationList
   ;
 
 declarations:
-  item=declaration 				# DeclarationList
-  | items=declarations 
-  	lfp item=declaration		# DeclarationListItem
+  declaration (lfp declaration)*
   ;
 
 declaration: 
@@ -22,30 +20,24 @@ declaration:
   ;
 
 resource_declaration:
-  decl=native_resource_declaration
+  native_resource_declaration
   ;
 
 enum_declaration :
-  decl=enum_category_declaration	# EnumCategoryDeclaration
-  | decl=enum_native_declaration	# EnumNativeDeclaration
+  enum_category_declaration	
+  | enum_native_declaration	
   ;
    
 native_symbol_list:
-  item=native_symbol			# NativeSymbolList
-  | items=native_symbol_list 
-  	 lfp item=native_symbol		# NativeSymbolListItem
+  native_symbol (lfp native_symbol)*
   ;
 
 category_symbol_list:
-  item=category_symbol				# CategorySymbolList
-  | items=category_symbol_list
-	  lfp item=category_symbol		# CategorySymbolListItem
+  category_symbol (lfp category_symbol)*
   ;  
 
 symbol_list:
-  item=symbol_identifier 		# SymbolList
-  | items=symbol_list 
-  	COMMA item=symbol_identifier # SymbolListItem
+  symbol_identifier (COMMA symbol_identifier)*
   ;
   
 
@@ -58,16 +50,15 @@ attribute_constraint:
   ;
 
 list_literal:
-  LBRAK ( items=expression_list )? RBRAK
+  MUTABLE? LBRAK ( expression_list )? RBRAK
   ;
 
 set_literal:
-  LT ( items=expression_list )? GT
+  MUTABLE? LT ( expression_list )? GT
   ;
 
 expression_list:
-  item=expression 									# ValueList
-  | items=expression_list COMMA item=expression		# ValueListItem 
+  expression ( COMMA expression)*
   ;
 
 range_literal:
@@ -124,20 +115,18 @@ category_declaration:
   ;
 
 type_identifier_list  :
-  item=type_identifier				# TypeIdentifierList
-  | items=type_identifier_list 
-  	COMMA item=type_identifier		# TypeIdentifierListItem
+  type_identifier (COMMA type_identifier)*
   ;
 
 method_identifier:
-  name=variable_identifier	# MethodVariableIdentifier
-  | name=type_identifier	# MethodTypeIdentifier
+  variable_identifier
+  | type_identifier
   ;
   
 identifier:
-  name=variable_identifier 	# VariableIdentifier
-  | name=type_identifier	# TypeIdentifier
-  | name=symbol_identifier	# SymbolIdentifier
+  variable_identifier	# VariableIdentifier
+  | type_identifier		# TypeIdentifier
+  | symbol_identifier	# SymbolIdentifier
   ;  
   
 variable_identifier:
@@ -157,9 +146,7 @@ symbol_identifier:
   ; 
 
 argument_list:
-  item=argument				# ArgumentList
-  | items=argument_list 
-  	COMMA item=argument		# ArgumentListItem
+  argument (COMMA argument)*
  ;
 
 argument:
@@ -168,14 +155,14 @@ argument:
   ;
   
 operator_argument:
-  arg=named_argument 			# NamedArgument
-  | arg=typed_argument			# TypedArgument
+  named_argument
+  | typed_argument
   ;
    
 
 named_argument:
-  name=variable_identifier
-  	( EQ value=literal_expression)?
+  variable_identifier
+  	( EQ literal_expression)?
   ;
 
 code_argument:
@@ -183,20 +170,18 @@ code_argument:
   ;
   
 category_or_any_type:
-  typ=typedef				# CategoryArgumentType
-  | typ=any_type			# AnyArgumentType
+  typedef	
+  | any_type			
   ;
 
 any_type:
-  ANY							# AnyType
-  | typ=any_type LBRAK RBRAK	# AnyListType
-  | typ=any_type LCURL RCURL	# AnyDictType
+  ANY						# AnyType
+  | any_type LBRAK RBRAK	# AnyListType
+  | any_type LCURL RCURL	# AnyDictType
   ;
 
 member_method_declaration_list:
-  item=member_method_declaration			# CategoryMethodList		
-  | items=member_method_declaration_list 
-  	lfp item=member_method_declaration		# CategoryMethodListItem
+  member_method_declaration (lfp member_method_declaration)*
   ;
   
 member_method_declaration:
@@ -208,9 +193,7 @@ member_method_declaration:
   ;
 
 native_member_method_declaration_list:
-  item=native_member_method_declaration				# NativeCategoryMethodList		
-  | items=native_member_method_declaration_list 
-  	lfp item=native_member_method_declaration		# NativeCategoryMethodListItem
+  native_member_method_declaration (lfp native_member_method_declaration)*
   ;
 
 native_member_method_declaration:
@@ -228,19 +211,15 @@ native_category_binding:
   ;  
 
 python_category_binding:
-  id_=identifier module=python_module?
+  identifier python_module?
   ;
   
 python_module:
   FROM module_token COLON identifier (DOT identifier)*
   ;
   
-module_token:
-i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"module")}? 
-; 
-
 javascript_category_binding:  
-  id_=identifier module=javascript_module?
+  identifier javascript_module?
   ;
   
 javascript_module:  
@@ -256,10 +235,10 @@ attribute_identifier_list:
   ;
   
 method_declaration:
-  decl=abstract_method_declaration		# AbstractMethod
-  | decl=concrete_method_declaration	# ConcreteMethod
-  | decl=native_method_declaration		# NativeMethod
-  | decl=test_method_declaration		# TestMethod
+  abstract_method_declaration
+  | concrete_method_declaration
+  | native_method_declaration
+  | test_method_declaration
   ; 
 
 comment_statement:
@@ -267,57 +246,47 @@ comment_statement:
   ;
   
 native_statement_list:
-  item=native_statement				# NativeStatementList
-  | items= native_statement_list 
-  	lfp item=native_statement		# NativeStatementListItem
+  native_statement (lfp native_statement)*
   ;
  
 native_statement:
-  JAVA stmt=java_statement							# JavaNativeStatement
-  | CSHARP stmt=csharp_statement					# CSharpNativeStatement
-  | PYTHON2 stmt=python_native_statement			# Python2NativeStatement
-  | PYTHON3 stmt=python_native_statement			# Python3NativeStatement
-  | JAVASCRIPT stmt=javascript_native_statement 	# JavaScriptNativeStatement
+  JAVA java_statement						# JavaNativeStatement
+  | CSHARP csharp_statement					# CSharpNativeStatement
+  | PYTHON2 python_native_statement			# Python2NativeStatement
+  | PYTHON3 python_native_statement			# Python3NativeStatement
+  | JAVASCRIPT javascript_native_statement 	# JavaScriptNativeStatement
   ;   
    
 python_native_statement:
-  stmt=python_statement SEMI? module=python_module?
+  python_statement SEMI? python_module?
   ;
 
 javascript_native_statement:
-  stmt=javascript_statement SEMI? module=javascript_module?
+  javascript_statement SEMI? javascript_module?
   ;
 
 statement_list:
-  item=statement			# StatementList
-  | items=statement_list 
-  	lfp item=statement		# StatementListItem
+  statement	(lfp statement)*
   ;
   
 assertion_list:
-  item=assertion			# AssertionList
-  | items=assertion_list 
-  	lfp item=assertion		# AssertionListItem
+  assertion	(lfp assertion)*
   ;  
 
 switch_case_statement_list:
-  item=switch_case_statement		# SwitchCaseStatementList
-  | items=switch_case_statement_list
-  	lfp item=switch_case_statement		# SwitchCaseStatementListItem
+  switch_case_statement (lfp switch_case_statement)*
   ;
 
 catch_statement_list:
-  item=catch_statement		# CatchStatementList
-  | items=catch_statement_list
-	lfp item=catch_statement	# CatchStatementListItem
+  catch_statement (lfp catch_statement)*
   ;
   
   	
 literal_collection:
   LBRAK low=atomic_literal 
-  	RANGE high=atomic_literal RBRAK			# LiteralRangeLiteral
-  | LBRAK exp=literal_list_literal RBRAK	# LiteralListLiteral
-  | LT exp=literal_list_literal GT			# LiteralSetLiteral
+  	RANGE high=atomic_literal RBRAK		# LiteralRangeLiteral
+  | LBRAK literal_list_literal RBRAK	# LiteralListLiteral
+  | LT literal_list_literal GT			# LiteralSetLiteral
   ;
 
     
@@ -338,9 +307,7 @@ atomic_literal:
   ;
    
 literal_list_literal:
-  item=atomic_literal 			# LiteralList
-  | items=literal_list_literal
-  	COMMA item=atomic_literal 	# LiteralListItem
+  atomic_literal (COMMA atomic_literal)*
   ;
    
 selectable_expression:
@@ -355,38 +322,37 @@ this_expression:
   ;
   
 parenthesis_expression:
-  LPAR exp=expression RPAR
+  LPAR expression RPAR
   ;  
 
 literal_expression:
-  exp=atomic_literal			# AtomicLiteral
-  | exp=collection_literal		# CollectionLiteral
+  atomic_literal
+  | collection_literal	
   ;
   
 collection_literal:
-  exp=range_literal				# RangeLiteral
-  | exp=list_literal			# ListLiteral
-  | exp=set_literal				# SetLiteral
-  | exp=dict_literal			# DictLiteral
-  | exp=tuple_literal			# TupleLiteral
+  range_literal				
+  | list_literal		
+  | set_literal			
+  | dict_literal		
+  | tuple_literal		
   ;     
 
 tuple_literal:
-  LPAR ( items=expression_tuple )? RPAR
+  MUTABLE? LPAR expression_tuple? RPAR
   ;
     
 dict_literal: 
-  LCURL ( items=dict_entry_list )? RCURL	
+  MUTABLE? LCURL dict_entry_list? RCURL	
   ; 
 
 expression_tuple:
-  item=expression 									# ValueTuple
-  | items=expression_tuple COMMA item=expression	# ValueTupleItem 
+  // comma is mandatory to avoid collision with parenthesis expression
+  expression COMMA (expression (COMMA expression)*)?
   ; 
 
 dict_entry_list:
-  item=dict_entry 									# DictEntryList
-  | items=dict_entry_list COMMA item=dict_entry		# DictEntryListItem
+  dict_entry (COMMA dict_entry)*
   ;
 
 dict_entry:
@@ -400,18 +366,18 @@ slice_arguments:
   ;
 
 assign_variable_statement:
-  name=variable_identifier assign exp=expression
+  variable_identifier assign expression
   ;  
 
 assignable_instance:
-  name=variable_identifier 		# RootInstance
-  | parent=assignable_instance 
-  	child=child_instance	 	# ChildInstance
+  variable_identifier 		# RootInstance
+  | assignable_instance 
+  	child_instance	 	# ChildInstance
   ;
 
 is_expression:
-  {$parser.willBeAOrAn()}? VARIABLE_IDENTIFIER typ=category_or_any_type		# IsATypeExpression
-  | exp=expression															# IsOtherExpression		
+  {$parser.willBeAOrAn()}? VARIABLE_IDENTIFIER category_or_any_type		# IsATypeExpression
+  | expression															# IsOtherExpression		
   ;
 
 order_by_list:
@@ -440,13 +406,17 @@ key_token:
   i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"key")}? 
   ; 
 
+module_token:
+  i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"module")}? 
+; 
+
 value_token:
   i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"value")}? 
   ; 
 
 symbols_token:
-i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"symbols")}? 
-; 
+  i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"symbols")}? 
+  ; 
 
 // token aliases
 // operators common to all dialects
