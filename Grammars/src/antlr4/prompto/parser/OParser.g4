@@ -30,7 +30,7 @@ native_symbol:
   
 attribute_declaration:
    STORABLE? ATTRIBUTE name=attribute_identifier COLON typ=typedef
-   	( match=attribute_constraint )? SEMI
+   	( match=attribute_constraint )? ( WITH INDEX ( LPAR indices=variable_identifier_list RPAR )? )? SEMI
   ;
 
 

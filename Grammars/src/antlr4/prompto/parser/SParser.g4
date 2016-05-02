@@ -29,8 +29,17 @@ category_symbol:
   
 attribute_declaration:
    STORABLE? ATTR name=attribute_identifier LPAR  typ=typedef RPAR COLON
-   	indent (match=attribute_constraint | PASS) dedent
+   	indent 
+   		( PASS | (
+   			match=attribute_constraint (lfp indices=index_clause)?
+   			| indices=index_clause (lfp match=attribute_constraint)?
+   		))
+   	dedent
   ;
+  
+index_clause:
+	INDEX LPAR indices=variable_identifier_list? RPAR
+	;  
 
 concrete_category_declaration:
   STORABLE? ( CLASS | CATEGORY ) name=type_identifier LPAR 

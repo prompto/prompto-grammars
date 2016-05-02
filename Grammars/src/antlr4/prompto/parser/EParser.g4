@@ -35,7 +35,7 @@ category_symbol:
 attribute_declaration:
    DEFINE name=attribute_identifier AS 
    	STORABLE? typ=typedef ATTRIBUTE (match=attribute_constraint)?
-   	( WITH indices=variable_identifier_list (AND index=variable_identifier)? INDEX )?
+   	( WITH (indices=variable_identifier_list (AND index=variable_identifier)?)? INDEX )?
   ;
 
 concrete_category_declaration:
