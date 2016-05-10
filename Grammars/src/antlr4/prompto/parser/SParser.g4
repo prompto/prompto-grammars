@@ -329,13 +329,14 @@ instance_expression:
 	;
 
 method_expression:
-  exp=blob_expression				# BlobExpression
-  | exp=document_expression			# DocumentExpression
-  | exp=fetch_expression			# FetchExpression
-  | exp=read_expression				# ReadExpression
-  | exp=sorted_expression			# SortedExpression
-  | exp=method_call					# MethodCallExpression
-  | exp=constructor_expression		# ConstructorExpression
+  blob_expression			
+  | document_expression			
+  | fetch_list_expression			
+  | fetch_store_expression			
+  | read_expression				
+  | sorted_expression			
+  | method_call					
+  | constructor_expression		
   ;
 	
 instance_selector:
@@ -375,17 +376,20 @@ write_statement:
   WRITE what=expression TO target=expression
   ;
   
-fetch_expression:
+fetch_list_expression:
   FETCH name=variable_identifier 
   			FROM source=expression 
-  			WHERE xfilter=expression						# FetchList
-  | FETCH ONE typ=mutable_category_type? 
-  			WHERE xfilter=expression						# FetchOne
+  			WHERE predicate=expression
+  ;
+  
+fetch_store_expression:
+  FETCH ONE typ=mutable_category_type? 
+  			WHERE predicate=expression						# FetchOne
   | FETCH  ( ALL 
   			| ROWS xstart=expression TO xstop=expression )
   			LPAR typ=mutable_category_type? RPAR 
-  			( WHERE xfilter=expression )?					
-  			( ORDER BY xorder=order_by_list )?				# FetchAll
+  			( WHERE predicate=expression )?					
+  			( ORDER BY orderby=order_by_list )?				# FetchMany
   ;  
 
 sorted_expression:

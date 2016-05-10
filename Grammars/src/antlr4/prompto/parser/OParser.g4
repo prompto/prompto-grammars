@@ -318,13 +318,14 @@ instance_expression:
   ;
   
 method_expression:
-  exp=blob_expression				# BlobExpression
-  | exp=document_expression			# DocumentExpression
-  | exp=fetch_expression			# FetchExpression
-  | exp=read_expression				# ReadExpression
-  | exp=sorted_expression			# SortedExpression
-  | exp=method_call					# MethodCallExpression
-  | exp=constructor_expression		# ConstructorExpression
+  blob_expression				
+  | document_expression			
+  | fetch_list_expression		
+  | fetch_store_expression		
+  | read_expression				
+  | sorted_expression			
+  | method_call					
+  | constructor_expression		
   ;
 
 blob_expression:
@@ -343,17 +344,20 @@ write_statement:
   WRITE LPAR what=expression RPAR TO target=expression SEMI
   ;
 
-fetch_expression:
+fetch_list_expression:
   FETCH LPAR name=variable_identifier RPAR 
   		FROM source=expression 
-  		WHERE xfilter=expression							# FetchList
-  | FETCH ONE LPAR typ=mutable_category_type? RPAR 
-  		WHERE LPAR xfilter=expression RPAR					# FetchOne
+  		WHERE predicate=expression
+  ;
+  
+fetch_store_expression:
+  FETCH ONE LPAR typ=mutable_category_type? RPAR 
+  		WHERE LPAR predicate=expression RPAR							# FetchOne
   | FETCH  (( ALL LPAR typ=mutable_category_type? RPAR )
   			| ( LPAR typ=mutable_category_type? RPAR 
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
-  			( WHERE LPAR xfilter=expression RPAR )?			
-  			( ORDER BY LPAR xorder=order_by_list RPAR )?				# FetchAll
+  			( WHERE LPAR predicate=expression RPAR )?			
+  			( ORDER BY LPAR orderby=order_by_list RPAR )?			# FetchMany
   ;
   
 sorted_expression:
