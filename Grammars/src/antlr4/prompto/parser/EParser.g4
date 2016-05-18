@@ -179,6 +179,7 @@ statement:
   | stmt=method_call_statement				# MethodCallStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
+  | stmt=flush_statement					# FlushStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -194,6 +195,11 @@ statement:
   | decl=comment_statement					# CommentStatement
   ;
 
+
+flush_statement:
+  FLUSH
+  ;
+  
 store_statement:
   DELETE to_del=expression_list								
   | STORE to_add=expression_list

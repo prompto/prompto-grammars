@@ -96,6 +96,7 @@ EXPECTING: 'expecting';
 EXTENDS: 'extends';
 FETCH: 'fetch';
 FINALLY: 'finally';
+FLUSH: 'flush';
 FOR: 'for';
 FROM: 'from';
 GETTER: 'getter';

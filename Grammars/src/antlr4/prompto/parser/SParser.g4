@@ -149,6 +149,7 @@ statement:
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
+  | stmt=flush_statement					# FlushStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -164,6 +165,11 @@ statement:
   | decl=comment_statement					# CommentStatement
   ;
 
+
+flush_statement:
+  FLUSH LPAR RPAR
+  ;
+  
 store_statement:
   DELETE LPAR to_del=expression_list RPAR	
   | STORE LPAR to_add=expression_list RPAR	
