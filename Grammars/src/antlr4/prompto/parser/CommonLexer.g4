@@ -204,6 +204,11 @@ TEXT_LITERAL :
     '"' (   EscapeSequence |   ~( '\\' | '"' | '\r' | '\n' ) )* '"' 
     ;
 
+UUID_LITERAL :
+	'\'' HexByte HexByte HexByte HexByte '-' HexByte HexByte '-' HexByte HexByte '-' HexByte HexByte '-'
+	 HexByte HexByte HexByte HexByte HexByte HexByte '\''
+	;
+
 INTEGER_LITERAL
     : Integer
     ;    
@@ -234,9 +239,14 @@ Exponent :
     
 fragment
 Hexadecimal :
-    ( '0x' | '0X' ) ('0'..'9'|'a'..'f'|'A'..'F')+
+    ( '0x' | '0X' ) HexNibble+
     ;
     
+fragment
+HexNibble :    
+	'0'..'9'|'a'..'f'|'A'..'F'
+	;
+	  
 fragment
 EscapeSequence 
     :   '\\' (
@@ -245,15 +255,10 @@ EscapeSequence
              |   'n' 
              |   'f' 
              |   'r' 
-             |   '\"' 
              |   '\'' 
+             |   '\"' 
              |   '\\' 
-             |       
-                 ('0'..'3') ('0'..'7') ('0'..'7')
-             |       
-                 ('0'..'7') ('0'..'7') 
-             |       
-                 ('0'..'7')
+             | 	 'u' ('0'..'9'|'a'..'f'|'A'..'F')+
              )          
 ;  
 
@@ -326,3 +331,8 @@ Seconds :
     Integer ('.' ('0')* Integer)? 'S'
     ;
 
+fragment
+HexByte :
+	HexNibble HexNibble
+	;
+	
