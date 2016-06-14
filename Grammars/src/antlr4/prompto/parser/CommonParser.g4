@@ -303,6 +303,7 @@ atomic_literal:
   | t=DATETIME_LITERAL			# DateTimeLiteral
   | t=BOOLEAN_LITERAL			# BooleanLiteral
   | t=PERIOD_LITERAL			# PeriodLiteral
+  | t=UUID_LITERAL				# UUIDLiteral
   | n=null_literal				# NullLiteral
   ;
    
