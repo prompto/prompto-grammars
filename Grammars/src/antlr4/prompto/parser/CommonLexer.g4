@@ -303,32 +303,32 @@ PERIOD_LITERAL
    
 fragment
 Years :
-    Integer 'Y'
+    '-'? Integer 'Y'
     ;
     
 fragment
 Months :
-    Integer 'M'
+    '-'? Integer 'M'
     ;
     
 fragment
 Days :
-    Integer 'D'
+    '-'? Integer 'D'
     ;
     
 fragment
 Hours :
-    Integer 'H'
+    '-'? Integer 'H'
     ;
 
 fragment
 Minutes :
-    Integer 'M'
+    '-'? Integer 'M'
     ;
 
 fragment
 Seconds :
-    Integer ('.' ('0')* Integer)? 'S'
+    '-'? Integer ('.' ('0')* Integer)? 'S'
     ;
 
 fragment
