@@ -166,7 +166,7 @@ MAX_INTEGER:
 	;
 	    
 SYMBOL_IDENTIFIER :
-    'A'..'Z' ('A'..'Z' | '_' | Digit)+
+    'A'..'Z' ('A'..'Z' | '_' | Digit)*
     ;
 
 TYPE_IDENTIFIER :
