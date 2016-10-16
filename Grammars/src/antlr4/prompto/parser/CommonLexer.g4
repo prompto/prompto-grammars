@@ -72,6 +72,7 @@ ATTR: 'attr';
 ATTRIBUTE: 'attribute';
 ATTRIBUTES: 'attributes';
 BINDINGS: 'bindings';
+BREAK: 'break';
 BY: 'by';
 CASE: 'case';
 CATCH: 'catch';

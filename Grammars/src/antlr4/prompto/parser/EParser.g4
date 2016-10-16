@@ -180,6 +180,7 @@ statement:
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
   | stmt=flush_statement					# FlushStatement
+  | stmt=break_statement					# BreakStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -291,6 +292,10 @@ catch_statement:
   | WHEN IN LBRAK exp=symbol_list RBRAK COLON
   	indent stmts=statement_list dedent lfs # CatchCollectionStatement
   ;    
+
+break_statement:
+  BREAK
+  ;
 
 return_statement:
   RETURN exp=expression?

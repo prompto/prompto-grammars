@@ -149,6 +149,7 @@ statement:
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
   | stmt=flush_statement					# FlushStatement
+  | stmt=break_statement					# BreakStatement
   | stmt=return_statement					# ReturnStatement
   | stmt=if_statement						# IfStatement
   | stmt=switch_statement					# SwitchStatement
@@ -239,6 +240,10 @@ catch_statement:
     LCURL ( stmts=statement_list )? RCURL # CatchAtomicStatement
   | CATCH IN LPAR exp=symbol_list RPAR	
     LCURL ( stmts=statement_list )? RCURL # CatchCollectionStatement
+  ;
+
+break_statement:
+  BREAK SEMI
   ;
 
 return_statement:
