@@ -372,7 +372,7 @@ fetch_store_expression:
   ;
   
 sorted_expression:
-  SORTED LPAR source=instance_expression 
+  SORTED DESC? LPAR source=instance_expression 
   	( COMMA key_token EQ key=instance_expression )? RPAR
   ;
 

@@ -430,7 +430,7 @@ fetch_store_expression:
   ;  
 
 sorted_expression:
-  SORTED source=instance_expression
+  SORTED DESC? source=instance_expression
   	( WITH key=instance_expression AS key_token )?
   ;
 
