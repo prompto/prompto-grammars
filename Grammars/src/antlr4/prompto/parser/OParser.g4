@@ -362,7 +362,7 @@ fetch_list_expression:
   ;
   
 fetch_store_expression:
-  FETCH ONE LPAR typ=mutable_category_type? RPAR 
+  FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
   		WHERE LPAR predicate=expression RPAR							# FetchOne
   | FETCH  (( ALL LPAR typ=mutable_category_type? RPAR )
   			| ( LPAR typ=mutable_category_type? RPAR 
