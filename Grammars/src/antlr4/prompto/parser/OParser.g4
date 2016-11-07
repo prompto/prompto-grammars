@@ -331,7 +331,7 @@ instance_expression:
 method_expression:
   blob_expression				
   | document_expression			
-  | fetch_list_expression		
+  | filtered_list_expression		
   | fetch_store_expression		
   | read_expression				
   | sorted_expression			
@@ -355,10 +355,10 @@ write_statement:
   WRITE LPAR what=expression RPAR TO target=expression SEMI
   ;
 
-fetch_list_expression:
-  FETCH LPAR name=variable_identifier RPAR 
-  		FROM source=expression 
-  		WHERE predicate=expression
+filtered_list_expression:
+  FILTERED LPAR source=expression RPAR 
+  		WITH LPAR name=variable_identifier RPAR 
+  		WHERE LPAR predicate=expression RPAR
   ;
   
 fetch_store_expression:

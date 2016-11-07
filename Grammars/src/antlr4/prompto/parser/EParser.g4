@@ -344,7 +344,7 @@ expression:
   | exp=blob_expression										# BlobExpression
   | exp=document_expression									# DocumentExpression
   | exp=constructor_expression								# ConstructorExpression
-  | exp=fetch_list_expression								# FetchListExpression
+  | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=fetch_store_expression								# FetchStoreExpression
   | exp=read_expression										# ReadExpression
   | exp=sorted_expression									# SortedExpression
@@ -414,9 +414,8 @@ ambiguous_expression:
   method=unresolved_expression MINUS exp=expression
   ;
   
-fetch_list_expression:
-  FETCH ANY name=variable_identifier 
-  			FROM source=expression 
+filtered_list_suffix:
+  FILTERED WITH name=variable_identifier 
   			WHERE predicate=expression		
   ;
   

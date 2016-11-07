@@ -96,6 +96,7 @@ EXECUTE: 'execute';
 EXPECTING: 'expecting';
 EXTENDS: 'extends';
 FETCH: 'fetch';
+FILTERED: 'filtered';
 FINALLY: 'finally';
 FLUSH: 'flush';
 FOR: 'for';

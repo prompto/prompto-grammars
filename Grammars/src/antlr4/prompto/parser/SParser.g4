@@ -288,6 +288,7 @@ return_statement:
     
 expression:
   exp=instance_expression									# InstanceExpression	
+  | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=method_expression									# MethodExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
@@ -342,7 +343,6 @@ instance_expression:
 method_expression:
   blob_expression			
   | document_expression			
-  | fetch_list_expression			
   | fetch_store_expression			
   | read_expression				
   | sorted_expression			
@@ -387,10 +387,9 @@ write_statement:
   WRITE what=expression TO target=expression
   ;
   
-fetch_list_expression:
-  FETCH name=variable_identifier 
-  			FROM source=expression 
-  			WHERE predicate=expression
+filtered_list_suffix:
+  FILTERED WITH name=variable_identifier 
+  		WHERE predicate=expression
   ;
   
 fetch_store_expression:
