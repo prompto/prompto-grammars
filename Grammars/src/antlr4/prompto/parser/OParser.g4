@@ -364,11 +364,11 @@ filtered_list_expression:
 fetch_store_expression:
   FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
   		WHERE LPAR predicate=expression RPAR							# FetchOne
-  | FETCH  (( ALL LPAR typ=mutable_category_type? RPAR )
-  			| ( LPAR typ=mutable_category_type? RPAR 
+  | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
+  			| ( (LPAR typ=mutable_category_type RPAR)? 
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
   			( WHERE LPAR predicate=expression RPAR )?			
-  			( ORDER BY LPAR orderby=order_by_list RPAR )?			# FetchMany
+  			( ORDER BY LPAR orderby=order_by_list RPAR )?				# FetchMany
   ;
   
 sorted_expression:
