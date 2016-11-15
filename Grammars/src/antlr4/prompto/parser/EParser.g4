@@ -420,7 +420,8 @@ fetch_store_expression:
   FETCH ONE (typ=mutable_category_type?) 
   			WHERE predicate=expression							# FetchOne
   | FETCH ( ( ALL typ=mutable_category_type? ) 
-  			| ( typ=mutable_category_type? xstart=expression TO xstop=expression ) )
+  			| ( typ=mutable_category_type ROWS? xstart=expression TO xstop=expression )
+  			| ( ROWS xstart=expression TO xstop=expression ) )
   			( WHERE predicate=expression )?
   			( ORDER BY orderby=order_by_list )?					# FetchMany
   ;  
