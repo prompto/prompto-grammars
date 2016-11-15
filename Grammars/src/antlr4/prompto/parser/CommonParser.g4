@@ -381,6 +381,15 @@ is_expression:
   | expression															# IsOtherExpression		
   ;
 
+read_all_expression:
+  READ ALL FROM source=expression
+  ;
+  
+read_one_expression:
+  READ ONE FROM source=expression
+  ;
+
+
 order_by_list:
 	order_by ( COMMA order_by )*
 	;

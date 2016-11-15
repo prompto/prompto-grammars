@@ -344,7 +344,8 @@ method_expression:
   blob_expression			
   | document_expression			
   | fetch_store_expression			
-  | read_expression				
+  | read_all_expression				
+  | read_one_expression				
   | sorted_expression			
   | method_call					
   | constructor_expression		
@@ -379,10 +380,6 @@ argument_assignment:
   name=variable_identifier assign exp=expression
   ;
 
-read_expression:
-  READ FROM source=expression
-  ;
-  
 write_statement: 
   WRITE what=expression TO target=expression
   ;

@@ -333,7 +333,8 @@ method_expression:
   | document_expression			
   | filtered_list_expression		
   | fetch_store_expression		
-  | read_expression				
+  | read_all_expression				
+  | read_one_expression				
   | sorted_expression			
   | method_call					
   | constructor_expression		
@@ -347,10 +348,6 @@ document_expression:
   DOCUMENT LPAR expression? RPAR
   ;
 
-read_expression:
-  READ FROM source=expression
-  ;
-  
 write_statement: 
   WRITE LPAR what=expression RPAR TO target=expression SEMI
   ;

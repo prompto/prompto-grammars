@@ -346,7 +346,8 @@ expression:
   | exp=constructor_expression								# ConstructorExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=fetch_store_expression								# FetchStoreExpression
-  | exp=read_expression										# ReadExpression
+  | exp=read_all_expression									# ReadAllExpression
+  | exp=read_one_expression									# ReadOneExpression
   | exp=sorted_expression									# SortedExpression
   | exp=ambiguous_expression								# AmbiguousExpression
   | exp=invocation_expression								# InvocationExpression
@@ -402,10 +403,6 @@ constructor_expression:
   		(AND arg=argument_assignment)? )?				# ConstructorNoFrom
   ;
 
-read_expression:
-  READ FROM source=expression
-  ;
-  
 write_statement: 
   WRITE what=expression TO target=expression
   ;
