@@ -1,4 +1,4 @@
-lexer grammar SLexer;
+lexer grammar MLexer;
 
 import CommonLexer;
 

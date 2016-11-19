@@ -1,7 +1,7 @@
-parser grammar SParser;
+parser grammar MParser;
 
 options {
-  tokenVocab = SLexer;
+  tokenVocab = MLexer;
   superClass = AbstractParser; 
 }
 
@@ -352,9 +352,9 @@ method_expression:
   ;
 	
 instance_selector:
-  {$parser.wasNot(SParser.WS)}? DOT name=variable_identifier 				# MemberSelector
-  | {$parser.wasNot(SParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
-  |	{$parser.wasNot(SParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
+  {$parser.wasNot(MParser.WS)}? DOT name=variable_identifier 				# MemberSelector
+  | {$parser.wasNot(MParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
+  |	{$parser.wasNot(MParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
   ; 
  
 blob_expression:
@@ -408,8 +408,8 @@ assign_instance_statement:
   ;  
 
 child_instance:
-  {$parser.wasNot(SParser.WS)}? DOT name=variable_identifier		# MemberInstance
-  | {$parser.wasNot(SParser.WS)}? LBRAK exp=expression RBRAK 		# ItemInstance
+  {$parser.wasNot(MParser.WS)}? DOT name=variable_identifier		# MemberInstance
+  | {$parser.wasNot(MParser.WS)}? LBRAK exp=expression RBRAK 		# ItemInstance
   ;
     
 assign_tuple_statement: 
