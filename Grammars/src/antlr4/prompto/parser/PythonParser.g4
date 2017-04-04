@@ -12,11 +12,18 @@ python_expression:
   ;
 
 python_primary_expression: 
-  exp=python_parenthesis_expression		# PythonParenthesisExpression
+  exp=python_self_expression			# PythonSelfExpression
+  | exp=python_parenthesis_expression	# PythonParenthesisExpression
   | exp=python_identifier_expression	# PythonIdentifierExpression
   | exp=python_literal_expression		# PythonLiteralExpression
   | exp=python_method_expression		# PythonGlobalMethodExpression
   ;
+  
+
+python_self_expression:
+  this_expression
+  ;
+  
   
 python_selector_expression:
   DOT exp=python_method_expression		# PythonMethodExpression
@@ -88,4 +95,5 @@ python_identifier:
   | THIS
   ;
  
+this_expression:; 
 
