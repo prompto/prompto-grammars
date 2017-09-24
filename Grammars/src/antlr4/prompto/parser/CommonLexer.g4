@@ -52,6 +52,7 @@ DATE: 'Date';
 TIME: 'Time';
 DATETIME: 'DateTime';
 PERIOD: 'Period';
+VERSION: 'Version';
 METHOD_T: 'Method';
 CODE: 'Code';
 DOCUMENT: 'Document';
@@ -277,7 +278,7 @@ fragment
 Time :
     '0'..'2' '0'..'9' 
     ':' '0'..'5' '0'..'9'
-    (':' '0'..'5' '0'..'9' ( '.' '0'..'9' ('0'..'9' ('0'..'9')? )? )? )? 
+    (':' '0'..'5' '0'..'9' ( DOT '0'..'9' ('0'..'9' ('0'..'9')? )? )? )? 
     ;
         
 DATE_LITERAL
@@ -330,7 +331,7 @@ Minutes :
 
 fragment
 Seconds :
-    '-'? Integer ('.' ('0')* Integer)? 'S'
+    '-'? Integer (DOT ('0')* Integer)? 'S'
     ;
 
 fragment
@@ -338,3 +339,7 @@ HexByte :
 	HexNibble HexNibble
 	;
 	
+VERSION_LITERAL
+    : '\'v' Integer DOT Integer (DOT Integer ( DOT Integer )?)? '\''
+    ;
+   

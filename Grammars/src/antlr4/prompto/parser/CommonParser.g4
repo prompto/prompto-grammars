@@ -91,6 +91,7 @@ native_type:
   | DATETIME		# DateTimeType
   | TIME			# TimeType
   | PERIOD			# PeriodType
+  | VERSION			# VersionType
   | CODE			# CodeType
   | BLOB			# BlobType
   | UUID			# UUIDType
@@ -303,6 +304,7 @@ atomic_literal:
   | t=DATETIME_LITERAL			# DateTimeLiteral
   | t=BOOLEAN_LITERAL			# BooleanLiteral
   | t=PERIOD_LITERAL			# PeriodLiteral
+  | t=VERSION_LITERAL			# VersionLiteral
   | t=UUID_LITERAL				# UUIDLiteral
   | n=null_literal				# NullLiteral
   ;

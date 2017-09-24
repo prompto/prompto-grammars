@@ -88,6 +88,7 @@ python_identifier:
   | TIME
   | DATETIME
   | PERIOD
+  | VERSION
   | READ
   | WRITE
   | TEST
