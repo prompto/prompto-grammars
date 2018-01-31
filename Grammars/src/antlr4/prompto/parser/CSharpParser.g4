@@ -79,9 +79,13 @@ csharp_identifier:
   | DATETIME
   | PERIOD
   | VERSION
+  | UUID
   | READ
   | WRITE
   | TEST
+  | SELF
+  | NONE
+  | NULL
   ;
 
 this_expression:; 

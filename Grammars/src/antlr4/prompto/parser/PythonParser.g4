@@ -89,11 +89,13 @@ python_identifier:
   | DATETIME
   | PERIOD
   | VERSION
+  | UUID
   | READ
   | WRITE
   | TEST
-  | SELF
   | THIS
+  | NONE
+  | NULL
   ;
  
 this_expression:; 
