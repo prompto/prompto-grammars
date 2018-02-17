@@ -292,10 +292,6 @@ expression:
   | left=expression EQ2 right=expression					# EqualsExpression
   | left=expression XEQ right=expression					# NotEqualsExpression
   | left=expression TEQ right=expression					# RoughlyEqualsExpression
-  | left=expression PIPE2 right=expression					# OrExpression
-  | left=expression AMP2 right=expression					# AndExpression
-  | test=expression 
-  		QMARK ifTrue=expression COLON ifFalse=expression 	# TernaryExpression
   | LPAR right=category_or_any_type RPAR left=expression	# CastExpression
   | left=expression IN right=expression						# InExpression
   | left=expression CONTAINS right=expression				# ContainsExpression
@@ -305,6 +301,10 @@ expression:
   | left=expression NOT CONTAINS right=expression			# NotContainsExpression
   | left=expression NOT CONTAINS ALL right=expression		# NotContainsAllExpression
   | left=expression NOT CONTAINS ANY right=expression		# NotContainsAnyExpression
+  | left=expression PIPE2 right=expression					# OrExpression
+  | left=expression AMP2 right=expression					# AndExpression
+  | test=expression 
+  		QMARK ifTrue=expression COLON ifFalse=expression 	# TernaryExpression
   | CODE LPAR exp=expression RPAR							# CodeExpression
   | EXECUTE LPAR name=variable_identifier RPAR				# ExecuteExpression
   | exp=closure_expression									# ClosureExpression

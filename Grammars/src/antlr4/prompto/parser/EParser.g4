@@ -325,10 +325,6 @@ expression:
   | left=expression EQ right=expression						# EqualsExpression
   | left=expression LTGT right=expression					# NotEqualsExpression
   | left=expression TILDE right=expression					# RoughlyEqualsExpression
-  | left=expression OR right=expression						# OrExpression
-  | left=expression AND right=expression					# AndExpression
-  | ifTrue=expression IF test=expression 
-  		ELSE ifFalse=expression 							# TernaryExpression
   | left=expression AS right=category_or_any_type			# CastExpression
   | left=expression IN right=expression						# InExpression
   | left=expression CONTAINS right=expression				# ContainsExpression
@@ -338,6 +334,10 @@ expression:
   | left=expression NOT CONTAINS right=expression			# NotContainsExpression
   | left=expression NOT CONTAINS ALL right=expression		# NotContainsAllExpression
   | left=expression NOT CONTAINS ANY right=expression		# NotContainsAnyExpression
+  | left=expression OR right=expression						# OrExpression
+  | left=expression AND right=expression					# AndExpression
+  | ifTrue=expression IF test=expression 
+  		ELSE ifFalse=expression 							# TernaryExpression
   | CODE COLON exp=expression								# CodeExpression
   | EXECUTE COLON name=variable_identifier					# ExecuteExpression
   | METHOD_T COLON name=method_identifier					# ClosureExpression

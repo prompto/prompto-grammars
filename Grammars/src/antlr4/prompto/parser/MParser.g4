@@ -306,10 +306,6 @@ expression:
   | left=expression EQ2 right=expression					# EqualsExpression
   | left=expression XEQ right=expression					# NotEqualsExpression
   | left=expression TEQ right=expression					# RoughlyEqualsExpression
-  | left=expression OR right=expression						# OrExpression
-  | left=expression AND right=expression					# AndExpression
-  | ifTrue=expression IF test=expression 
-  		ELSE ifFalse=expression 							# TernaryExpression
   | left=expression AS right=category_or_any_type			# CastExpression
   | left=expression IN right=expression						# InExpression
   | left=expression CONTAINS right=expression				# ContainsExpression
@@ -319,6 +315,10 @@ expression:
   | left=expression NOT CONTAINS right=expression			# NotContainsExpression
   | left=expression NOT CONTAINS ALL right=expression		# NotContainsAllExpression
   | left=expression NOT CONTAINS ANY right=expression		# NotContainsAnyExpression
+  | left=expression OR right=expression						# OrExpression
+  | left=expression AND right=expression					# AndExpression
+  | ifTrue=expression IF test=expression 
+  		ELSE ifFalse=expression 							# TernaryExpression
   | CODE LPAR exp=expression RPAR							# CodeExpression
   | EXECUTE LPAR name=variable_identifier RPAR				# ExecuteExpression
   | exp=closure_expression									# ClosureExpression
