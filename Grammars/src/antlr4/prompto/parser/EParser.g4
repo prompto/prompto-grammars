@@ -104,7 +104,7 @@ native_category_declaration:
   ;
 
 native_resource_declaration:
-  DEFINE name=type_identifier AS NATIVE RESOURCE 
+  DEFINE name=type_identifier AS STORABLE? NATIVE RESOURCE 
     ((attrs=attribute_list COMMA AND BINDINGS) | WITH BINDINGS) COLON 
     indent bindings=native_category_bindings dedent
     (lfp AND METHODS COLON 

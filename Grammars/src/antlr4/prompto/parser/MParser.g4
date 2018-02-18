@@ -93,7 +93,7 @@ native_category_declaration:
   ;
 
 native_resource_declaration:
-  NATIVE RESOURCE name=type_identifier LPAR attrs=attribute_identifier_list? RPAR COLON  
+  STORABLE? NATIVE RESOURCE name=type_identifier LPAR attrs=attribute_identifier_list? RPAR COLON  
     indent 
     bindings=native_category_bindings 
     (lfp methods=native_member_method_declaration_list)?

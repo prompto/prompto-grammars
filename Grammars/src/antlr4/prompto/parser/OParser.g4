@@ -81,7 +81,7 @@ native_getter_declaration:
   ;  
 
 native_resource_declaration:
-  NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_identifier_list RPAR )? 
+  STORABLE? NATIVE RESOURCE name=type_identifier ( LPAR attrs=attribute_identifier_list RPAR )? 
     LCURL bindings=native_category_bindings 
     (methods=native_member_method_declaration_list)? RCURL
   ;
