@@ -281,6 +281,7 @@ expression:
   | left=expression modulo right=expression 				# ModuloExpression
   | left=expression idivide right=expression 				# IntDivideExpression
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
+  | LPAR right=category_or_any_type RPAR left=expression	# CastExpression
   | left=expression LT right=expression						# LessThanExpression
   | left=expression LTE right=expression					# LessThanOrEqualExpression
   | left=expression GT right=expression						# GreaterThanExpression
@@ -292,15 +293,16 @@ expression:
   | left=expression EQ2 right=expression					# EqualsExpression
   | left=expression XEQ right=expression					# NotEqualsExpression
   | left=expression TEQ right=expression					# RoughlyEqualsExpression
-  | LPAR right=category_or_any_type RPAR left=expression	# CastExpression
-  | left=expression IN right=expression						# InExpression
   | left=expression CONTAINS right=expression				# ContainsExpression
-  | left=expression CONTAINS ALL right=expression			# ContainsAllExpression
-  | left=expression CONTAINS ANY right=expression			# ContainsAnyExpression
-  | left=expression NOT IN right=expression					# NotInExpression
+  | left=expression IN right=expression						# InExpression
+  | left=expression HAS right=expression					# HasExpression
+  | left=expression HAS ALL right=expression				# HasAllExpression
+  | left=expression HAS ANY right=expression				# HasAnyExpression
   | left=expression NOT CONTAINS right=expression			# NotContainsExpression
-  | left=expression NOT CONTAINS ALL right=expression		# NotContainsAllExpression
-  | left=expression NOT CONTAINS ANY right=expression		# NotContainsAnyExpression
+  | left=expression NOT IN right=expression					# NotInExpression
+  | left=expression NOT HAS right=expression				# NotHasExpression
+  | left=expression NOT HAS ALL right=expression			# NotHasAllExpression
+  | left=expression NOT HAS ANY right=expression			# NotHasAnyExpression
   | left=expression PIPE2 right=expression					# OrExpression
   | left=expression AMP2 right=expression					# AndExpression
   | test=expression 

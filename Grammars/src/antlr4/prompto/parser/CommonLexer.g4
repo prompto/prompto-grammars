@@ -103,6 +103,7 @@ FLUSH: 'flush';
 FOR: 'for';
 FROM: 'from';
 GETTER: 'getter';
+HAS: 'has';
 IF: 'if';
 IN: 'in';
 INDEX: 'index';
