@@ -379,7 +379,7 @@ argument_assignment_list:
   ; 
 
 argument_assignment:
-  name=variable_identifier assign exp=expression
+  name=variable_identifier (assign exp=expression)?
   ;
 
 write_statement: 

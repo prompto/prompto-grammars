@@ -449,7 +449,7 @@ with_argument_assignment_list:
  ;
    
 argument_assignment:
-  exp=expression AS name=variable_identifier
+  (exp=expression AS)? name=variable_identifier
   ;
 
 assign_instance_statement: 
