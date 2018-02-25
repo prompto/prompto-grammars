@@ -368,7 +368,7 @@ document_expression:
   ;
 
 constructor_expression:
-  typ=mutable_category_type LPAR copyFrom=copy_from ( COMMA args=argument_assignment_list )? RPAR  	# ConstructorFrom
+  typ=mutable_category_type LPAR copyExp=copy_from ( COMMA args=argument_assignment_list )? RPAR  	# ConstructorFrom
   | typ=mutable_category_type LPAR ( args=argument_assignment_list )? RPAR 							# ConstructorNoFrom
   ;
 

@@ -397,7 +397,7 @@ blob_expression:
   ;
 
 constructor_expression:
-  typ=mutable_category_type FROM copyFrom=expression	
+  typ=mutable_category_type FROM copyExp=expression	
  	( (COMMA)? args=with_argument_assignment_list 
   		(AND arg=argument_assignment)? )?				# ConstructorFrom
   | typ=mutable_category_type 
