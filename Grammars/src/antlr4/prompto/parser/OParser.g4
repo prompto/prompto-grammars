@@ -382,7 +382,12 @@ selector_expression:
   ; 
   
 constructor_expression:
-  typ=mutable_category_type LPAR ( args=argument_assignment_list )? RPAR
+  typ=mutable_category_type LPAR copyFrom=copy_from ( COMMA args=argument_assignment_list )? RPAR  	# ConstructorFrom
+  | typ=mutable_category_type LPAR ( args=argument_assignment_list )? RPAR 							# ConstructorNoFrom
+  ;
+
+copy_from:
+  FROM assign exp=expression {$parser.willNotBe($parser.equalToken())}?	
   ;
 
 argument_assignment_list:
