@@ -58,7 +58,7 @@ CODE: 'Code';
 DOCUMENT: 'Document';
 BLOB: 'Blob';
 IMAGE: 'Image';
-UUID: 'UUID';
+UUID: 'Uuid';
 ITERATOR: 'Iterator';
 CURSOR: 'Cursor';
 
