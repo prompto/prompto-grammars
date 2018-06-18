@@ -19,3 +19,4 @@ Grammars/src/antlr4/prompto/parser/TestParser$IteratorContext.class
 Grammars/src/antlr4/prompto/parser/TestParser.class
 Grammars/src/antlr4/prompto/parser/TestParser.java
 .DS_Store
+Grammars/gen
