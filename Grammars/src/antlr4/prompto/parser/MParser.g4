@@ -287,7 +287,8 @@ return_statement:
   ;
     
 expression:
-  exp=instance_expression									# InstanceExpression	
+  exp=jsx_expression									    # JsxExpression
+  | exp=instance_expression									# InstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=method_expression									# MethodExpression
   | MINUS exp=expression									# MinusExpression

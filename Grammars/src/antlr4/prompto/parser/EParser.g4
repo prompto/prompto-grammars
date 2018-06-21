@@ -302,8 +302,9 @@ return_statement:
   ;
     
 expression:
-  // an expression ending with slice or item	
-  exp=instance_expression									# InstanceExpression
+  exp=jsx_expression									    # JsxExpression
+  // an expression ending with slice or item
+  | exp=instance_expression									# InstanceExpression
   // any standalone expression ending with an identifier
   | exp=unresolved_expression								# UnresolvedExpression							
   // an ambiguous expression followed by arguments

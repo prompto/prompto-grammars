@@ -31,3 +31,7 @@ COMMENT :
     ;   
     
 
+fragment
+JSX_TEXT:
+    ~('{'|'}'|'<'|'>')*?
+    ;

@@ -272,7 +272,8 @@ callable_selector:
   ;
   
 expression:
-  exp=instance_expression									# InstanceExpression	
+  exp=jsx_expression									    # JsxExpression
+  | exp=instance_expression									# InstanceExpression
   | exp=method_expression									# MethodExpression
   | MINUS exp=expression									# MinusExpression
   | XMARK exp=expression									# NotExpression
@@ -415,5 +416,3 @@ assign_tuple_statement:
   ;
   
 null_literal : NULL;
-  
-  

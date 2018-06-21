@@ -1,6 +1,6 @@
 parser grammar CommonParser;
 
-import JavaScriptParser, PythonParser, JavaParser, CSharpParser;
+import JavaScriptParser, PythonParser, JavaParser, CSharpParser, JsxParser;
 
 declaration_list:
   (declarations)? lfs EOF		# FullDeclarationList
@@ -408,7 +408,125 @@ operator:
   | idivide		# OperatorIDivide
   | modulo		# OperatorModulo
   ;
- 
+
+keyword:
+    JAVA
+    | CSHARP
+    | PYTHON2
+    | PYTHON3
+    | JAVASCRIPT
+    | SWIFT
+    | BOOLEAN
+    | CHARACTER
+    | TEXT
+    | INTEGER
+    | DECIMAL
+    | DATE
+    | TIME
+    | DATETIME
+    | PERIOD
+    | VERSION
+    | METHOD_T
+    | CODE
+    | DOCUMENT
+    | BLOB
+    | IMAGE
+    | UUID
+    | ITERATOR
+    | CURSOR
+    | ABSTRACT
+    | ALL
+    | ALWAYS
+    | AND
+    | ANY
+    | AS
+    | ASC
+    | ATTR
+    | ATTRIBUTE
+    | ATTRIBUTES
+    | BINDINGS
+    | BREAK
+    | BY
+    | CASE
+    | CATCH
+    | CATEGORY
+    | CLASS
+    | CLOSE
+    | CONTAINS
+    | DEF
+    | DEFAULT
+    | DEFINE
+    | DELETE
+    | DESC
+    | DO
+    | DOING
+    | EACH
+    | ELSE
+    | ENUM
+    | ENUMERATED
+    | EXCEPT
+    | EXECUTE
+    | EXPECTING
+    | EXTENDS
+    | FETCH
+    | FILTERED
+    | FINALLY
+    | FLUSH
+    | FOR
+    | FROM
+    | GETTER
+    | HAS
+    | IF
+    | IN
+    | INDEX
+    | INVOKE
+    | IS
+    | MATCHING
+    | METHOD
+    | METHODS
+    | MODULO
+    | MUTABLE
+    | NATIVE
+    | NONE
+    | NOT
+    | NOTHING
+    | NULL
+    | ON
+    | ONE
+    | OPEN
+    | OPERATOR
+    | OR
+    | ORDER
+    | OTHERWISE
+    | PASS
+    | RAISE
+    | READ
+    | RECEIVING
+    | RESOURCE
+    | RETURN
+    | RETURNING
+    | ROWS
+    | SELF
+    | SETTER
+    | SINGLETON
+    | SORTED
+    | STORABLE
+    | STORE
+    | SWITCH
+    | TEST
+    | THIS
+    | THROW
+    | TO
+    | TRY
+    | VERIFYING
+    | WITH
+    | WHEN
+    | WHERE
+    | WHILE
+    | WRITE
+    ;
+
+
 // special names  
 new_token:
   i1=VARIABLE_IDENTIFIER {$parser.isText($i1,"new")}? 

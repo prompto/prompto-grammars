@@ -43,6 +43,7 @@ TILDE: '~';
 LARROW: '<-';
 RARROW: '->';
 
+// when adding keywords, remember to update the 'keyword' rule in CommonParser
 BOOLEAN: 'Boolean';
 CHARACTER: 'Character';
 TEXT: 'Text';
