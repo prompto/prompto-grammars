@@ -6,12 +6,12 @@ jsx_expression:
     ;
 
 jsx_element:
-    jsx=jsx_self_closing                                    #JsxSelfClosing
-    | jsx=jsx_opening children=jsx_children? jsx_closing    #JsxElement
+    jsx=jsx_self_closing                                     #JsxSelfClosing
+    | jsx=jsx_opening children_=jsx_children? jsx_closing    #JsxElement
     ;
 
 jsx_fragment:
-    jsx_fragment_start children=jsx_children? jsx_fragment_end
+    jsx_fragment_start children_=jsx_children? jsx_fragment_end
     ;
 
 
