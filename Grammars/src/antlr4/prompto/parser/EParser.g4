@@ -38,6 +38,14 @@ attribute_declaration:
    	( WITH (indices=variable_identifier_list (AND index=variable_identifier)?)? INDEX )?
   ;
 
+
+concrete_widget_declaration:
+  DEFINE name=type_identifier AS
+  	( WIDGET | derived=type_identifier )
+  	( WITH METHODS COLON
+        indent methods=member_method_declaration_list dedent ) ?
+  ;
+
 concrete_category_declaration:
   DEFINE name=type_identifier AS STORABLE? 
   	( CATEGORY | derived=derived_list )

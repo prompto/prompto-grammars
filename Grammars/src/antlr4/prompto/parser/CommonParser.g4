@@ -16,6 +16,7 @@ declaration:
   | category_declaration
   | resource_declaration
   | enum_declaration
+  | widget_declaration
   | method_declaration )
   ;
 
@@ -95,6 +96,7 @@ native_type:
   | CODE			# CodeType
   | BLOB			# BlobType
   | UUID			# UUIDType
+  | HTML			# HtmlType
   ;
   
 category_type:
@@ -113,6 +115,11 @@ category_declaration:
   decl=concrete_category_declaration	# ConcreteCategoryDeclaration
   | decl=native_category_declaration	# NativeCategoryDeclaration
   | decl=singleton_category_declaration	# SingletonCategoryDeclaration
+  ;
+
+widget_declaration:
+  decl=concrete_widget_declaration	    # ConcreteWidgetDeclaration
+  // | decl=native_widget_declaration		# NativeWidgetDeclaration
   ;
 
 type_identifier_list  :
@@ -434,6 +441,7 @@ keyword:
     | UUID
     | ITERATOR
     | CURSOR
+    | HTML
     | ABSTRACT
     | ALL
     | ALWAYS
@@ -519,6 +527,7 @@ keyword:
     | TO
     | TRY
     | VERIFYING
+    | WIDGET
     | WITH
     | WHEN
     | WHERE
@@ -570,6 +579,8 @@ native_category_declaration:;
 native_resource_declaration:;
 enum_category_declaration:;
 enum_native_declaration:;
+concrete_widget_declaration:;
+native_widget_declaration:;
 setter_method_declaration:;
 getter_method_declaration:;
 native_setter_declaration:;

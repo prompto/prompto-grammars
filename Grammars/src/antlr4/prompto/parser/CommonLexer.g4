@@ -62,6 +62,7 @@ IMAGE: 'Image';
 UUID: 'Uuid';
 ITERATOR: 'Iterator';
 CURSOR: 'Cursor';
+HTML: 'Html';
 
 ABSTRACT: 'abstract';
 ALL: 'all';
@@ -148,6 +149,7 @@ THROW: 'throw';
 TO: 'to';
 TRY: 'try';
 VERIFYING: 'verifying';
+WIDGET: 'widget';
 WITH: 'with';
 WHEN: 'when';
 WHERE: 'where';

@@ -34,6 +34,13 @@ attribute_declaration:
   ;
 
 
+concrete_widget_declaration:
+  WIDGET name=type_identifier
+  ( EXTENDS derived=type_identifier )?
+  methods=category_method_list
+  ;
+
+
 concrete_category_declaration:
   STORABLE? CATEGORY name=type_identifier
   	( LPAR attrs=attribute_identifier_list RPAR  )? 

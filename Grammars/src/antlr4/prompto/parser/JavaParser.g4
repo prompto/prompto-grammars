@@ -88,6 +88,7 @@ java_identifier:
   | PERIOD
   | VERSION
   | UUID
+  | HTML
   | READ
   | WRITE
   | TEST

@@ -41,6 +41,15 @@ index_clause:
 	INDEX LPAR indices=variable_identifier_list? RPAR
 	;  
 
+
+concrete_widget_declaration:
+  WIDGET name=type_identifier LPAR
+    ( derived=type_identifier )?
+  RPAR COLON
+      indent ( methods=member_method_declaration_list | PASS ) dedent
+  ;
+
+
 concrete_category_declaration:
   STORABLE? ( CLASS | CATEGORY ) name=type_identifier LPAR 
   	( derived=derived_list 
