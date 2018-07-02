@@ -1,6 +1,6 @@
 parser grammar CommonParser;
 
-import JavaScriptParser, PythonParser, JavaParser, CSharpParser, JsxParser;
+import JavaScriptParser, PythonParser, JavaParser, CSharpParser, JsxParser, CssParser;
 
 declaration_list:
   (declarations)? lfs EOF		# FullDeclarationList
@@ -130,7 +130,22 @@ method_identifier:
   variable_identifier
   | type_identifier
   ;
-  
+
+identifier_or_keyword:
+    identifier
+    | keyword
+    ;
+
+nospace_hyphen_identifier_or_keyword:
+    {$parser.wasNotWhiteSpace()}? MINUS nospace_identifier_or_keyword
+    ;
+
+
+nospace_identifier_or_keyword:
+    {$parser.wasNotWhiteSpace()}? identifier_or_keyword
+    ;
+
+
 identifier:
   variable_identifier	# VariableIdentifier
   | type_identifier		# TypeIdentifier
@@ -344,7 +359,7 @@ collection_literal:
   range_literal				
   | list_literal		
   | set_literal			
-  | dict_literal		
+  | dict_literal
   | tuple_literal		
   ;     
 
@@ -352,7 +367,7 @@ tuple_literal:
   MUTABLE? LPAR expression_tuple? RPAR
   ;
     
-dict_literal: 
+dict_literal:
   MUTABLE? LCURL dict_entry_list? RCURL	
   ; 
 
@@ -360,6 +375,7 @@ expression_tuple:
   // comma is mandatory to avoid collision with parenthesis expression
   expression COMMA (expression (COMMA expression)*)?
   ; 
+
 
 dict_entry_list:
   dict_entry (COMMA dict_entry)*

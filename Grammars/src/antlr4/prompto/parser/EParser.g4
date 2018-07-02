@@ -310,7 +310,8 @@ return_statement:
   ;
     
 expression:
-  exp=jsx_expression									    # JsxExpression
+  exp=css_expression									    # CssExpression
+  | exp=jsx_expression									    # JsxExpression
   // an expression ending with slice or item
   | exp=instance_expression									# InstanceExpression
   // any standalone expression ending with an identifier

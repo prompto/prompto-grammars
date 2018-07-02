@@ -277,9 +277,14 @@ callable_selector:
   DOT name=variable_identifier 				# CallableMemberSelector
   | LBRAK exp=expression RBRAK				# CallableItemSelector
   ;
-  
+
+x_expression:
+  css_expression
+  ;
+
 expression:
-  exp=jsx_expression									    # JsxExpression
+  exp=css_expression									    # CssExpression
+  | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
   | exp=method_expression									# MethodExpression
   | MINUS exp=expression									# MinusExpression

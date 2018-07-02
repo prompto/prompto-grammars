@@ -44,23 +44,7 @@ jsx_element_name:
     ;
 
 jsx_identifier:
-    identifier_or_keyword (jsx_hyphen_identifier)*
-    ;
-
-
-jsx_hyphen_identifier:
-    {$parser.wasNotWhiteSpace()}? MINUS hyphen_identifier
-    ;
-
-
-hyphen_identifier:
-    {$parser.wasNotWhiteSpace()}? identifier_or_keyword
-    ;
-
-
-identifier_or_keyword:
-    identifier
-    | keyword
+    identifier_or_keyword (nospace_hyphen_identifier_or_keyword)*
     ;
 
 
@@ -86,3 +70,7 @@ jsx_child:
 jsx_text:
     ~(LCURL | RCURL | LT | GT)+
     ;
+
+nospace_hyphen_identifier_or_keyword: DOT;
+identifier_or_keyword: DOT;
+expression: DOT;

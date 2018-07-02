@@ -296,7 +296,8 @@ return_statement:
   ;
     
 expression:
-  exp=jsx_expression									    # JsxExpression
+  exp=css_expression									    # CssExpression
+  | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=method_expression									# MethodExpression
