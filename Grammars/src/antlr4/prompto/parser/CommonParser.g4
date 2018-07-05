@@ -119,7 +119,7 @@ category_declaration:
 
 widget_declaration:
   decl=concrete_widget_declaration	    # ConcreteWidgetDeclaration
-  // | decl=native_widget_declaration		# NativeWidgetDeclaration
+  | decl=native_widget_declaration		# NativeWidgetDeclaration
   ;
 
 type_identifier_list  :

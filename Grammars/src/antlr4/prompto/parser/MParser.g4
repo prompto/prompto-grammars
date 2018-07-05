@@ -50,6 +50,15 @@ concrete_widget_declaration:
   ;
 
 
+native_widget_declaration:
+  NATIVE WIDGET name=type_identifier LPAR RPAR COLON
+      indent
+      bindings=native_category_bindings
+      lfp methods=native_member_method_declaration_list
+      dedent
+  ;
+
+
 concrete_category_declaration:
   STORABLE? ( CLASS | CATEGORY ) name=type_identifier LPAR 
   	( derived=derived_list 

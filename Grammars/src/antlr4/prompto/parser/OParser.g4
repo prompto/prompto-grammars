@@ -41,6 +41,14 @@ concrete_widget_declaration:
   ;
 
 
+native_widget_declaration:
+  NATIVE WIDGET name=type_identifier
+    LCURL
+    bindings=native_category_bindings
+    methods=native_member_method_declaration_list
+    RCURL
+  ;
+
 concrete_category_declaration:
   STORABLE? CATEGORY name=type_identifier
   	( LPAR attrs=attribute_identifier_list RPAR  )? 

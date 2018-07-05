@@ -46,6 +46,13 @@ concrete_widget_declaration:
         indent methods=member_method_declaration_list dedent ) ?
   ;
 
+native_widget_declaration:
+  DEFINE name=type_identifier AS NATIVE WIDGET WITH BINDINGS COLON
+    indent bindings=native_category_bindings dedent
+  lfp AND METHODS COLON
+    indent methods=native_member_method_declaration_list dedent
+  ;
+
 concrete_category_declaration:
   DEFINE name=type_identifier AS STORABLE? 
   	( CATEGORY | derived=derived_list )
