@@ -242,7 +242,7 @@ python_module:
   ;
   
 javascript_category_binding:  
-  identifier javascript_module?
+  identifier (DOT identifier)* javascript_module?
   ;
   
 javascript_module:  
