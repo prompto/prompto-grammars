@@ -12,6 +12,7 @@ declarations:
 
 declaration: 
   (comment_statement lfp)*
+  (annotation_constructor lfp)*
   (attribute_declaration
   | category_declaration
   | resource_declaration
@@ -20,6 +21,14 @@ declaration:
   | method_declaration )
   ;
 
+annotation_constructor:
+  name=annotation_identifier ( LPAR exp=literal_expression RPAR )?
+  ;
+
+annotation_identifier:
+  ARONDBASE_IDENTIFIER 
+  ;
+  
 resource_declaration:
   native_resource_declaration
   ;

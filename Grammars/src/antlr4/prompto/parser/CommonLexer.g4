@@ -171,27 +171,32 @@ MIN_INTEGER:
 MAX_INTEGER:
 	'MAX_INTEGER'
 	;
-	    
+
 SYMBOL_IDENTIFIER :
-    'A'..'Z' ('A'..'Z' | '_' | Digit)*
+    [A-Z] [A-Z0-9_]*
     ;
 
 TYPE_IDENTIFIER :
-    'A'..'Z' IdentifierSuffix
+    [A-Z] IdentifierSuffix
     ;
 
 VARIABLE_IDENTIFIER :
-    'a'..'z' IdentifierSuffix
+    [a-z] IdentifierSuffix
   ;
-  
+
+// allow '_' as first char in native expressions  
 NATIVE_IDENTIFIER :
-    Letter IdentifierSuffix
+    '_' IdentifierSuffix+
   ;
   
-DOLLAR_IDENTIFIER :  
-  '$' IdentifierSuffix
+DOLLAR_IDENTIFIER :
+  '$' IdentifierSuffix+
   ;
-  
+
+ARONDBASE_IDENTIFIER:
+  '@' [A-Za-z0-9_]+
+  ;
+
 fragment
 IdentifierSuffix :
     ( Letter | Digit )* 
@@ -199,12 +204,12 @@ IdentifierSuffix :
 
 fragment
 Letter :
-    'a'..'z'|'A'..'Z'|'_'
+    [a-zA-Z_]
     ;
   
 fragment
 Digit :
-    '0'..'9'
+    [0-9]
     ;
     
 TEXT_LITERAL :   
@@ -230,12 +235,12 @@ DECIMAL_LITERAL
 
 fragment
 Integer :
-    '0' | '1'..'9' ('0'..'9')*
+    '0' | [1-9] [0-9]*
     ;
     
 fragment
 Decimal :
-    Integer DOT ('0'..'9')+ Exponent?
+    Integer DOT [0-9]+ Exponent?
     ;
 
     
@@ -251,7 +256,7 @@ Hexadecimal :
     
 fragment
 HexNibble :    
-	'0'..'9'|'a'..'f'|'A'..'F'
+	[0-9a-fA-F]
 	;
 	  
 fragment
