@@ -177,20 +177,20 @@ SYMBOL_IDENTIFIER :
     ;
 
 TYPE_IDENTIFIER :
-    [A-Z] IdentifierSuffix
+    [A-Z] LetterOrDigit*
     ;
 
 VARIABLE_IDENTIFIER :
-    [a-z] IdentifierSuffix
+    [a-z] LetterOrDigit*
   ;
 
 // allow '_' as first char in native expressions  
 NATIVE_IDENTIFIER :
-    '_' IdentifierSuffix+
+    '_' LetterOrDigit*
   ;
   
 DOLLAR_IDENTIFIER :
-  '$' IdentifierSuffix+
+  '$' LetterOrDigit+
   ;
 
 ARONDBASE_IDENTIFIER:
@@ -198,8 +198,8 @@ ARONDBASE_IDENTIFIER:
   ;
 
 fragment
-IdentifierSuffix :
-    ( Letter | Digit )* 
+LetterOrDigit :
+    Letter | Digit 
     ;
 
 fragment
