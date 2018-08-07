@@ -79,7 +79,7 @@ typedef:
   p=primary_type				# PrimaryType
   | s=typedef LTGT 				# SetType
   | l=typedef LBRAK RBRAK 		# ListType
-  | d=typedef LCURL RCURL 		# DictType
+  | d=typedef LTCOLONGT 		# DictType
   | CURSOR LT c=typedef GT 		# CursorType
   | ITERATOR LT i=typedef GT 	# IteratorType
   ;
@@ -377,7 +377,11 @@ tuple_literal:
   ;
     
 dict_literal:
-  MUTABLE? LCURL dict_entry_list? RCURL	
+  MUTABLE? ((LT dict_entry_list GT) | LTCOLONGT | (LT COLON GT))
+  ; 
+
+document_literal:
+  LCURL dict_entry_list? RCURL	
   ; 
 
 expression_tuple:

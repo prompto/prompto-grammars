@@ -35,6 +35,7 @@ GTE: '>=';
 LT: '<';
 LTE: '<=';
 LTGT: '<>';
+LTCOLONGT: '<:>';
 EQ: '=';
 XEQ: '!=';
 EQ2: '==';
