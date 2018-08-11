@@ -176,6 +176,11 @@ type_identifier:
 symbol_identifier:
   SYMBOL_IDENTIFIER
   ; 
+  
+  
+any_identifier:
+  VARIABLE_IDENTIFIER | TYPE_IDENTIFIER | SYMBOL_IDENTIFIER
+  ; 
 
 argument_list:
   argument (COMMA argument)*
@@ -369,6 +374,7 @@ collection_literal:
   | list_literal		
   | set_literal			
   | dict_literal
+  | document_literal
   | tuple_literal		
   ;     
 
@@ -395,9 +401,14 @@ dict_entry_list:
   ;
 
 dict_entry:
-  key=expression COLON value=expression
+  key=dict_key COLON value=expression
   ; 
 
+dict_key:
+  name=any_identifier		# DictKeyIdentifier
+  | name=TEXT_LITERAL		# DictKeyText 	
+  ;
+  
 slice_arguments:
   first=expression COLON last=expression	# SliceFirstAndLast
   | first=expression COLON					# SliceFirstOnly
