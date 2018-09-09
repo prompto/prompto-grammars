@@ -3,15 +3,15 @@ lexer grammar OLexer;
 import CommonLexer;
 
 SPACE :
-	' ' -> skip   
+	' ' -> channel(HIDDEN)   
 	;
 	   
 WS :
-    ('\t' | '\u000C') -> skip       
+    ('\t' | '\u000C') -> channel(HIDDEN)       
     ;
     
 LF :
-    ('\r'?'\n') -> skip       
+    ('\r'?'\n') -> channel(HIDDEN)       
     ;
 
 COMMENT :   

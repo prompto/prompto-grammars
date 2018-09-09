@@ -490,6 +490,10 @@ lfp:
   (LF)+ 
   ;  
   
+jsx_ws:
+  (LF | TAB | WS | INDENT)*
+  ;
+    
 indent:
   (LF)+ INDENT
   ;

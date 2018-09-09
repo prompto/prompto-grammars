@@ -436,3 +436,8 @@ assign_tuple_statement:
   ;
   
 null_literal : NULL;
+
+jsx_ws:
+  (LF | WS)*
+  ;
+
