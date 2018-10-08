@@ -256,7 +256,7 @@ python_module:
   ;
   
 javascript_category_binding:  
-  identifier (DOT identifier)* javascript_module?
+  javascript_identifier (DOT javascript_identifier)* javascript_module?
   ;
   
 javascript_module:  
