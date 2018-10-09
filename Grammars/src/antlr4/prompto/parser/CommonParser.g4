@@ -222,11 +222,13 @@ member_method_declaration_list:
   ;
   
 member_method_declaration:
-  setter_method_declaration			
+  (comment_statement lfp)*
+  (annotation_constructor lfp)*
+  (setter_method_declaration			
   | getter_method_declaration			
   | concrete_method_declaration		
   | abstract_method_declaration		
-  | operator_method_declaration	
+  | operator_method_declaration)
   ;
 
 native_member_method_declaration_list:
