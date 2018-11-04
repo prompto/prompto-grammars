@@ -145,6 +145,7 @@ STORABLE: 'storable';
 STORE: 'store';
 SWITCH: 'switch';
 TEST: 'test';
+THEN: 'then';
 THIS: 'this';
 THROW: 'throw';
 TO: 'to';

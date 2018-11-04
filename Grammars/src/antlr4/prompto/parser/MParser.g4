@@ -190,9 +190,9 @@ flush_statement:
   ;
   
 store_statement:
-  DELETE LPAR to_del=expression_list RPAR	
-  | STORE LPAR to_add=expression_list RPAR	
-  | DELETE LPAR to_del=expression_list RPAR AND STORE LPAR to_add=expression_list RPAR	
+  ( DELETE LPAR to_del=expression_list RPAR (AND STORE LPAR to_add=expression_list RPAR)? 						
+  | STORE LPAR to_add=expression_list RPAR )
+  ( THEN COLON indent stmts=statement_list dedent )?
   ;
 
 method_call:  

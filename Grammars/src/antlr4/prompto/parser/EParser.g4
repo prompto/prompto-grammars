@@ -217,9 +217,9 @@ flush_statement:
   ;
   
 store_statement:
-  DELETE to_del=expression_list								
-  | STORE to_add=expression_list
-  | DELETE to_del=expression_list AND STORE to_add=expression_list	
+  ( DELETE to_del=expression_list	(AND STORE to_add=expression_list)? 						
+  | STORE to_add=expression_list )
+  ( THEN COLON indent stmts=statement_list dedent )?
   ;
   
 method_call_statement:  
