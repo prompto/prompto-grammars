@@ -163,6 +163,7 @@ statement:
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
+  | stmt=fetch_statement					# FetchStatement
   | stmt=flush_statement					# FlushStatement
   | stmt=break_statement					# BreakStatement
   | stmt=return_statement					# ReturnStatement
@@ -355,7 +356,7 @@ method_expression:
   blob_expression				
   | document_expression			
   | filtered_list_expression		
-  | fetch_store_expression		
+  | fetch_expression		
   | read_all_expression				
   | read_one_expression				
   | sorted_expression			
@@ -381,7 +382,7 @@ filtered_list_expression:
   		WHERE LPAR predicate=expression RPAR
   ;
   
-fetch_store_expression:
+fetch_expression:
   FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
   		WHERE LPAR predicate=expression RPAR							# FetchOne
   | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
@@ -389,6 +390,22 @@ fetch_store_expression:
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
   			( WHERE LPAR predicate=expression RPAR )?			
   			( ORDER BY LPAR orderby=order_by_list RPAR )?				# FetchMany
+  ;
+  
+fetch_statement:
+  FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
+  		WHERE LPAR predicate=expression RPAR
+  		THEN WITH name=variable_identifier LCURL
+  			stmts=statement_list
+  			RCURL														# FetchOneAsync
+  | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
+  			| ( (LPAR typ=mutable_category_type RPAR)? 
+  			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
+  			( WHERE LPAR predicate=expression RPAR )?			
+  			( ORDER BY LPAR orderby=order_by_list RPAR )? 
+  			THEN WITH name=variable_identifier LCURL
+  			stmts=statement_list
+  			RCURL														# FetchManyAsync
   ;
   
 sorted_expression:

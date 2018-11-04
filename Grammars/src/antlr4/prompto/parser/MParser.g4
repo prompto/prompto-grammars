@@ -167,6 +167,7 @@ statement:
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
+  | stmt=fetch_statement					# FetchStatement
   | stmt=flush_statement					# FlushStatement
   | stmt=break_statement					# BreakStatement
   | stmt=return_statement					# ReturnStatement
@@ -365,7 +366,7 @@ instance_expression:
 method_expression:
   blob_expression			
   | document_expression			
-  | fetch_store_expression			
+  | fetch_expression			
   | read_all_expression				
   | read_one_expression				
   | sorted_expression			
@@ -416,7 +417,7 @@ filtered_list_suffix:
   		WHERE predicate=expression
   ;
   
-fetch_store_expression:
+fetch_expression:
   FETCH ONE typ=mutable_category_type? 
   			WHERE predicate=expression						# FetchOne
   | FETCH  ( ALL 
@@ -425,6 +426,24 @@ fetch_store_expression:
   			( WHERE predicate=expression )?					
   			( ORDER BY orderby=order_by_list )?				# FetchMany
   ;  
+
+
+fetch_statement:
+  FETCH ONE typ=mutable_category_type? 
+  			WHERE predicate=expression	
+  			THEN WITH name=variable_identifier COLON indent
+  			stmts=statement_list
+  			dedent											# FetchOneAsync
+  | FETCH  ( ALL 
+  			| ROWS xstart=expression TO xstop=expression )
+  			LPAR typ=mutable_category_type? RPAR 
+  			( WHERE predicate=expression )?					
+  			( ORDER BY orderby=order_by_list )?
+  			THEN WITH name=variable_identifier COLON indent
+  			stmts=statement_list
+  			dedent											# FetchManyAsync
+  ;  
+
 
 sorted_expression:
   SORTED DESC? LPAR source=instance_expression ( COMMA key_token EQ key=instance_expression)? RPAR

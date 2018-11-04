@@ -194,6 +194,7 @@ statement:
   | stmt=method_call_statement				# MethodCallStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
+  | stmt=fetch_statement					# FetchStatement
   | stmt=flush_statement					# FlushStatement
   | stmt=break_statement					# BreakStatement
   | stmt=return_statement					# ReturnStatement
@@ -364,7 +365,7 @@ expression:
   | exp=document_expression									# DocumentExpression
   | exp=constructor_expression								# ConstructorExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
-  | exp=fetch_store_expression								# FetchStoreExpression
+  | exp=fetch_expression									# FetchExpression
   | exp=read_all_expression									# ReadAllExpression
   | exp=read_one_expression									# ReadOneExpression
   | exp=sorted_expression									# SortedExpression
@@ -435,7 +436,7 @@ filtered_list_suffix:
   			WHERE predicate=expression		
   ;
   
-fetch_store_expression:
+fetch_expression:
   FETCH ONE (typ=mutable_category_type?) 
   			WHERE predicate=expression							# FetchOne
   | FETCH ( ( ALL typ=mutable_category_type? ) 
@@ -444,6 +445,23 @@ fetch_store_expression:
   			( WHERE predicate=expression )?
   			( ORDER BY orderby=order_by_list )?					# FetchMany
   ;  
+  
+fetch_statement:
+  FETCH ONE (typ=mutable_category_type?) 
+  			WHERE predicate=expression
+  			THEN WITH name=variable_identifier COLON indent
+  			stmts=statement_list
+  			dedent											# FetchOneAsync
+  | FETCH ( ( ALL typ=mutable_category_type? ) 
+  			| ( typ=mutable_category_type ROWS? xstart=expression TO xstop=expression )
+  			| ( ROWS xstart=expression TO xstop=expression ) )
+  			( WHERE predicate=expression )?
+  			( ORDER BY orderby=order_by_list )?
+  			THEN WITH name=variable_identifier COLON indent
+  			stmts=statement_list
+  			dedent											# FetchManyAsync
+  ;  
+
 
 sorted_expression:
   SORTED DESC? source=instance_expression
