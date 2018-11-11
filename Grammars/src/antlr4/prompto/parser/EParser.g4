@@ -225,8 +225,10 @@ store_statement:
   
 method_call_statement:  
   exp=unresolved_expression 
-  	(args=argument_assignment_list)?  		# UnresolvedWithArgsStatement
-  | exp=invocation_expression 				# InvokeStatement	
+  	(args=argument_assignment_list)?  		
+  	(THEN (WITH name=variable_identifier)? COLON 
+  		indent stmts=statement_list dedent )? 		# UnresolvedWithArgsStatement
+  | exp=invocation_expression 						# InvokeStatement	
   ;
   
 with_resource_statement:

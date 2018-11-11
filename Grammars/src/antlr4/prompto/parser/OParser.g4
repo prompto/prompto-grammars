@@ -159,7 +159,7 @@ statement_or_list:
   ;
 
 statement: 
-  stmt=method_call SEMI						# MethodCallStatement
+  stmt=method_call_statement				# MethodCallStatement
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
@@ -268,6 +268,11 @@ return_statement:
   
 method_call:
   method=method_selector LPAR (args=argument_assignment_list)? RPAR
+  ;
+  
+// need a dedicated rule not applicable for expression   
+method_call_statement:
+  method=method_call ((THEN (WITH name=variable_identifier)? LCURL stmts=statement_list RCURL) | SEMI)
   ;
  
 method_selector:

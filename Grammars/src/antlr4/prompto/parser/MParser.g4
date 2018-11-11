@@ -163,7 +163,7 @@ typed_argument:
   ;
     
 statement: 
-  stmt=method_call							# MethodCallStatement
+  stmt=method_call_statement						# MethodCallStatement
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
@@ -199,7 +199,13 @@ store_statement:
 method_call:  
   method=method_selector LPAR (args=argument_assignment_list)? RPAR
   ;
+
+// need a dedicated rule not applicable for expression   
+method_call_statement:
+  method=method_call (THEN (WITH name=variable_identifier)? COLON indent stmts=statement_list dedent)?
+  ;
   
+  	  
 method_selector:
   name=method_identifier					# MethodName
   | parent=callable_parent 
