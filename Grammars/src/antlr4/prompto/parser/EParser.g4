@@ -325,9 +325,9 @@ expression:
   // an expression ending with slice or item
   | exp=instance_expression									# InstanceExpression
   // any standalone expression ending with an identifier
-  | exp=unresolved_expression								# UnresolvedExpression							
-  // an ambiguous expression followed by arguments
-  | exp=unresolved_expression 
+  | exp=unresolved_expression								# UnresolvedExpression
+  // an expression followed by arguments
+  | (exp1=instance_expression | exp2=unresolved_expression)
   	args=argument_assignment_list							# MethodCallExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
