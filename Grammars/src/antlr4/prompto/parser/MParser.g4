@@ -213,7 +213,7 @@ method_selector:
   ;
 
 callable_parent:
-  name=identifier							# CallableRoot
+  exp=instance_expression					# CallableRoot
   | parent=callable_parent 
   	select=callable_selector				# CallableSelector
   ;
