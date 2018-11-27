@@ -37,15 +37,15 @@ python_method_expression:
   
 python_argument_list:   
   ordinal=python_ordinal_argument_list		# PythonOrdinalOnlyArgumentList
-  | named=python_named_argument_list	# PythonNamedOnlyArgumentList
+  | named=python_named_argument_list		# PythonNamedOnlyArgumentList
   | ordinal=python_ordinal_argument_list 
   	COMMA named=python_named_argument_list	# PythonArgumentList
   ;
 
 python_ordinal_argument_list:   
-  item=python_expression 				# PythonOrdinalArgumentList
+  item=python_expression 					# PythonOrdinalArgumentList
   | items=python_ordinal_argument_list
-  		COMMA item=python_expression			# PythonOrdinalArgumentListItem
+  		COMMA item=python_expression		# PythonOrdinalArgumentListItem
   ;	 
 
 python_named_argument_list:   

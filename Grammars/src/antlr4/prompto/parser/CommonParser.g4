@@ -254,7 +254,7 @@ python_category_binding:
   ;
   
 python_module:
-  FROM module_token COLON identifier (DOT identifier)*
+  FROM module_token COLON python_identifier (DOT python_identifier)*
   ;
   
 javascript_category_binding:  
