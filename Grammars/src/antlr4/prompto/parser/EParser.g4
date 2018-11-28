@@ -155,7 +155,7 @@ concrete_method_declaration:
     (RECEIVING args=full_argument_list)? 
     (RETURNING typ=typedef)?
     DOING COLON 
-    indent stmts=statement_list dedent
+    indent (stmts=statement_list | PASS) dedent
   ;  
 
 native_method_declaration:

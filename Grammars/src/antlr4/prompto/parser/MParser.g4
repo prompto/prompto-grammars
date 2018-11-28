@@ -136,7 +136,7 @@ abstract_method_declaration:
 
 concrete_method_declaration:
   DEF name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=typedef)? COLON 
-    indent stmts=statement_list dedent
+    indent (stmts=statement_list | PASS) dedent
   ;  
 
 native_method_declaration:
@@ -163,7 +163,7 @@ typed_argument:
   ;
     
 statement: 
-  stmt=method_call_statement						# MethodCallStatement
+  stmt=method_call_statement				# MethodCallStatement
   | stmt=assign_instance_statement			# AssignInstanceStatement
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
