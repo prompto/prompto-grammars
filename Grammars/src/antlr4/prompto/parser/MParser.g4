@@ -351,7 +351,7 @@ expression:
   | CODE LPAR exp=expression RPAR							# CodeExpression
   | EXECUTE LPAR name=variable_identifier RPAR				# ExecuteExpression
   | exp=closure_expression									# ClosureExpression
-  | exp=expression FOR name=variable_identifier 
+  | exp=expression FOR EACH name=variable_identifier
   			IN source=expression							# IteratorExpression
   ;
 
