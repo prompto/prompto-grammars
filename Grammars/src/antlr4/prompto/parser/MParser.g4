@@ -196,33 +196,16 @@ store_statement:
   ( THEN COLON indent stmts=statement_list dedent )?
   ;
 
-method_call:  
-  method=method_selector LPAR (args=argument_assignment_list)? RPAR
+method_call_expression:  
+  name=method_identifier LPAR (args=argument_assignment_list)? RPAR
   ;
 
 // need a dedicated rule not applicable for expression   
 method_call_statement:
-  method=method_call (THEN (WITH name=variable_identifier)? COLON indent stmts=statement_list dedent)?
+  (parent=instance_expression DOT)? method=method_call_expression (THEN (WITH name=variable_identifier)? COLON indent stmts=statement_list dedent)?
   ;
   
   	  
-method_selector:
-  name=method_identifier					# MethodName
-  | parent=callable_parent 
-  	DOT name=method_identifier				# MethodParent
-  ;
-
-callable_parent:
-  exp=instance_expression					# CallableRoot
-  | parent=callable_parent 
-  	select=callable_selector				# CallableSelector
-  ;
-
-callable_selector:
-  DOT name=variable_identifier 				# CallableMemberSelector
-  | LBRAK exp=expression RBRAK				# CallableItemSelector
-  ;
-    
 with_resource_statement:
   WITH stmt=assign_variable_statement COLON 
   	indent stmts=statement_list dedent
@@ -316,7 +299,6 @@ expression:
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
-  | exp=method_expression									# MethodExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
   | left=expression multiply right=expression 				# MultiplyExpression
@@ -362,7 +344,15 @@ closure_expression:
   ;
 
 
-// specific case for unresolved which cannot be a method   
+selectable_expression:
+  exp=method_expression			# MethodExpression
+  | exp=parenthesis_expression	# ParenthesisExpression
+  | exp=literal_expression 		# LiteralExpression
+  | exp=identifier 				# IdentifierExpression
+  | exp=this_expression			# ThisExpression
+  ; 
+
+
 instance_expression:    
 	parent=selectable_expression 		# SelectableExpression
 	| parent=instance_expression 
@@ -376,14 +366,15 @@ method_expression:
   | read_all_expression				
   | read_one_expression				
   | sorted_expression			
-  | method_call					
+  | method_call_expression					
   | constructor_expression		
   ;
 	
 instance_selector:
-  {$parser.wasNot(MParser.WS)}? DOT name=variable_identifier 				# MemberSelector
-  | {$parser.wasNot(MParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
-  |	{$parser.wasNot(MParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
+  DOT name=variable_identifier 				# MemberSelector
+  | DOT method=method_call_expression 		# MethodSelector
+  | LBRAK xslice=slice_arguments RBRAK		# SliceSelector
+  |	LBRAK exp=expression RBRAK				# ItemSelector
   ; 
  
 blob_expression:

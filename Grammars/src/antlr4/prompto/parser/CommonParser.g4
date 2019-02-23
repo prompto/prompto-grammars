@@ -351,13 +351,6 @@ literal_list_literal:
   atomic_literal (COMMA atomic_literal)*
   ;
    
-selectable_expression:
-  exp=parenthesis_expression	# ParenthesisExpression
-  | exp=literal_expression 		# LiteralExpression
-  | exp=identifier 				# IdentifierExpression
-  | exp=this_expression			# ThisExpression
-  ; 
-
 this_expression:
   SELF | THIS
   ;

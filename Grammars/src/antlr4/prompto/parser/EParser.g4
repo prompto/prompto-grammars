@@ -395,6 +395,13 @@ invocation_trailer:
   {$parser.willBe(EParser.LF)}?
   ;	
 
+selectable_expression:
+  exp=parenthesis_expression	# ParenthesisExpression
+  | exp=literal_expression 		# LiteralExpression
+  | exp=identifier 				# IdentifierExpression
+  | exp=this_expression			# ThisExpression
+  ; 
+
 // specific case for unresolved which cannot be a method   
 instance_expression:    
 	parent=selectable_expression 		# SelectableExpression

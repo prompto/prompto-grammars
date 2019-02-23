@@ -266,31 +266,15 @@ return_statement:
   RETURN exp=expression? SEMI
   ;
   
-method_call:
-  method=method_selector LPAR (args=argument_assignment_list)? RPAR
+method_call_expression:
+  name=method_identifier LPAR (args=argument_assignment_list)? RPAR
   ;
   
 // need a dedicated rule not applicable for expression   
 method_call_statement:
-  method=method_call ((THEN (WITH name=variable_identifier)? LCURL stmts=statement_list RCURL) | SEMI)
+  (parent=instance_expression DOT)? method=method_call_expression ((THEN (WITH name=variable_identifier)? LCURL stmts=statement_list RCURL) | SEMI)
   ;
  
-method_selector:
-  name=method_identifier					# MethodName
-  | parent=callable_parent 
-  	DOT name=method_identifier				# MethodParent
-  ;
-
-callable_parent:
-  exp=instance_expression					# CallableRoot
-  | parent=callable_parent 
-  	select=callable_selector				# CallableSelector
-  ;
-
-callable_selector:
-  DOT name=variable_identifier 				# CallableMemberSelector
-  | LBRAK exp=expression RBRAK				# CallableItemSelector
-  ;
 
 x_expression:
   css_expression
@@ -300,7 +284,6 @@ expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
-  | exp=method_expression									# MethodExpression
   | MINUS exp=expression									# MinusExpression
   | XMARK exp=expression									# NotExpression
   | left=expression multiply right=expression 				# MultiplyExpression
@@ -351,10 +334,18 @@ closure_expression:
   name=type_identifier
   ;
 
+selectable_expression:
+  exp=method_expression			# MethodExpression
+  | exp=parenthesis_expression	# ParenthesisExpression
+  | exp=literal_expression 		# LiteralExpression
+  | exp=identifier 				# IdentifierExpression
+  | exp=this_expression			# ThisExpression
+  ; 
+
 instance_expression:
   parent=selectable_expression		# SelectableExpression
   | parent=instance_expression 
-  	selector=selector_expression	# SelectorExpression
+  	selector=instance_selector	# SelectorExpression
   ;
   
 method_expression:
@@ -365,7 +356,7 @@ method_expression:
   | read_all_expression				
   | read_one_expression				
   | sorted_expression			
-  | method_call					
+  | method_call_expression					
   | constructor_expression		
   ;
 
@@ -418,8 +409,9 @@ sorted_expression:
   	( COMMA key_token EQ key=instance_expression )? RPAR
   ;
 
-selector_expression:
+instance_selector:
   DOT name=variable_identifier 			# MemberSelector
+  | DOT method=method_call_expression	# MethodSelector
   | LBRAK exp=expression RBRAK			# ItemSelector
   | LBRAK xslice=slice_arguments RBRAK	# SliceSelector
   ; 
