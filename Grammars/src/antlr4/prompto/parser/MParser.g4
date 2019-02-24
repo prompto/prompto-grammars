@@ -298,6 +298,7 @@ expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
+  | exp=arrow_expression 									# ArrowExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
@@ -443,7 +444,8 @@ fetch_statement:
 
 
 sorted_expression:
-  SORTED DESC? LPAR source=instance_expression ( COMMA key_token EQ key=instance_expression)? RPAR
+  SORTED DESC? LPAR source=instance_expression 
+  	( COMMA key_token EQ key=sorted_key)? RPAR
   ;
 
 assign_instance_statement: 
@@ -467,7 +469,7 @@ lfp:
   (LF)+ 
   ;  
 
-jsx_ws:
+ws_plus:
   (LF | TAB | WS | INDENT)*
   ;
       

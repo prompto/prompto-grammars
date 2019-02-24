@@ -43,6 +43,7 @@ TEQ: '~=';
 TILDE: '~';
 LARROW: '<-';
 RARROW: '->';
+EGT: '=>';
 
 // when adding keywords, remember to update the 'keyword' rule in CommonParser
 BOOLEAN: 'Boolean';

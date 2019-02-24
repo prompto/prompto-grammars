@@ -284,6 +284,7 @@ expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
+  | exp=arrow_expression 									# ArrowExpression
   | MINUS exp=expression									# MinusExpression
   | XMARK exp=expression									# NotExpression
   | left=expression multiply right=expression 				# MultiplyExpression
@@ -406,9 +407,9 @@ fetch_statement:
   
 sorted_expression:
   SORTED DESC? LPAR source=instance_expression 
-  	( COMMA key_token EQ key=instance_expression )? RPAR
+  	( COMMA key_token EQ key=sorted_key )? RPAR
   ;
-
+  
 instance_selector:
   DOT name=variable_identifier 			# MemberSelector
   | DOT method=method_call_expression	# MethodSelector
@@ -451,7 +452,7 @@ assign_tuple_statement:
   
 null_literal : NULL;
 
-jsx_ws:
+ws_plus:
   (LF | WS)*
   ;
 

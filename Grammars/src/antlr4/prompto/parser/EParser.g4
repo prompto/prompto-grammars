@@ -322,11 +322,9 @@ return_statement:
 expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
-  // an expression ending with slice or item
   | exp=instance_expression									# InstanceExpression
-  // any standalone expression ending with an identifier
+  | exp=arrow_expression 									# ArrowExpression
   | exp=unresolved_expression								# UnresolvedExpression
-  // an expression followed by arguments
   | (exp1=instance_expression | exp2=unresolved_expression)
   	args=argument_assignment_list							# MethodCallExpression
   | MINUS exp=expression									# MinusExpression
@@ -474,7 +472,7 @@ fetch_statement:
 
 sorted_expression:
   SORTED DESC? source=instance_expression
-  	( WITH key=instance_expression AS key_token )?
+  	( WITH key=sorted_key AS key_token )?
   ;
 
   
@@ -517,7 +515,7 @@ lfp:
   (LF)+ 
   ;  
   
-jsx_ws:
+ws_plus:
   (LF | TAB | WS | INDENT)*
   ;
     
