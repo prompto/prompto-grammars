@@ -431,7 +431,7 @@ arrow_expression:
   ;
   
 arrow_prefix:
-  arrow_args ws_plus EGT ws_plus 	
+  arrow_args s1=ws_plus EGT s2=ws_plus 	
   ;
   
 arrow_args:
