@@ -366,6 +366,7 @@ expression:
   | exp=blob_expression										# BlobExpression
   | exp=document_expression									# DocumentExpression
   | exp=constructor_expression								# ConstructorExpression
+  | exp=mutable_instance_expression							# MutableInstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=fetch_expression									# FetchExpression
   | exp=read_all_expression									# ReadAllExpression
@@ -414,6 +415,12 @@ instance_selector:
   | {$parser.wasNot(EParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
   |	{$parser.wasNot(EParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
   ; 
+ 
+mutable_instance_expression:
+	MUTABLE exp=identifier				# MutableSelectableExpression
+	| parent=mutable_instance_expression
+		selector=instance_selector	   # MutableSelectorExpression
+  ;
  
 document_expression:
   DOCUMENT (FROM expression)?

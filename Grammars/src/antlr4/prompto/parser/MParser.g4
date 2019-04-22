@@ -298,6 +298,7 @@ expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
+  | exp=mutable_instance_expression							# MutableInstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
@@ -358,6 +359,12 @@ instance_expression:
 	| parent=instance_expression 
 		selector=instance_selector	   # SelectorExpression
 	;
+
+mutable_instance_expression:
+	MUTABLE exp=identifier				# MutableSelectableExpression
+	| parent=mutable_instance_expression
+		selector=instance_selector	   # MutableSelectorExpression
+  ;
 
 method_expression:
   blob_expression			
