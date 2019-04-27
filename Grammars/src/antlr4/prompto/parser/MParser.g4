@@ -298,6 +298,7 @@ expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
+  | exp=mutable_instance_expression							# MutableInstanceExpression
   | exp=arrow_expression 									# ArrowExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | MINUS exp=expression									# MinusExpression

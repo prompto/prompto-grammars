@@ -284,6 +284,7 @@ expression:
   exp=css_expression									    # CssExpression
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
+  | exp=mutable_instance_expression							# MutableInstanceExpression
   | exp=arrow_expression 									# ArrowExpression
   | MINUS exp=expression									# MinusExpression
   | XMARK exp=expression									# NotExpression
@@ -348,7 +349,13 @@ instance_expression:
   | parent=instance_expression 
   	selector=instance_selector	# SelectorExpression
   ;
-  
+ 
+mutable_instance_expression:
+	MUTABLE exp=identifier				# MutableSelectableExpression
+	| parent=mutable_instance_expression
+		selector=instance_selector	   # MutableSelectorExpression
+  ;
+    
 method_expression:
   blob_expression				
   | document_expression			
