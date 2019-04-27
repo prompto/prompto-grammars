@@ -361,6 +361,12 @@ instance_expression:
 		selector=instance_selector	   # SelectorExpression
 	;
 
+mutable_instance_expression:
+	MUTABLE exp=identifier				# MutableSelectableExpression
+	| parent=mutable_instance_expression
+		selector=instance_selector	   # MutableSelectorExpression
+  ;
+
 method_expression:
   blob_expression			
   | document_expression			

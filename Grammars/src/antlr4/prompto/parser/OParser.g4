@@ -416,7 +416,7 @@ sorted_expression:
   SORTED DESC? LPAR source=instance_expression 
   	( COMMA key_token EQ key=sorted_key )? RPAR
   ;
-  
+
 instance_selector:
   DOT name=variable_identifier 			# MemberSelector
   | DOT method=method_call_expression	# MethodSelector
