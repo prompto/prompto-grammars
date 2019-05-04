@@ -285,6 +285,7 @@ expression:
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
   | exp=mutable_instance_expression							# MutableInstanceExpression
+  | exp=arrow_expression 									# ArrowExpression
   | MINUS exp=expression									# MinusExpression
   | XMARK exp=expression									# NotExpression
   | left=expression multiply right=expression 				# MultiplyExpression
@@ -381,7 +382,7 @@ write_statement:
 
 filtered_list_expression:
   FILTERED LPAR source=expression RPAR 
-  		WITH LPAR name=variable_identifier RPAR 
+  		(WITH LPAR name=variable_identifier RPAR)?
   		WHERE LPAR predicate=expression RPAR
   ;
   
@@ -413,7 +414,7 @@ fetch_statement:
   
 sorted_expression:
   SORTED DESC? LPAR source=instance_expression 
-  	( COMMA key_token EQ key=instance_expression )? RPAR
+  	( COMMA key_token EQ key=sorted_key )? RPAR
   ;
 
 instance_selector:
@@ -458,7 +459,7 @@ assign_tuple_statement:
   
 null_literal : NULL;
 
-jsx_ws:
+ws_plus:
   (LF | WS)*
   ;
 

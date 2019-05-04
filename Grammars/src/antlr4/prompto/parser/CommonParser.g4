@@ -415,7 +415,7 @@ assign_variable_statement:
   ;  
 
 assignable_instance:
-  variable_identifier 		# RootInstance
+  variable_identifier 	# RootInstance
   | assignable_instance 
   	child_instance	 	# ChildInstance
   ;
@@ -425,6 +425,25 @@ is_expression:
   | expression															# IsOtherExpression		
   ;
 
+arrow_expression:
+  arrow_prefix expression 						# ArrowExpressionBody
+  | arrow_prefix LCURL statement_list RCURL	 	# ArrowStatementsBody
+  ;
+  
+arrow_prefix:
+  arrow_args s1=ws_plus EGT s2=ws_plus 	
+  ;
+  
+arrow_args:
+  variable_identifier						# ArrowSingleArg
+  | LPAR variable_identifier_list? RPAR		# ArrowListArg
+  ;
+  
+sorted_key:
+  instance_expression 
+  | arrow_expression
+  ;		
+  	   	
 read_all_expression:
   READ ALL FROM source=expression
   ;
@@ -601,8 +620,9 @@ idivide: BSLASH;
 modulo: PERCENT | MODULO;
    
 // overridden rules
-lfs:; // see PParser and EParser
-lfp:; // see PParser and EParser
+lfs:; // see MParser and EParser
+lfp:; // see MParser and EParser
+ws_plus:; // see MParser and EParser
 attribute_declaration:;
 abstract_method_declaration:;
 concrete_method_declaration:;
@@ -621,6 +641,7 @@ getter_method_declaration:;
 native_setter_declaration:;
 native_getter_declaration:;
 operator_method_declaration:;
+instance_expression:;
 typed_argument:;
 native_symbol:;
 category_symbol:;

@@ -28,12 +28,12 @@ jsx_fragment_end:
     ;
 
 jsx_self_closing:
-    LT name=jsx_element_name jsx_ws (attributes=jsx_attribute)* SLASH GT
+    LT name=jsx_element_name ws_plus (attributes=jsx_attribute)* SLASH GT
     ;
 
 
 jsx_opening:
-    LT name=jsx_element_name jsx_ws (attributes=jsx_attribute)* GT
+    LT name=jsx_element_name ws_plus (attributes=jsx_attribute)* GT
     ;
 
 jsx_closing:
@@ -51,7 +51,7 @@ jsx_identifier:
 
 
 jsx_attribute:
-    name=jsx_identifier (EQ value=jsx_attribute_value)? jsx_ws
+    name=jsx_identifier (EQ value=jsx_attribute_value)? ws_plus
     ;
 
 jsx_attribute_value:
@@ -73,7 +73,7 @@ jsx_text:
     ~(LCURL | RCURL | LT | GT)+
     ;
 
-jsx_ws: DOT;
+ws_plus: DOT;
 nospace_hyphen_identifier_or_keyword: DOT;
 identifier_or_keyword: DOT;
 expression: DOT;

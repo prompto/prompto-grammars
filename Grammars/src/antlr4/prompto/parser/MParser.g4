@@ -299,6 +299,7 @@ expression:
   | exp=jsx_expression									    # JsxExpression
   | exp=instance_expression									# InstanceExpression
   | exp=mutable_instance_expression							# MutableInstanceExpression
+  | exp=arrow_expression 									# ArrowExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
@@ -417,7 +418,7 @@ write_statement:
   ;
   
 filtered_list_suffix:
-  FILTERED WITH name=variable_identifier 
+  FILTERED (WITH name=variable_identifier)?
   		WHERE predicate=expression
   ;
   
@@ -450,7 +451,8 @@ fetch_statement:
 
 
 sorted_expression:
-  SORTED DESC? LPAR source=instance_expression ( COMMA key_token EQ key=instance_expression)? RPAR
+  SORTED DESC? LPAR source=instance_expression 
+  	( COMMA key_token EQ key=sorted_key)? RPAR
   ;
 
 assign_instance_statement: 
@@ -474,7 +476,7 @@ lfp:
   (LF)+ 
   ;  
 
-jsx_ws:
+ws_plus:
   (LF | TAB | WS | INDENT)*
   ;
       
