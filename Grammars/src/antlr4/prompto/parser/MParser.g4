@@ -418,7 +418,7 @@ write_statement:
   ;
   
 filtered_list_suffix:
-  FILTERED WITH name=variable_identifier 
+  FILTERED (WITH name=variable_identifier)?
   		WHERE predicate=expression
   ;
   

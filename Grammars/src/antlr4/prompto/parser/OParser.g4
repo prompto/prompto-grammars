@@ -382,7 +382,7 @@ write_statement:
 
 filtered_list_expression:
   FILTERED LPAR source=expression RPAR 
-  		WITH LPAR name=variable_identifier RPAR 
+  		(WITH LPAR name=variable_identifier RPAR)?
   		WHERE LPAR predicate=expression RPAR
   ;
   
