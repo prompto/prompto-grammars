@@ -2,6 +2,12 @@ parser grammar CommonParser;
 
 import JavaScriptParser, PythonParser, JavaParser, CSharpParser, JsxParser, CssParser;
 
+repl:
+  declaration 					
+  | statement					
+  | expression					
+  ;
+  	
 declaration_list:
   (declarations)? lfs EOF		# FullDeclarationList
   ;
