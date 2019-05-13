@@ -28,13 +28,13 @@ category_symbol:
   ;
   
 attribute_declaration:
-   STORABLE? ATTR name=attribute_identifier LPAR  typ=typedef RPAR COLON
+   STORABLE? ATTR name=attribute_identifier LPAR  typ=typedef RPAR (COLON
    	indent 
    		( PASS | (
    			match=attribute_constraint (lfp indices=index_clause)?
    			| indices=index_clause (lfp match=attribute_constraint)?
    		))
-   	dedent
+   	dedent)?
   ;
   
 index_clause:
@@ -64,8 +64,8 @@ concrete_category_declaration:
   	( derived=derived_list 
   	  | attrs=attribute_identifier_list  
   	  | derived=derived_list COMMA attrs=attribute_identifier_list ) 
-  RPAR COLON
-	  	indent ( methods=member_method_declaration_list | PASS ) dedent
+  RPAR (COLON
+	  	indent ( methods=member_method_declaration_list | PASS ) dedent)?
   ;
 
 singleton_category_declaration:
