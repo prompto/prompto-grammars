@@ -28,13 +28,29 @@ declaration:
   ;
 
 annotation_constructor:
-  name=annotation_identifier ( LPAR exp=literal_expression RPAR )?
+  name=annotation_identifier ( LPAR (exp=annotation_argument_value | (annotation_argument (COMMA annotation_argument)*)) RPAR )?
   ;
 
 annotation_identifier:
   ARONDBASE_IDENTIFIER 
   ;
-  
+
+annotation_argument:
+  name=annotation_argument_name EQ exp=annotation_argument_value
+  ;
+
+annotation_argument_name:
+  VARIABLE_IDENTIFIER
+  | GETTER
+  | SETTER
+  // any keyword is acceptable here
+  ;
+  		
+annotation_argument_value:
+  exp=literal_expression # AnnotationLiteralValue
+  | typ=primary_type	 # AnnotationTypeValue
+  ;
+  	  
 resource_declaration:
   native_resource_declaration
   ;
@@ -351,6 +367,7 @@ atomic_literal:
   | t=VERSION_LITERAL			# VersionLiteral
   | t=UUID_LITERAL				# UUIDLiteral
   | n=null_literal				# NullLiteral
+  // TODO symbol_literal?
   ;
    
 literal_list_literal:
