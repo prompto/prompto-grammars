@@ -345,7 +345,7 @@ selectable_expression:
   ; 
 
 instance_expression:
-  parent=selectable_expression		# SelectableExpression
+  parent=selectable_expression	# SelectableExpression
   | parent=instance_expression 
   	selector=instance_selector	# SelectorExpression
   ;
@@ -457,6 +457,8 @@ assign_tuple_statement:
   items=variable_identifier_list assign exp=expression SEMI
   ;
   
+type_literal : typedef;
+
 null_literal : NULL;
 
 ws_plus:

@@ -352,21 +352,22 @@ literal_collection:
 
     
 atomic_literal:
-  t=MIN_INTEGER					# MinIntegerLiteral
-  | t=MAX_INTEGER				# MaxIntegerLiteral
-  | t=INTEGER_LITERAL 			# IntegerLiteral
-  | t=HEXA_LITERAL				# HexadecimalLiteral
-  | t=CHAR_LITERAL				# CharacterLiteral
-  | t=DATE_LITERAL				# DateLiteral
-  | t=TIME_LITERAL				# TimeLiteral
-  | t=TEXT_LITERAL				# TextLiteral
-  | t=DECIMAL_LITERAL 			# DecimalLiteral
-  | t=DATETIME_LITERAL			# DateTimeLiteral
-  | t=BOOLEAN_LITERAL			# BooleanLiteral
-  | t=PERIOD_LITERAL			# PeriodLiteral
-  | t=VERSION_LITERAL			# VersionLiteral
-  | t=UUID_LITERAL				# UUIDLiteral
-  | n=null_literal				# NullLiteral
+  MIN_INTEGER				# MinIntegerLiteral
+  | MAX_INTEGER				# MaxIntegerLiteral
+  | INTEGER_LITERAL 		# IntegerLiteral
+  | HEXA_LITERAL			# HexadecimalLiteral
+  | CHAR_LITERAL			# CharacterLiteral
+  | DATE_LITERAL			# DateLiteral
+  | TIME_LITERAL			# TimeLiteral
+  | TEXT_LITERAL			# TextLiteral
+  | DECIMAL_LITERAL 		# DecimalLiteral
+  | DATETIME_LITERAL		# DateTimeLiteral
+  | BOOLEAN_LITERAL			# BooleanLiteral
+  | PERIOD_LITERAL			# PeriodLiteral
+  | VERSION_LITERAL			# VersionLiteral
+  | UUID_LITERAL			# UUIDLiteral
+  | type_literal			# TypeLiteral
+  | null_literal			# NullLiteral
   // TODO symbol_literal?
   ;
    
@@ -510,7 +511,6 @@ keyword:
     | DATETIME
     | PERIOD
     | VERSION
-    | METHOD_T
     | CODE
     | DOCUMENT
     | BLOB
@@ -564,7 +564,6 @@ keyword:
     | IF
     | IN
     | INDEX
-    | INVOKE
     | IS
     | MATCHING
     | METHOD
@@ -674,4 +673,5 @@ statement:;
 switch_case_statement:;
 catch_statement:;
 child_instance:;
+type_literal:;
 null_literal:;

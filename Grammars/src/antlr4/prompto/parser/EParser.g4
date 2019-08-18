@@ -327,6 +327,7 @@ expression:
   | exp=unresolved_expression								# UnresolvedExpression
   | (exp1=instance_expression | exp2=unresolved_expression)
   	args=argument_assignment_list							# MethodCallExpression
+  | exp=constructor_expression								# ConstructorExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
   | left=expression multiply right=expression 				# MultiplyExpression
@@ -360,10 +361,9 @@ expression:
   		ELSE ifFalse=expression 							# TernaryExpression
   | CODE COLON exp=expression								# CodeExpression
   | EXECUTE COLON name=variable_identifier					# ExecuteExpression
-  | METHOD_T COLON name=method_identifier					# ClosureExpression
+  | METHOD_COLON name=method_identifier						# ClosureExpression
   | exp=blob_expression										# BlobExpression
   | exp=document_expression									# DocumentExpression
-  | exp=constructor_expression								# ConstructorExpression
   | exp=mutable_instance_expression							# MutableInstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=fetch_expression									# FetchExpression
@@ -387,7 +387,7 @@ unresolved_selector:
   ;
 
 invocation_expression:
-  INVOKE COLON name=variable_identifier invocation_trailer
+  INVOKE_COLON name=variable_identifier invocation_trailer
   ;
 
 invocation_trailer:
@@ -533,5 +533,9 @@ indent:
 dedent:
   (LF)* DEDENT
   ;   
+  
+type_literal:
+    TYPE_COLON typedef
+    ;
   
 null_literal : NOTHING;

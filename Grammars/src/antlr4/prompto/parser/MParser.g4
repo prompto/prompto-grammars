@@ -487,5 +487,7 @@ indent:
 dedent:
   (LF)* DEDENT
   ;   
+
+type_literal : typedef;
   
 null_literal : NONE;
