@@ -65,6 +65,7 @@ UUID: 'Uuid';
 ITERATOR: 'Iterator';
 CURSOR: 'Cursor';
 HTML: 'Html';
+TYPE: 'Type';
 
 ABSTRACT: 'abstract';
 ALL: 'all';
@@ -151,7 +152,6 @@ THIS: 'this';
 THROW: 'throw';
 TO: 'to';
 TRY: 'try';
-TYPE_COLON: 'type:';
 VERIFYING: 'verifying';
 WIDGET: 'widget';
 WITH: 'with';
