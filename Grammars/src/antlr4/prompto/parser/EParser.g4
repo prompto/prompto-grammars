@@ -535,7 +535,7 @@ dedent:
   ;   
   
 type_literal:
-    TYPE COLON typedef
+    TYPE COLON category_or_any_type
     ;
   
 null_literal : NOTHING;

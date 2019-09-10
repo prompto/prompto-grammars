@@ -457,7 +457,7 @@ assign_tuple_statement:
   items=variable_identifier_list assign exp=expression SEMI
   ;
   
-type_literal : typedef;
+type_literal : category_or_any_type;
 
 null_literal : NULL;
 

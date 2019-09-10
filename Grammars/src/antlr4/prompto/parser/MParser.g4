@@ -488,6 +488,6 @@ dedent:
   (LF)* DEDENT
   ;   
 
-type_literal : typedef;
+type_literal : category_or_any_type;
   
 null_literal : NONE;
