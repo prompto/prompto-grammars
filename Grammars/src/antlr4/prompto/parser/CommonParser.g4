@@ -113,6 +113,7 @@ primary_type:
   
 native_type:
   BOOLEAN			# BooleanType
+  | CSS				# CssType
   | CHARACTER		# CharacterType
   | TEXT			# TextType
   | IMAGE			# ImageType

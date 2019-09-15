@@ -47,6 +47,7 @@ EGT: '=>';
 
 // when adding keywords, remember to update the 'keyword' rule in CommonParser
 BOOLEAN: 'Boolean';
+CSS: 'Css';
 CHARACTER: 'Character';
 TEXT: 'Text';
 INTEGER: 'Integer';
