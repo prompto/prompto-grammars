@@ -200,10 +200,6 @@ symbol_identifier:
   ; 
   
   
-any_identifier:
-  VARIABLE_IDENTIFIER | TYPE_IDENTIFIER | SYMBOL_IDENTIFIER
-  ; 
-
 argument_list:
   argument (COMMA argument)*
  ;
@@ -424,8 +420,8 @@ dict_entry:
   ; 
 
 dict_key:
-  name=any_identifier		# DictKeyIdentifier
-  | name=TEXT_LITERAL		# DictKeyText 	
+  name=identifier_or_keyword	# DictKeyIdentifier
+  | name=TEXT_LITERAL			# DictKeyText 	
   ;
   
 slice_arguments:
