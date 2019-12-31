@@ -13,7 +13,7 @@ jsx_element:
     ;
 
 jsx_fragment:
-    jsx_fragment_start children_=jsx_children? jsx_fragment_end
+    jsx_fragment_start ws_plus children_=jsx_children? ws_plus jsx_fragment_end
     ;
 
 
