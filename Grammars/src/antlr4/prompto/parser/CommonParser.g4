@@ -183,6 +183,11 @@ identifier:
   | type_identifier		# TypeIdentifier
   | symbol_identifier	# SymbolIdentifier
   ;  
+ 
+ 
+member_identifier:
+  VARIABLE_IDENTIFIER | CATEGORY
+  ;
   
 variable_identifier:
   VARIABLE_IDENTIFIER

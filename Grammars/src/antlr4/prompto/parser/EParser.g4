@@ -409,7 +409,7 @@ instance_expression:
 	;
 	
 instance_selector:
-  {$parser.wasNot(EParser.WS)}? DOT name=variable_identifier 				# MemberSelector
+  {$parser.wasNot(EParser.WS)}? DOT name=member_identifier		 			# MemberSelector
   | {$parser.wasNot(EParser.WS)}? LBRAK xslice=slice_arguments RBRAK		# SliceSelector
   |	{$parser.wasNot(EParser.WS)}? LBRAK exp=expression RBRAK				# ItemSelector
   ; 
