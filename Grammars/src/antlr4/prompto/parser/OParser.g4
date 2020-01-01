@@ -207,8 +207,8 @@ switch_statement:
   ;
 
 switch_case_statement:
-  CASE exp=atomic_literal COLON ( stmts=statement_list )?	# AtomicSwitchCase
-  | CASE IN exp=literal_collection COLON ( stmts=statement_list )? # CollectionSwitchCase
+  CASE exp=atomic_literal COLON stmts=statement_list			# AtomicSwitchCase
+  | CASE IN exp=literal_collection COLON stmts=statement_list 	# CollectionSwitchCase
   ;
   
 for_each_statement:
