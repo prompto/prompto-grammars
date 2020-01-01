@@ -368,9 +368,9 @@ atomic_literal:
   | PERIOD_LITERAL			# PeriodLiteral
   | VERSION_LITERAL			# VersionLiteral
   | UUID_LITERAL			# UUIDLiteral
+  | symbol_identifier		# SymbolLiteral
   | type_literal			# TypeLiteral
   | null_literal			# NullLiteral
-  // TODO symbol_literal?
   ;
    
 literal_list_literal:
