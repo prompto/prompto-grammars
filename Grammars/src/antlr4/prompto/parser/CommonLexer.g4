@@ -146,6 +146,7 @@ SINGLETON: 'singleton';
 SORTED: 'sorted';
 STORABLE: 'storable';
 STORE: 'store';
+SUPER: 'super';
 SWITCH: 'switch';
 TEST: 'test';
 THEN: 'then';

@@ -224,7 +224,7 @@ store_statement:
   ;
   
 method_call_statement:  
-  exp=unresolved_expression 
+  (exp1=instance_expression | exp2=unresolved_expression)
   	(args=argument_assignment_list)?  		
   	(THEN (WITH name=variable_identifier)? COLON 
   		indent stmts=statement_list dedent )? 		# UnresolvedWithArgsStatement
@@ -399,6 +399,7 @@ selectable_expression:
   | exp=literal_expression 		# LiteralExpression
   | exp=identifier 				# IdentifierExpression
   | exp=this_expression			# ThisExpression
+  | exp=super_expression		# SuperExpression
   ; 
 
 // specific case for unresolved which cannot be a method   

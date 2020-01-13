@@ -381,6 +381,10 @@ this_expression:
   SELF | THIS
   ;
   
+super_expression:
+  (category_type DOT) ? SUPER
+  ;
+    
 parenthesis_expression:
   LPAR expression RPAR
   ;  
@@ -596,6 +600,7 @@ keyword:
     | SETTER
     | SINGLETON
     | SORTED
+    | SUPER
     | STORABLE
     | STORE
     | SWITCH

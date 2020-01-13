@@ -352,6 +352,7 @@ selectable_expression:
   | exp=literal_expression 		# LiteralExpression
   | exp=identifier 				# IdentifierExpression
   | exp=this_expression			# ThisExpression
+  | exp=super_expression		# SuperExpression
   ; 
 
 
