@@ -118,13 +118,13 @@ native_category_binding_list:
   ;
 
 abstract_method_declaration:
-  ABSTRACT (typ=typedef)? METHOD name=method_identifier 
+  ABSTRACT (MUTABLE? typ=typedef)? METHOD name=method_identifier 
     LPAR (args=argument_list)? RPAR SEMI
   ;  
 
 
 concrete_method_declaration:
-  (typ=typedef)? METHOD name=method_identifier 
+  (MUTABLE? typ=typedef)? METHOD name=method_identifier 
     LPAR (args=argument_list)? RPAR
     LCURL (stmts=statement_list)? RCURL
   ;  

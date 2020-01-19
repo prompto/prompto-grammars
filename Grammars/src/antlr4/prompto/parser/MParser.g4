@@ -131,11 +131,11 @@ native_category_binding_list:
 
 abstract_method_declaration:
   ABSTRACT DEF name=method_identifier LPAR args=argument_list? RPAR 
-    (RARROW typ=typedef)?
+    (RARROW MUTABLE? typ=typedef)?
   ;  
 
 concrete_method_declaration:
-  DEF name=method_identifier LPAR args=argument_list? RPAR (RARROW typ=typedef)? COLON 
+  DEF name=method_identifier LPAR args=argument_list? RPAR (RARROW MUTABLE? typ=typedef)? COLON 
     indent (stmts=statement_list | PASS) dedent
   ;  
 

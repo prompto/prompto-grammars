@@ -147,13 +147,13 @@ attribute_list:
 abstract_method_declaration:
   DEFINE name=method_identifier AS ABSTRACT METHOD 
     (RECEIVING args=full_argument_list)? 
-    (RETURNING typ=typedef)?
+    (RETURNING MUTABLE? typ=typedef)?
   ;  
 
 concrete_method_declaration:
   DEFINE name=method_identifier AS METHOD
     (RECEIVING args=full_argument_list)? 
-    (RETURNING typ=typedef)?
+    (RETURNING MUTABLE? typ=typedef)?
     DOING COLON 
     indent (stmts=statement_list | PASS) dedent
   ;  
