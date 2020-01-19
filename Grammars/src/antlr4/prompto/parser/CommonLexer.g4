@@ -127,7 +127,6 @@ NOTHING: 'nothing' | 'Nothing';
 NULL: 'null';
 ON: 'on';
 ONE: 'one';
-OPEN: 'open';
 OPERATOR: 'operator';
 OR: 'or';
 ORDER: 'order';

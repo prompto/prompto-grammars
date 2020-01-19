@@ -583,7 +583,6 @@ keyword:
     | NULL
     | ON
     | ONE
-    | OPEN
     | OPERATOR
     | OR
     | ORDER

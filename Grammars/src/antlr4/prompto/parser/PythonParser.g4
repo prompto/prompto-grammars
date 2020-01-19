@@ -78,26 +78,10 @@ python_literal_expression:
 python_identifier:
   VARIABLE_IDENTIFIER
   | SYMBOL_IDENTIFIER
+  | DOLLAR_IDENTIFIER
   | TYPE_IDENTIFIER
-  | BOOLEAN
-  | CHARACTER
-  | TEXT
-  | INTEGER
-  | DECIMAL
-  | DATE
-  | TIME
-  | DATETIME
-  | PERIOD
-  | VERSION
-  | UUID
-  | HTML
-  | READ
-  | WRITE
-  | TEST
-  | THIS
-  | NONE
-  | NULL
+  | keyword
   ;
  
 this_expression:; 
-
+keyword:;

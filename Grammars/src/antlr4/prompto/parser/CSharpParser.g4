@@ -68,26 +68,11 @@ csharp_literal_expression:
 csharp_identifier:
   VARIABLE_IDENTIFIER
   | SYMBOL_IDENTIFIER
+  | DOLLAR_IDENTIFIER
   | TYPE_IDENTIFIER
-  | BOOLEAN
-  | CHARACTER
-  | TEXT
-  | INTEGER
-  | DECIMAL
-  | DATE
-  | TIME
-  | DATETIME
-  | PERIOD
-  | VERSION
-  | UUID
-  | HTML
-  | READ
-  | WRITE
-  | TEST
-  | SELF
-  | NONE
-  | NULL
+  | keyword
   ;
 
 this_expression:; 
 new_token:;
+keyword:;
