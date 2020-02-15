@@ -30,6 +30,7 @@ STAR: '*';
 SLASH: '/';
 BSLASH: '\\';
 PERCENT: '%';
+SHARP: '#'; // needed for css text
 GT: '>';
 GTE: '>=';
 LT: '<';

@@ -20,7 +20,7 @@ css_value:
     ;
 
 css_text:
-    ~(LCURL | RCURL | COLON | SEMI | WS)+
+    ~(SEMI)+?
     ;
 
 nospace_hyphen_identifier_or_keyword: DOT;
