@@ -358,3 +358,9 @@ VERSION_LITERAL
     : '\'v' Integer DOT Integer (DOT Integer ( DOT Integer )?)? '\''
     ;
    
+JSX_TEXT:
+    (~('{'|'}'|'<'|'>'))+?
+    ;
+
+
+   

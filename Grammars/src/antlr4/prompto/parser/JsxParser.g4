@@ -70,7 +70,12 @@ jsx_child:
     ;
 
 jsx_text:
-    ~(LCURL | RCURL | LT | GT)+
+	jsx_char+
+	;
+
+jsx_char:	
+    ~(LCURL | RCURL | LT | GT)
+    | JSX_TEXT
     ;
 
 ws_plus: DOT;
