@@ -293,7 +293,8 @@ expression:
   | left=expression modulo right=expression 				# ModuloExpression
   | left=expression idivide right=expression 				# IntDivideExpression
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
-  | LPAR right=category_or_any_type RPAR left=expression	# CastExpression
+  | LPAR MUTABLE? right=category_or_any_type RPAR 
+  		left=expression										# CastExpression
   | left=expression LT right=expression						# LessThanExpression
   | left=expression LTE right=expression					# LessThanOrEqualExpression
   | left=expression GT right=expression						# GreaterThanExpression

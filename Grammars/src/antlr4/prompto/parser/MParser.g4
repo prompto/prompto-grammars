@@ -308,7 +308,7 @@ expression:
   | left=expression modulo right=expression 				# ModuloExpression
   | left=expression idivide right=expression 				# IntDivideExpression
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
-  | left=expression AS right=category_or_any_type			# CastExpression
+  | left=expression AS MUTABLE? right=category_or_any_type	# CastExpression
   | left=expression LT right=expression						# LessThanExpression
   | left=expression LTE right=expression					# LessThanOrEqualExpression
   | left=expression GT right=expression						# GreaterThanExpression
