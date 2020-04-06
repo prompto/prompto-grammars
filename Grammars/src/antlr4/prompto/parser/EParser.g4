@@ -367,6 +367,7 @@ expression:
   | exp=mutable_instance_expression							# MutableInstanceExpression
   | src=expression filtered_list_suffix						# FilteredListExpression
   | exp=fetch_expression									# FetchExpression
+  | exp=read_blob_expression								# ReadBlobExpression
   | exp=read_all_expression									# ReadAllExpression
   | exp=read_one_expression									# ReadOneExpression
   | exp=sorted_expression									# SortedExpression

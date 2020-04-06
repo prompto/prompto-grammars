@@ -363,6 +363,7 @@ method_expression:
   | document_expression			
   | filtered_list_expression		
   | fetch_expression		
+  | read_blob_expression				
   | read_all_expression				
   | read_one_expression				
   | sorted_expression			

@@ -474,6 +474,10 @@ sorted_key:
   | arrow_expression
   ;		
   	   	
+read_blob_expression:
+  READ BLOB FROM source=expression
+  ;
+
 read_all_expression:
   READ ALL FROM source=expression
   ;
