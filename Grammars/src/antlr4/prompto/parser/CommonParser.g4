@@ -546,7 +546,6 @@ keyword:
     | CATCH
     | CATEGORY
     | CLASS
-    | CLOSE
     | CONTAINS
     | DEF
     | DEFAULT

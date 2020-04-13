@@ -86,7 +86,6 @@ CASE: 'case';
 CATCH: 'catch';
 CATEGORY: 'category';
 CLASS: 'class';
-CLOSE: 'close';
 CONTAINS: 'contains';
 DEF: 'def';
 DEFAULT: 'default';
