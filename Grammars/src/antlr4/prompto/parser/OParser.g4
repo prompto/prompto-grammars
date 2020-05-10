@@ -376,7 +376,7 @@ blob_expression:
   ;
 
 document_expression:
-  DOCUMENT LPAR expression? RPAR
+  DOCUMENT LPAR (FROM EQ exp=expression)? RPAR
   ;
 
 write_statement: 

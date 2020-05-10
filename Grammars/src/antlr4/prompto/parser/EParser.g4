@@ -423,7 +423,7 @@ mutable_instance_expression:
   ;
  
 document_expression:
-  DOCUMENT (FROM expression)?
+  DOCUMENT (FROM exp=expression)?
   ;
 
 blob_expression:
