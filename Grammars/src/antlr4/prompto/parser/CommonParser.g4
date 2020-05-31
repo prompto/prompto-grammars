@@ -354,23 +354,23 @@ literal_collection:
 
     
 atomic_literal:
-  MIN_INTEGER				# MinIntegerLiteral
-  | MAX_INTEGER				# MaxIntegerLiteral
-  | INTEGER_LITERAL 		# IntegerLiteral
-  | HEXA_LITERAL			# HexadecimalLiteral
-  | CHAR_LITERAL			# CharacterLiteral
-  | DATE_LITERAL			# DateLiteral
-  | TIME_LITERAL			# TimeLiteral
-  | TEXT_LITERAL			# TextLiteral
-  | DECIMAL_LITERAL 		# DecimalLiteral
-  | DATETIME_LITERAL		# DateTimeLiteral
-  | BOOLEAN_LITERAL			# BooleanLiteral
-  | PERIOD_LITERAL			# PeriodLiteral
-  | VERSION_LITERAL			# VersionLiteral
-  | UUID_LITERAL			# UUIDLiteral
-  | symbol_identifier		# SymbolLiteral
-  | type_literal			# TypeLiteral
-  | null_literal			# NullLiteral
+  MIN_INTEGER					# MinIntegerLiteral
+  | MAX_INTEGER					# MaxIntegerLiteral
+  | MINUS? INTEGER_LITERAL 		# IntegerLiteral
+  | HEXA_LITERAL				# HexadecimalLiteral
+  | CHAR_LITERAL				# CharacterLiteral
+  | DATE_LITERAL				# DateLiteral
+  | TIME_LITERAL				# TimeLiteral
+  | TEXT_LITERAL				# TextLiteral
+  | MINUS? DECIMAL_LITERAL 		# DecimalLiteral
+  | DATETIME_LITERAL			# DateTimeLiteral
+  | BOOLEAN_LITERAL				# BooleanLiteral
+  | PERIOD_LITERAL				# PeriodLiteral
+  | VERSION_LITERAL				# VersionLiteral
+  | UUID_LITERAL				# UUIDLiteral
+  | symbol_identifier			# SymbolLiteral
+  | type_literal				# TypeLiteral
+  | null_literal				# NullLiteral
   ;
    
 literal_list_literal:
