@@ -168,6 +168,7 @@ statement:
   | stmt=assign_tuple_statement				# AssignTupleStatement
   | stmt=store_statement					# StoreStatement
   | stmt=fetch_statement					# FetchStatement
+  | stmt=read_statement						# ReadStatement
   | stmt=flush_statement					# FlushStatement
   | stmt=break_statement					# BreakStatement
   | stmt=return_statement					# ReturnStatement
@@ -450,6 +451,13 @@ fetch_statement:
   			stmts=statement_list
   			dedent											# FetchManyAsync
   ;  
+
+
+read_statement:
+  READ ALL FROM source=expression THEN WITH name=variable_identifier COLON indent
+  			stmts=statement_list
+  			dedent
+  ;
 
 
 sorted_expression:
