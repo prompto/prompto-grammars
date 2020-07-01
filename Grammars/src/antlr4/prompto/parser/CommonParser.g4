@@ -412,7 +412,7 @@ dict_literal:
   ; 
 
 document_literal:
-  LCURL dict_entry_list? RCURL	
+  LCURL doc_entry_list? RCURL	
   ; 
 
 expression_tuple:
@@ -421,6 +421,19 @@ expression_tuple:
   ; 
 
 
+doc_entry_list:
+  doc_entry (COMMA doc_entry)*
+  ;
+
+doc_entry:
+  key=doc_key COLON value=expression
+  ; 
+
+doc_key:
+  name=identifier_or_keyword	# DocKeyIdentifier
+  | name=TEXT_LITERAL			# DocKeyText 	
+  ;
+  
 dict_entry_list:
   dict_entry (COMMA dict_entry)*
   ;
