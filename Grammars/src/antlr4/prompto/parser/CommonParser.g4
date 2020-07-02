@@ -443,7 +443,8 @@ dict_entry:
   ; 
 
 dict_key:
-  name=identifier_or_keyword	# DictKeyIdentifier
+  name=expression				# DictKeyExpresion
+  | name=keyword				# DictKeyKeyword
   | name=TEXT_LITERAL			# DictKeyText 	
   ;
   
