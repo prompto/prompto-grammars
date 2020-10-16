@@ -260,9 +260,11 @@ native_member_method_declaration_list:
   ;
 
 native_member_method_declaration:
-  native_getter_declaration			
+  (comment_statement lfp)*
+  (annotation_constructor lfp)*
+  (native_getter_declaration			
   | native_setter_declaration			
-  | native_method_declaration			
+  | native_method_declaration)			
   ;
 
 native_category_binding:
