@@ -312,7 +312,7 @@ TimeZone :
     ;
     
 PERIOD_LITERAL
-    : '\'' 'P' Years? Months? Days? 
+    : '\'' 'P' Years? Months? Weeks? Days? 
       ( ( 'T' Hours Minutes? Seconds?  )
         | ( 'T' Minutes Seconds?  )
          | ( 'T' Seconds ) )? '\''
@@ -328,6 +328,11 @@ Months :
     '-'? Integer 'M'
     ;
     
+fragment
+Weeks :
+    '-'? Integer 'W'
+    ;
+
 fragment
 Days :
     '-'? Integer 'D'
