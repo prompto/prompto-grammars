@@ -501,3 +501,9 @@ dedent:
 type_literal : category_or_any_type;
   
 null_literal : NONE;
+
+comment_statement:
+  (COMMENT | CSS_DATA) .+?
+  ;
+  
+

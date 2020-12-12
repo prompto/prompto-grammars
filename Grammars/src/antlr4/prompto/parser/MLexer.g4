@@ -26,7 +26,11 @@ WS:
 	' ' -> channel(HIDDEN)   
 	;    
 
+CSS_DATA :
+	'#' ~[;\n\r]*?
+	;
+	
 COMMENT :   
-    '#' ~('\n'|'\r')*
+    '#' ~[\n\r]*?
     ;   
     
