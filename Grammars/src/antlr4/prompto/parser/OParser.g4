@@ -296,27 +296,15 @@ expression:
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
   | LPAR MUTABLE? right=category_or_any_type RPAR 
   		left=expression										# CastExpression
-  | left=expression LT right=expression						# LessThanExpression
-  | left=expression LTE right=expression					# LessThanOrEqualExpression
-  | left=expression GT right=expression						# GreaterThanExpression
-  | left=expression GTE right=expression					# GreaterThanOrEqualExpression
-  | left=expression IS NOT right=an_expression				# IsNotAnExpression
-  | left=expression IS right=an_expression					# IsAnExpression
-  | left=expression IS NOT right=expression					# IsNotExpression
-  | left=expression IS right=expression						# IsExpression
-  | left=expression EQ2 right=expression					# EqualsExpression
-  | left=expression XEQ right=expression					# NotEqualsExpression
-  | left=expression TEQ right=expression					# RoughlyEqualsExpression
-  | left=expression CONTAINS right=expression				# ContainsExpression
-  | left=expression IN right=expression						# InExpression
-  | left=expression HAS right=expression					# HasExpression
-  | left=expression HAS ALL right=expression				# HasAllExpression
-  | left=expression HAS ANY right=expression				# HasAnyExpression
-  | left=expression NOT CONTAINS right=expression			# NotContainsExpression
-  | left=expression NOT IN right=expression					# NotInExpression
-  | left=expression NOT HAS right=expression				# NotHasExpression
-  | left=expression NOT HAS ALL right=expression			# NotHasAllExpression
-  | left=expression NOT HAS ANY right=expression			# NotHasAnyExpression
+  | left=expression op=(LT | LTE | GT | GTE) right=expression # CompareExpression
+  | left=expression IS NOT? right=an_expression				# IsAnExpression
+  | left=expression IS NOT? right=expression				# IsExpression
+  | left=expression op=(EQ2 | XEQ | TEQ) right=expression	# EqualsExpression
+  | left=expression NOT? CONTAINS right=expression			# ContainsExpression
+  | left=expression NOT? IN right=expression				# InExpression
+  | left=expression NOT? HAS right=expression				# HasExpression
+  | left=expression NOT? HAS ALL right=filter_expression	# HasAllExpression
+  | left=expression NOT? HAS ANY right=filter_expression	# HasAnyExpression
   | left=expression PIPE2 right=expression					# OrExpression
   | left=expression AMP2 right=expression					# AndExpression
   | test=expression 
@@ -328,6 +316,14 @@ expression:
   			IN source=expression RPAR						# IteratorExpression
   ;
 
+filter_expression:
+  WHERE LPAR arrow_expression RPAR			# ArrowFilterExpression
+  | LPAR variable_identifier RPAR 
+  		WHERE LPAR expression RPAR			# ExplicitFilterExpression
+  | expression								# OtherFilterExpression
+  ;
+
+    
 an_expression:
   {$parser.willBeAOrAn()}? VARIABLE_IDENTIFIER typ=category_or_any_type
   ;

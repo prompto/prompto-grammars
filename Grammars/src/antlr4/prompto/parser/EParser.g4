@@ -337,25 +337,14 @@ expression:
   | left=expression idivide right=expression 				# IntDivideExpression
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
   | left=expression AS MUTABLE? right=category_or_any_type	# CastExpression
-  | left=expression LT right=expression						# LessThanExpression
-  | left=expression LTE right=expression					# LessThanOrEqualExpression
-  | left=expression GT right=expression						# GreaterThanExpression
-  | left=expression GTE right=expression					# GreaterThanOrEqualExpression
-  | left=expression IS NOT right=is_expression				# IsNotExpression
-  | left=expression IS right=is_expression					# IsExpression
-  | left=expression EQ right=expression						# EqualsExpression
-  | left=expression LTGT right=expression					# NotEqualsExpression
-  | left=expression TILDE right=expression					# RoughlyEqualsExpression
-  | left=expression CONTAINS right=expression				# ContainsExpression
-  | left=expression IN right=expression						# InExpression
-  | left=expression HAS right=expression					# HasExpression
-  | left=expression HAS ALL right=expression				# HasAllExpression
-  | left=expression HAS ANY right=expression				# HasAnyExpression
-  | left=expression NOT CONTAINS right=expression			# NotContainsExpression
-  | left=expression NOT IN right=expression					# NotInExpression
-  | left=expression NOT HAS right=expression				# NotHasExpression
-  | left=expression NOT HAS ALL right=expression			# NotHasAllExpression
-  | left=expression NOT HAS ANY right=expression			# NotHasAnyExpression
+  | left=expression op=(LT | LTE | GT | GTE) right=expression # CompareExpression
+  | left=expression IS NOT? right=is_expression				# IsExpression
+  | left=expression op=(EQ | LTGT | TILDE) right=expression	# EqualsExpression
+  | left=expression NOT? CONTAINS right=expression			# ContainsExpression
+  | left=expression NOT? IN right=expression				# InExpression
+  | left=expression NOT? HAS right=expression				# HasExpression
+  | left=expression NOT? HAS ALL right=filter_expression	# HasAllExpression
+  | left=expression NOT? HAS ANY right=filter_expression	# HasAnyExpression
   | left=expression OR right=expression						# OrExpression
   | left=expression AND right=expression					# AndExpression
   | ifTrue=expression IF test=expression 
@@ -378,6 +367,13 @@ expression:
   		IN source=expression								# IteratorExpression
   ;
 
+filter_expression:
+  WHERE arrow_expression					# ArrowFilterExpression
+  | variable_identifier WHERE expression	# ExplicitFilterExpression
+  | expression								# OtherFilterExpression
+  ;
+  
+  
 unresolved_expression: 
   name=identifier				    		# UnresolvedIdentifier
   | parent=unresolved_expression 
