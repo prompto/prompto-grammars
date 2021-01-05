@@ -304,12 +304,12 @@ expression:
   | src=expression filtered_list_suffix						# FilteredListExpression
   | MINUS exp=expression									# MinusExpression
   | NOT exp=expression										# NotExpression
+  | left=expression AS MUTABLE? right=category_or_any_type	# CastExpression
   | left=expression multiply right=expression 				# MultiplyExpression
   | left=expression divide right=expression 				# DivideExpression
   | left=expression modulo right=expression 				# ModuloExpression
   | left=expression idivide right=expression 				# IntDivideExpression
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
-  | left=expression AS MUTABLE? right=category_or_any_type	# CastExpression
   | left=expression op=(LT | LTE | GT | GTE) right=expression # CompareExpression
   | left=expression IS NOT? right=is_expression				# IsExpression
   | left=expression op=(EQ2 | XEQ | TEQ) right=expression	# EqualsExpression

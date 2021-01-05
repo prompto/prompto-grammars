@@ -289,13 +289,13 @@ expression:
   | exp=arrow_expression 									# ArrowExpression
   | MINUS exp=expression									# MinusExpression
   | XMARK exp=expression									# NotExpression
+  | LPAR MUTABLE? right=category_or_any_type RPAR 
+  		left=expression										# CastExpression
   | left=expression multiply right=expression 				# MultiplyExpression
   | left=expression divide right=expression 				# DivideExpression
   | left=expression modulo right=expression 				# ModuloExpression
   | left=expression idivide right=expression 				# IntDivideExpression
   | left=expression op=(PLUS | MINUS) right=expression 		# AddExpression
-  | LPAR MUTABLE? right=category_or_any_type RPAR 
-  		left=expression										# CastExpression
   | left=expression op=(LT | LTE | GT | GTE) right=expression # CompareExpression
   | left=expression IS NOT? right=an_expression				# IsAnExpression
   | left=expression IS NOT? right=expression				# IsExpression
