@@ -351,7 +351,7 @@ expression:
   		ELSE ifFalse=expression 							# TernaryExpression
   | CODE COLON exp=expression								# CodeExpression
   | EXECUTE COLON name=variable_identifier					# ExecuteExpression
-  | METHOD_COLON name=method_identifier						# ClosureExpression
+  | METHOD_COLON exp=instance_expression					# ClosureExpression
   | exp=blob_expression										# BlobExpression
   | exp=document_expression									# DocumentExpression
   | exp=mutable_instance_expression							# MutableInstanceExpression

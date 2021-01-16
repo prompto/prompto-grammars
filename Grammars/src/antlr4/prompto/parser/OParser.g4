@@ -311,7 +311,7 @@ expression:
   		QMARK ifTrue=expression COLON ifFalse=expression 	# TernaryExpression
   | CODE LPAR exp=expression RPAR							# CodeExpression
   | EXECUTE LPAR name=variable_identifier RPAR				# ExecuteExpression
-  | exp=closure_expression									# ClosureExpression
+  | exp=type_expression										# TypeExpression
   | exp=expression FOR EACH LPAR name=variable_identifier 
   			IN source=expression RPAR						# IteratorExpression
   ;
@@ -328,9 +328,7 @@ an_expression:
   {$parser.willBeAOrAn()}? VARIABLE_IDENTIFIER typ=category_or_any_type
   ;
 
-closure_expression:
-  // given the context, this can only occur for a standalone type identifier
-  // disable variable identifier to avoid NoViableAltException, or wrong routing
+type_expression:
   name=type_identifier
   ;
 
