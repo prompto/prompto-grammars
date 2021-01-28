@@ -411,7 +411,7 @@ argument_assignment:
   ;
 
 write_statement: 
-  WRITE what=expression TO target=expression
+  WRITE what=expression TO target=expression then?
   ;
   
 filtered_list_suffix:
@@ -433,24 +433,24 @@ fetch_expression:
 fetch_statement:
   FETCH ONE typ=mutable_category_type? 
   			WHERE predicate=expression	
-  			THEN WITH name=variable_identifier COLON indent
-  			stmts=statement_list
-  			dedent											# FetchOneAsync
+  			then											# FetchOneAsync
   | FETCH  ( ALL 
   			| ROWS xstart=expression TO xstop=expression )
   			LPAR typ=mutable_category_type? RPAR 
   			( WHERE predicate=expression )?					
   			( ORDER BY orderby=order_by_list )?
-  			THEN WITH name=variable_identifier COLON indent
-  			stmts=statement_list
-  			dedent											# FetchManyAsync
+  			then											# FetchManyAsync
   ;  
 
 
-read_statement:
-  READ ALL FROM source=expression THEN WITH name=variable_identifier COLON indent
+then:
+	THEN WITH name=variable_identifier COLON indent
   			stmts=statement_list
-  			dedent
+  			dedent											
+ ;
+  			
+read_statement:
+  READ ALL FROM source=expression then
   ;
 
 

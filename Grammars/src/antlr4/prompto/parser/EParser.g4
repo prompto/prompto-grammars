@@ -437,7 +437,7 @@ constructor_expression:
   ;
 
 write_statement: 
-  WRITE what=expression TO target=expression
+  WRITE what=expression TO target=expression then?
   ;
   
 ambiguous_expression:
@@ -462,24 +462,24 @@ fetch_expression:
 fetch_statement:
   FETCH ONE (typ=mutable_category_type?) 
   			WHERE predicate=expression
-  			THEN WITH name=variable_identifier COLON indent
-  			stmts=statement_list
-  			dedent											# FetchOneAsync
+  			then												# FetchOneAsync
   | FETCH ( ( ALL typ=mutable_category_type? ) 
   			| ( typ=mutable_category_type ROWS? xstart=expression TO xstop=expression )
   			| ( ROWS xstart=expression TO xstop=expression ) )
   			( WHERE predicate=expression )?
   			( ORDER BY orderby=order_by_list )?
-  			THEN WITH name=variable_identifier COLON indent
-  			stmts=statement_list
-  			dedent											# FetchManyAsync
+  			then												# FetchManyAsync
   ;  
 
 
+then:
+  THEN WITH name=variable_identifier COLON indent
+	stmts=statement_list
+	dedent											
+  ;
+  
 read_statement:
-  READ ALL FROM source=expression THEN WITH name=variable_identifier COLON indent
-  			stmts=statement_list
-  			dedent
+  READ ALL FROM source=expression then
   ;
   
   

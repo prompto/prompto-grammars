@@ -375,7 +375,7 @@ document_expression:
   ;
 
 write_statement: 
-  WRITE LPAR what=expression RPAR TO target=expression SEMI
+  WRITE LPAR what=expression RPAR TO target=expression (then | SEMI)
   ;
 
 filtered_list_expression:
@@ -397,23 +397,23 @@ fetch_expression:
 fetch_statement:
   FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
   		WHERE LPAR predicate=expression RPAR
-  		THEN WITH name=variable_identifier LCURL
-  			stmts=statement_list
-  			RCURL														# FetchOneAsync
+  		then															# FetchOneAsync
   | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
   			| ( (LPAR typ=mutable_category_type RPAR)? 
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
   			( WHERE LPAR predicate=expression RPAR )?			
   			( ORDER BY LPAR orderby=order_by_list RPAR )? 
-  			THEN WITH name=variable_identifier LCURL
-  			stmts=statement_list
-  			RCURL														# FetchManyAsync
+  			then														# FetchManyAsync
   ;
 
-read_statement:
-  READ ALL FROM source=expression THEN WITH name=variable_identifier LCURL
+then:
+	THEN WITH name=variable_identifier LCURL
   			stmts=statement_list
-  			RCURL
+  			RCURL	
+  ;
+  													
+read_statement:
+  READ ALL FROM source=expression then
   ;
 
   
