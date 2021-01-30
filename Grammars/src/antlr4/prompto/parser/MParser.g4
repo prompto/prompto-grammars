@@ -61,9 +61,9 @@ native_widget_declaration:
 
 concrete_category_declaration:
   STORABLE? ( CLASS | CATEGORY ) name=type_identifier LPAR 
-  	( derived=derived_list 
+  	 ( derived=derived_list 
   	  | attrs=attribute_identifier_list  
-  	  | derived=derived_list COMMA attrs=attribute_identifier_list ) 
+  	  | derived=derived_list COMMA attrs=attribute_identifier_list ) ?
   RPAR (COLON
 	  	indent ( methods=member_method_declaration_list | PASS ) dedent)?
   ;
