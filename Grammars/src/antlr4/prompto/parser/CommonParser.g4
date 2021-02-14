@@ -186,7 +186,7 @@ identifier:
  
  
 member_identifier:
-  VARIABLE_IDENTIFIER | CATEGORY
+  VARIABLE_IDENTIFIER | CATEGORY | STORABLE | RESOURCE
   ;
   
 variable_identifier:
@@ -194,7 +194,7 @@ variable_identifier:
   ;
   
 attribute_identifier:
-  VARIABLE_IDENTIFIER | STORABLE
+  VARIABLE_IDENTIFIER | STORABLE | RESOURCE
   ;
   
 type_identifier:
