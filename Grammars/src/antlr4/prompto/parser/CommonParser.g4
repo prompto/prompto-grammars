@@ -194,7 +194,7 @@ variable_identifier:
   ;
   
 attribute_identifier:
-  VARIABLE_IDENTIFIER | RESOURCE
+  VARIABLE_IDENTIFIER | STORABLE | RESOURCE
   ;
   
 type_identifier:
