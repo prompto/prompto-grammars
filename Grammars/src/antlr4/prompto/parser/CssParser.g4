@@ -20,7 +20,7 @@ css_value:
     ;
 
 css_text:
-    ~(SEMI)+?
+    ~(SEMI | RCURL)+? // RCURL to avoid colliding with document literals			
     ;
 
 nospace_hyphen_identifier_or_keyword: DOT;
