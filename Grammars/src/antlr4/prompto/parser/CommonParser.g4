@@ -9,7 +9,7 @@ repl:
   ;
   	
 declaration_list:
-  (declarations)? lfs EOF		# FullDeclarationList
+  lfs (declarations)? lfs EOF		# FullDeclarationList
   ;
 
 declarations:
