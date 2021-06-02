@@ -272,7 +272,7 @@ native_category_binding:
   | CSHARP binding=csharp_identifier_expression		# CSharpCategoryBinding
   | PYTHON2 binding=python_category_binding			# Python2CategoryBinding
   | PYTHON3 binding=python_category_binding			# Python3CategoryBinding
-  | JAVASCRIPT binding=javascript_category_binding	# JavaScriptCategoryBinding
+  | JAVASCRIPT binding=javascript_category_binding	# JavascriptCategoryBinding
   ;  
 
 python_category_binding:
@@ -319,7 +319,7 @@ native_statement:
   | CSHARP csharp_statement					# CSharpNativeStatement
   | PYTHON2 python_native_statement			# Python2NativeStatement
   | PYTHON3 python_native_statement			# Python3NativeStatement
-  | JAVASCRIPT javascript_native_statement 	# JavaScriptNativeStatement
+  | JAVASCRIPT javascript_native_statement 	# JavascriptNativeStatement
   ;   
    
 python_native_statement:
