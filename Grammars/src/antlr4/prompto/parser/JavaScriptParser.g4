@@ -30,9 +30,9 @@ javascript_new_expression:
   ;
 
 javascript_selector_expression:		
-  DOT method=javascript_method_expression	# JavaScriptMethodExpression		
-  | DOT name=javascript_identifier			# JavaScriptMemberExpression
-  | exp=javascript_item_expression			# JavaScriptItemExpression
+  DOT method=javascript_method_expression	# JavascriptMethodExpression		
+  | DOT name=javascript_identifier			# JavascriptMemberExpression
+  | exp=javascript_item_expression			# JavascriptItemExpression
   ;
   
 javascript_method_expression:
