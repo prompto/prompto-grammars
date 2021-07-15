@@ -116,6 +116,7 @@ INDEX: 'index';
 INVOKE_COLON: 'invoke:';
 IS: 'is';
 MATCHING: 'matching';
+METADATA: 'metadata';
 METHOD: 'method';
 METHODS: 'methods';
 MODULO: 'modulo';
