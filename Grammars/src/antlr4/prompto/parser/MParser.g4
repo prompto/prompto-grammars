@@ -194,7 +194,7 @@ flush_statement:
 store_statement:
   ( DELETE LPAR to_del=expression_list RPAR (AND STORE LPAR to_add=expression_list RPAR)? 						
   | STORE LPAR to_add=expression_list RPAR )
-  ( WITH METADATA LPAR expression RPAR )?
+  ( WITH metadata LPAR with_meta=expression RPAR )?
   ( THEN COLON indent stmts=statement_list dedent )?
   ;
 

@@ -221,7 +221,7 @@ flush_statement:
 store_statement:
   ( DELETE to_del=expression_list	(AND STORE to_add=expression_list)? 						
   | STORE to_add=expression_list )
-  ( WITH expression AS METADATA )?
+  ( WITH with_meta=expression AS metadata )?
   ( THEN COLON indent stmts=statement_list dedent )?
   ;
   

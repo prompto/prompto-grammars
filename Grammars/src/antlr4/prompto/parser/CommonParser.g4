@@ -470,6 +470,10 @@ is_expression:
   | expression															# IsOtherExpression		
   ;
 
+metadata:
+  {$parser.willBeText("metadata")}? VARIABLE_IDENTIFIER
+  ;
+  
 arrow_expression:
   arrow_prefix expression 						# ArrowExpressionBody
   | arrow_prefix LCURL statement_list RCURL	 	# ArrowStatementsBody
