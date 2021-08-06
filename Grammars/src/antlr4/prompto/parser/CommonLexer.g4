@@ -226,6 +226,12 @@ UUID_LITERAL :
 	 HexByte HexByte HexByte HexByte HexByte HexByte '\''
 	;
 
+VERSION_LITERAL
+    : '\'v' Integer DOT Integer (DOT Integer)? ( MINUS VersionQualifier )? '\''
+    | '\'latest\'' 
+    | '\'development\'' 
+    ;
+   
 INTEGER_LITERAL
     : Integer
     ;    
@@ -358,10 +364,11 @@ HexByte :
 	HexNibble HexNibble
 	;
 	
-VERSION_LITERAL
-    : '\'v' Integer DOT Integer (DOT Integer ( DOT Integer )?)? '\''
-    ;
-   
+fragment
+VersionQualifier :
+	'alpha' | 'beta' | 'candidate'
+	;
+		
 JSX_TEXT:
     (~('{'|'}'|'<'|'>'))+?
     ;
