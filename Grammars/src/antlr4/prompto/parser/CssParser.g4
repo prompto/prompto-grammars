@@ -5,7 +5,7 @@ css_expression:
     ;
 
 css_field:
-    name=css_identifier COLON value=css_value SEMI
+    name=css_identifier COLON values=css_value+ SEMI
     ;
 
 css_identifier:
@@ -20,9 +20,11 @@ css_value:
     ;
 
 css_text:
-    ~(SEMI | RCURL)+? // RCURL to avoid colliding with document literals			
+    ~(SEMI | LCURL | RCURL)+ 			
     ;
 
+// the below are ther to help editing this file
+// but will be replaced in the embeddding grammar
 nospace_hyphen_identifier_or_keyword: DOT;
 nospace_identifier_or_keyword: DOT;
 identifier_or_keyword: DOT;
