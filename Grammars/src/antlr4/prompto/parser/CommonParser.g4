@@ -104,6 +104,7 @@ typedef:
   | d=typedef LTCOLONGT 		# DictType
   | CURSOR LT c=typedef GT 		# CursorType
   | ITERATOR LT i=typedef GT 	# IteratorType
+  | TYPE LT t=typedef GT		# TypeType
   ;
    
 primary_type:
@@ -138,7 +139,7 @@ category_type:
 mutable_category_type:
   MUTABLE? category_type
   ;
-  	
+
 code_type:
   t1=CODE
   ; 
