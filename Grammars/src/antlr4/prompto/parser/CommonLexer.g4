@@ -64,6 +64,7 @@ DOCUMENT: 'Document';
 BLOB: 'Blob';
 IMAGE: 'Image';
 UUID: 'Uuid';
+DBID: 'DbId';
 ITERATOR: 'Iterator';
 CURSOR: 'Cursor';
 HTML: 'Html';

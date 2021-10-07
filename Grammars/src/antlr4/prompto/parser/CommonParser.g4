@@ -129,6 +129,7 @@ native_type:
   | CODE			# CodeType
   | BLOB			# BlobType
   | UUID			# UUIDType
+  | DBID			# DbIdType
   | HTML			# HtmlType
   ;
   
@@ -545,6 +546,7 @@ keyword:
     | DOCUMENT
     | BLOB
     | IMAGE
+    | DBID
     | UUID
     | ITERATOR
     | CURSOR
