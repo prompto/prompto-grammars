@@ -452,22 +452,26 @@ filtered_list_suffix:
   
 fetch_expression:
   FETCH ONE (typ=mutable_category_type?) 
-  			WHERE predicate=expression							# FetchOne
+  			WHERE predicate=expression	
+  			( INCLUDE include=include_list )?	 # FetchOne
   | FETCH ( ( ALL typ=mutable_category_type? ) 
-  			| ( typ=mutable_category_type ROWS? xstart=expression TO xstop=expression )
+			| ( typ=mutable_category_type ROWS? xstart=expression TO xstop=expression )
   			| ( ROWS xstart=expression TO xstop=expression ) )
   			( WHERE predicate=expression )?
+  			( INCLUDE include=include_list )?
   			( ORDER BY orderby=order_by_list )?					# FetchMany
   ;  
   
 fetch_statement:
   FETCH ONE (typ=mutable_category_type?) 
   			WHERE predicate=expression
+  			( INCLUDE include=include_list )?
   			then												# FetchOneAsync
   | FETCH ( ( ALL typ=mutable_category_type? ) 
   			| ( typ=mutable_category_type ROWS? xstart=expression TO xstop=expression )
   			| ( ROWS xstart=expression TO xstop=expression ) )
   			( WHERE predicate=expression )?
+  			( INCLUDE include=include_list )?
   			( ORDER BY orderby=order_by_list )?
   			then												# FetchManyAsync
   ;  

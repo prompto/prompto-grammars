@@ -113,6 +113,7 @@ GETTER: 'getter';
 HAS: 'has';
 IF: 'if';
 IN: 'in';
+INCLUDE: 'include';
 INDEX: 'index';
 INVOKE_COLON: 'invoke:';
 IS: 'is';

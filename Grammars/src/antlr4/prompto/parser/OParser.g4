@@ -387,22 +387,27 @@ filtered_list_expression:
   
 fetch_expression:
   FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
-  		WHERE LPAR predicate=expression RPAR							# FetchOne
-  | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
-  			| ( (LPAR typ=mutable_category_type RPAR)? 
-  			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
-  			( WHERE LPAR predicate=expression RPAR )?			
+  		WHERE LPAR predicate=expression RPAR	
+  		( INCLUDE LPAR include=include_list RPAR)?				# FetchOne
+  | FETCH (
+  		( ALL (LPAR typ=mutable_category_type RPAR)? )
+	  | ( (LPAR typ=mutable_category_type RPAR)?  ROWS LPAR xstart=expression TO xstop=expression RPAR ) 
+	  	  )
+  			( WHERE LPAR predicate=expression RPAR )?	
+  			( INCLUDE LPAR include=include_list RPAR)?			
   			( ORDER BY LPAR orderby=order_by_list RPAR )?				# FetchMany
   ;
   
 fetch_statement:
   FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
   		WHERE LPAR predicate=expression RPAR
+  		( INCLUDE include=include_list )?
   		then															# FetchOneAsync
   | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
   			| ( (LPAR typ=mutable_category_type RPAR)? 
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
-  			( WHERE LPAR predicate=expression RPAR )?			
+  			( WHERE LPAR predicate=expression RPAR )?
+  			( INCLUDE include=include_list )?			
   			( ORDER BY LPAR orderby=order_by_list RPAR )? 
   			then														# FetchManyAsync
   ;

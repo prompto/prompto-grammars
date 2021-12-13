@@ -507,13 +507,16 @@ read_one_expression:
   READ ONE FROM source=expression
   ;
 
-
 order_by_list:
 	order_by ( COMMA order_by )*
 	;
 	
 order_by:
 	variable_identifier (DOT variable_identifier)* ( ASC | DESC)?
+	;
+
+include_list:
+	variable_identifier (DOT variable_identifier)* 
 	;
 		  
 operator:
