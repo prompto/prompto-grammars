@@ -401,13 +401,13 @@ fetch_expression:
 fetch_statement:
   FETCH ONE (LPAR typ=mutable_category_type RPAR)? 
   		WHERE LPAR predicate=expression RPAR
-  		( INCLUDE include=include_list )?
+  		( INCLUDE LPAR include=include_list RPAR )?
   		then															# FetchOneAsync
   | FETCH  (( ALL (LPAR typ=mutable_category_type RPAR)? )
   			| ( (LPAR typ=mutable_category_type RPAR)? 
   			ROWS LPAR xstart=expression TO xstop=expression RPAR ) )
   			( WHERE LPAR predicate=expression RPAR )?
-  			( INCLUDE include=include_list )?			
+  			( INCLUDE LPAR include=include_list RPAR )?			
   			( ORDER BY LPAR orderby=order_by_list RPAR )? 
   			then														# FetchManyAsync
   ;
