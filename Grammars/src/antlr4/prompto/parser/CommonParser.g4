@@ -516,7 +516,7 @@ order_by:
 	;
 
 include_list:
-	variable_identifier (DOT variable_identifier)* 
+	variable_identifier (COMMA variable_identifier)* 
 	;
 		  
 operator:

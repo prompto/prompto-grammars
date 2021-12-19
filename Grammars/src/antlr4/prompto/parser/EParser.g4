@@ -477,6 +477,10 @@ fetch_statement:
   ;  
 
 
+include_list:
+	variable_identifier (COMMA variable_identifier)* (AND variable_identifier)?
+	;
+
 then:
   THEN WITH name=variable_identifier COLON indent
 	stmts=statement_list
