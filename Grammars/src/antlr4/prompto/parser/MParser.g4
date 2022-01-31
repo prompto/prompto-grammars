@@ -129,7 +129,12 @@ native_category_binding_list:
   	lfp item=native_category_binding	# NativeCategoryBindingListItem
   ;
 
-abstract_method_declaration:
+abstract_global_method_declaration:
+  ABSTRACT DEF name=type_identifier LPAR args=argument_list? RPAR 
+    (RARROW MUTABLE? typ=typedef)?
+  ;  
+
+abstract_member_method_declaration:
   ABSTRACT DEF name=method_identifier LPAR args=argument_list? RPAR 
     (RARROW MUTABLE? typ=typedef)?
   ;  

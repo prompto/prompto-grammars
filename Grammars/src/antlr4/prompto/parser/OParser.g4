@@ -117,11 +117,15 @@ native_category_binding_list:
   	item=native_category_binding SEMI	# NativeCategoryBindingListItem
   ;
 
-abstract_method_declaration:
-  ABSTRACT (MUTABLE? typ=typedef)? METHOD name=method_identifier 
+abstract_global_method_declaration:
+  ABSTRACT (MUTABLE? typ=typedef)? METHOD name=type_identifier 
     LPAR (args=argument_list)? RPAR SEMI
   ;  
 
+abstract_member_method_declaration:
+  ABSTRACT (MUTABLE? typ=typedef)? METHOD name=method_identifier 
+    LPAR (args=argument_list)? RPAR SEMI
+  ;  
 
 concrete_method_declaration:
   (MUTABLE? typ=typedef)? METHOD name=method_identifier 

@@ -144,7 +144,13 @@ attribute_list:
    	(AND item=attribute_identifier)? 				# AttributeListItem
   ;
 
-abstract_method_declaration:
+abstract_global_method_declaration:
+  DEFINE name=type_identifier AS ABSTRACT METHOD 
+    (RECEIVING args=full_argument_list)? 
+    (RETURNING MUTABLE? typ=typedef)?
+  ;  
+
+abstract_member_method_declaration:
   DEFINE name=method_identifier AS ABSTRACT METHOD 
     (RECEIVING args=full_argument_list)? 
     (RETURNING MUTABLE? typ=typedef)?

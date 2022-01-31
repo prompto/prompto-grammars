@@ -253,7 +253,7 @@ member_method_declaration:
   (setter_method_declaration			
   | getter_method_declaration			
   | concrete_method_declaration		
-  | abstract_method_declaration		
+  | abstract_member_method_declaration		
   | operator_method_declaration)
   ;
 
@@ -302,7 +302,7 @@ attribute_identifier_list:
   ;
   
 method_declaration:
-  abstract_method_declaration
+  abstract_global_method_declaration
   | concrete_method_declaration
   | native_method_declaration
   | test_method_declaration
@@ -680,7 +680,8 @@ lfs:; // see MParser and EParser
 lfp:; // see MParser and EParser
 ws_plus:; // see MParser and EParser
 attribute_declaration:;
-abstract_method_declaration:;
+abstract_global_method_declaration:;
+abstract_member_method_declaration:;
 concrete_method_declaration:;
 native_method_declaration:;
 test_method_declaration:;
