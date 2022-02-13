@@ -392,7 +392,7 @@ unresolved_selector:
   ;
 
 invocation_expression:
-  INVOKE_COLON name=variable_identifier invocation_trailer
+  INVOKE_COLON exp=unresolved_expression invocation_trailer
   ;
 
 invocation_trailer:
