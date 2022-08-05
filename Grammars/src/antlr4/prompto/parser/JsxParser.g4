@@ -56,7 +56,7 @@ jsx_attribute:
 
 jsx_attribute_value:
     TEXT_LITERAL                        #JsxLiteral
-    | LCURL exp=expression RCURL        #JsxValue
+    | LCURL exp=expression? RCURL       #JsxValue
     ;
 
 jsx_children:
