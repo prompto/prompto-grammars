@@ -396,7 +396,7 @@ invocation_expression:
   ;
 
 invocation_trailer:
-  {$parser.willBe(EParser.LF)}?
+  {$parser.willBeIn(EParser.LF, EParser.DEDENT)}?
   ;	
 
 selectable_expression:
