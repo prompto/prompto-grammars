@@ -160,11 +160,6 @@ type_identifier_list  :
   type_identifier (COMMA type_identifier)*
   ;
 
-method_identifier:
-  variable_identifier
-  | type_identifier
-  ;
-
 identifier_or_keyword:
     identifier
     | keyword
@@ -191,6 +186,10 @@ member_identifier:
   VARIABLE_IDENTIFIER | CATEGORY | MUTABLE | STORABLE | RESOURCE
   ;
   
+method_identifier:
+  VARIABLE_IDENTIFIER | TYPE_IDENTIFIER
+  ;
+
 variable_identifier:
   VARIABLE_IDENTIFIER  | CATEGORY | RESOURCE
   ;

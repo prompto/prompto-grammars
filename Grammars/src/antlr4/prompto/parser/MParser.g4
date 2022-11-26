@@ -383,7 +383,8 @@ method_expression:
 	
 instance_selector:
   DOT name=member_identifier 				# MemberSelector
-  | DOT method=method_call_expression 		# MethodSelector
+  | DOT name=method_identifier 				# MethodRefSelector
+  | DOT method=method_call_expression 		# MethodCallSelector
   | LBRAK xslice=slice_arguments RBRAK		# SliceSelector
   |	LBRAK exp=expression RBRAK				# ItemSelector
   ; 
