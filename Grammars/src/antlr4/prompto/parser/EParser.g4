@@ -396,7 +396,7 @@ invocation_expression:
   ;
 
 invocation_trailer:
-  {$parser.willBeIn(EParser.LF, EParser.DEDENT)}?
+  {$parser.afterWillBeIn(EParser.WS, EParser.RPAR, EParser.RBRAK, EParser.RCURL, EParser.LF, EParser.DEDENT)}?
   ;	
 
 selectable_expression:
